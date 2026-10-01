@@ -1,0 +1,18 @@
+/* GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand. */
+.status-chip { display: inline-flex; flex: none; max-width: 100%; align-items: stretch; height: var(--ama-component-status-chip-height); border: 1px solid var(--status-chip-border); border-radius: var(--ama-component-status-chip-radius); background: var(--status-chip-bg); color: var(--status-chip-fg); font-size: var(--text-label); line-height: var(--text-label--line-height); font-weight: var(--text-label--font-weight); white-space: nowrap; vertical-align: middle; }
+.status-chip__swatch { display: grid; place-items: center; flex: none; aspect-ratio: 1; height: 100%; background: var(--chip-swatch); color: var(--chip-ink); box-shadow: inset 0 0 0 1px var(--chip-edge); border-start-start-radius: calc(var(--ama-component-status-chip-radius) - 1px); border-end-start-radius: calc(var(--ama-component-status-chip-radius) - 1px); }
+.status-chip__swatch svg { width: var(--ama-component-status-chip-icon); height: var(--ama-component-status-chip-icon); stroke-width: 2; }
+.status-chip__label { display: flex; align-items: center; padding: 0 calc(var(--spacing) * 1.75); }
+[data-density="touch"] .status-chip { height: var(--ama-component-status-chip-height-touch); font-size: var(--text-body-sm); line-height: var(--text-body-sm--line-height); }
+[data-density="touch"] .status-chip__swatch svg { width: var(--ama-component-status-chip-icon-touch); height: var(--ama-component-status-chip-icon-touch); }
+@media (forced-colors: active) { .status-chip__swatch { border-inline-end: 1px solid CanvasText; } }
+.status-chip[data-status="not_drawn"] { --chip-swatch: var(--status-not-drawn-swatch); --chip-ink: var(--status-not-drawn-ink); --chip-edge: var(--status-not-drawn-edge); }
+.status-chip[data-status="takeoff"] { --chip-swatch: var(--status-takeoff-swatch); --chip-ink: var(--status-takeoff-ink); --chip-edge: var(--status-takeoff-edge); }
+.status-chip[data-status="ifa"] { --chip-swatch: var(--status-ifa-swatch); --chip-ink: var(--status-ifa-ink); --chip-edge: var(--status-ifa-edge); }
+.status-chip[data-status="ifc"] { --chip-swatch: var(--status-ifc-swatch); --chip-ink: var(--status-ifc-ink); --chip-edge: var(--status-ifc-edge); }
+.status-chip[data-status="scheduled"] { --chip-swatch: var(--status-scheduled-swatch); --chip-ink: var(--status-scheduled-ink); --chip-edge: var(--status-scheduled-edge); }
+.status-chip[data-status="manufactured"] { --chip-swatch: var(--status-manufactured-swatch); --chip-ink: var(--status-manufactured-ink); --chip-edge: var(--status-manufactured-edge); }
+.status-chip[data-status="manifested"] { --chip-swatch: var(--status-manifested-swatch); --chip-ink: var(--status-manifested-ink); --chip-edge: var(--status-manifested-edge); }
+.status-chip[data-status="dispatched"] { --chip-swatch: var(--status-dispatched-swatch); --chip-ink: var(--status-dispatched-ink); --chip-edge: var(--status-dispatched-edge); }
+.status-chip[data-status="with_driver"] { --chip-swatch: var(--status-with-driver-swatch); --chip-ink: var(--status-with-driver-ink); --chip-edge: var(--status-with-driver-edge); }
+.status-chip[data-status="delivered"] { --chip-swatch: var(--status-delivered-swatch); --chip-ink: var(--status-delivered-ink); --chip-edge: var(--status-delivered-edge); }

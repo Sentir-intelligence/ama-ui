@@ -1,0 +1,20 @@
+/* GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand. */
+/* TEMPORARY migration shim for ama-os. Maps Tailwind defaults still used by ported prototype code onto AMA values.
+   ESLint warns on every use. Delete this import when the warning count reaches zero. The ama-ui library never uses it. */
+@theme inline {
+  --text-xs: 12px; --text-xs--line-height: 16px;
+  --text-sm: 14px; --text-sm--line-height: 20px;
+  --text-base: 16px; --text-base--line-height: 24px;
+  --text-lg: 16px; --text-lg--line-height: 24px;
+  --text-xl: 20px; --text-xl--line-height: 28px;
+  --text-2xl: 24px; --text-2xl--line-height: 32px;
+  --text-3xl: 32px; --text-3xl--line-height: 40px;
+  --color-white: var(--ama-white);
+  --color-black: var(--ama-black);
+  --radius: var(--ama-radius-md);
+  --radius-2xl: var(--ama-radius-xl);
+  --radius-3xl: var(--ama-radius-xl);
+  --shadow: var(--ama-shadow-sm);
+  --shadow-xl: var(--ama-shadow-lg);
+  --shadow-2xl: var(--ama-shadow-lg);
+}
