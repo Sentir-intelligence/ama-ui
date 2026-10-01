@@ -1,0 +1,210 @@
+/* GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand. */
+@import "./tokens.css";
+@import "./status-chip.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Only AMA tokens exist as utilities. Tailwind's default palette, type scale, radii, shadows and fonts are removed. */
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+  --text-shadow-*: initial;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-placeholder: var(--placeholder);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-destructive-soft-foreground: var(--destructive-soft-foreground);
+  --color-destructive-border: var(--destructive-border);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+  --color-row-hover: var(--row-hover);
+  --color-row-selected: var(--row-selected);
+  --color-selected-indicator: var(--selected-indicator);
+  --color-skeleton: var(--skeleton);
+  --color-overlay: var(--overlay);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-disabled: var(--disabled);
+  --color-disabled-foreground: var(--disabled-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-chrome: var(--chrome);
+  --color-chrome-foreground: var(--chrome-foreground);
+  --color-chrome-muted: var(--chrome-muted);
+  --color-chrome-border: var(--chrome-border);
+  --color-chrome-hover: var(--chrome-hover);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-success-border: var(--success-border);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-border: var(--warning-border);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-soft: var(--info-soft);
+  --color-info-border: var(--info-border);
+  --color-info-soft-foreground: var(--info-soft-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --font-display: var(--ama-font-display);
+  --font-sans: var(--ama-font-sans);
+  --font-mono: var(--ama-font-mono);
+  --radius-xs: var(--ama-radius-xs);
+  --radius-sm: var(--ama-radius-sm);
+  --radius-md: var(--ama-radius-md);
+  --radius-lg: var(--ama-radius-lg);
+  --radius-xl: var(--ama-radius-xl);
+  --shadow-xs: var(--ama-shadow-xs);
+  --shadow-sm: var(--ama-shadow-sm);
+  --shadow-md: var(--ama-shadow-md);
+  --shadow-lg: var(--ama-shadow-lg);
+  --spacing-control-sm: var(--ama-size-control-sm);
+  --spacing-control-lg: var(--ama-size-control-lg);
+  --spacing-topbar: var(--ama-size-topbar);
+  --spacing-control: var(--ama-density-control);
+  --spacing-row: var(--ama-density-row);
+  --spacing-cell: var(--ama-density-cell);
+  --text-display: 32px;
+  --text-display--line-height: 40px;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.01em;
+  --text-page-title: 24px;
+  --text-page-title--line-height: 32px;
+  --text-page-title--font-weight: 700;
+  --text-page-title--letter-spacing: -0.005em;
+  --text-title: 20px;
+  --text-title--line-height: 28px;
+  --text-title--font-weight: 600;
+  --text-title--letter-spacing: -0.017em;
+  --text-section: 16px;
+  --text-section--line-height: 24px;
+  --text-section--font-weight: 600;
+  --text-section--letter-spacing: -0.011em;
+  --text-body-strong: 14px;
+  --text-body-strong--line-height: 20px;
+  --text-body-strong--font-weight: 600;
+  --text-body-strong--letter-spacing: 0em;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-body--font-weight: 400;
+  --text-body--letter-spacing: 0em;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 18px;
+  --text-body-sm--font-weight: 400;
+  --text-body-sm--letter-spacing: 0em;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-label--font-weight: 500;
+  --text-label--letter-spacing: 0em;
+  --text-caption: var(--ama-density-caption);
+  --text-caption--line-height: 16px;
+  --text-caption--font-weight: 400;
+  --text-caption--letter-spacing: 0.005em;
+  --text-overline: var(--ama-density-caption);
+  --text-overline--line-height: 16px;
+  --text-overline--font-weight: 600;
+  --text-overline--letter-spacing: 0.06em;
+  --text-table-header: 12px;
+  --text-table-header--line-height: 16px;
+  --text-table-header--font-weight: 500;
+  --text-table-header--letter-spacing: 0em;
+  --text-table-cell: var(--ama-density-cell-text);
+  --text-table-cell--line-height: var(--ama-density-cell-leading);
+  --text-table-cell--font-weight: 400;
+  --text-table-cell--letter-spacing: 0em;
+  --text-kpi: 28px;
+  --text-kpi--line-height: 32px;
+  --text-kpi--font-weight: 600;
+  --text-kpi--letter-spacing: -0.02em;
+  --text-button: 14px;
+  --text-button--line-height: 20px;
+  --text-button--font-weight: 500;
+  --text-button--letter-spacing: 0em;
+  --text-button-sm: 13px;
+  --text-button-sm--line-height: 18px;
+  --text-button-sm--font-weight: 500;
+  --text-button-sm--letter-spacing: 0em;
+  --text-field: 16px;
+  --text-field--line-height: 24px;
+  --text-field--font-weight: 400;
+  --text-field--letter-spacing: 0em;
+  --text-id: 13px;
+  --text-id--line-height: 18px;
+  --text-id--font-weight: 500;
+  --text-id--letter-spacing: 0em;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  html { scroll-padding-top: 6rem; }
+  body { background: var(--canvas); color: var(--foreground); font-family: var(--ama-font-sans); font-size: var(--text-body); line-height: var(--text-body--line-height); -webkit-font-smoothing: antialiased; }
+  table, td, th, time, output, input[type="number"], [data-numeric] { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  td :focus-visible, th :focus-visible, td:focus-visible { outline-offset: -2px; }
+  a:not([data-variant]) { color: var(--link); text-decoration-line: underline; text-underline-offset: 2px; }
+  ::placeholder { color: var(--placeholder); }
+  ::selection { background: var(--row-selected); }
+  [data-surface="chrome"] { --ring: var(--signal); }
+  /* Role completions: family, case and features ride on the role class itself, including variant-prefixed use. */
+  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); font-stretch: var(--ama-font-stretch-display); }
+  [class*="text-overline"] { text-transform: uppercase; }
+  [class*="text-kpi"], [class*="text-table-cell"] { font-variant-numeric: tabular-nums; }
+  [class*="text-id"] { font-feature-settings: "tnum", "zero", "cv08"; }
+}
+
+/* Indicators compose with Tailwind shadow and ring utilities. */
+@utility indicator-left { --tw-inset-shadow: inset 3px 0 0 var(--selected-indicator); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow, 0 0 #0000), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow, 0 0 #0000); }
+@utility indicator-bottom { --tw-inset-shadow: inset 0 -3px 0 var(--signal); box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow, 0 0 #0000), var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow, 0 0 #0000); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+@media (forced-colors: active) {
+  :focus-visible { outline-color: Highlight; }
+  [aria-current="page"], [data-active="true"] { border-bottom: 3px solid Highlight; }
+  [aria-selected="true"], [data-state="selected"] { outline: 2px solid Highlight; outline-offset: -2px; }
+}

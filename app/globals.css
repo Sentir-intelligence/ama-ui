@@ -1,0 +1,7 @@
+/* Dev and CI entry point. Mirrors what a consuming app's globals.css looks like after installing the theme. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../registry/ama/styles/theme.css";
+
+@source "../registry";
+@source "../.build/logo-fixture.html";

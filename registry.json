@@ -1,0 +1,402 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ama-ui",
+  "homepage": "https://github.com/Sentir-intelligence/ama-ui",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:file",
+      "title": "AMA Theme",
+      "description": "Install first, once per app. AMA Precast tokens (logo navy #1A2250, website navy #0F0A35, concrete greys, signal yellow on navy only, cobalt actions), light and dark, density modes, type roles, status chip styles and the Tailwind v4 wiring that removes the default palette so only AMA tokens exist. Then add to app/globals.css, after @import \"tailwindcss\" and \"tw-animate-css\": @import \"./ama/theme.css\";",
+      "dependencies": [
+        "tw-animate-css"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/styles/theme.css",
+          "type": "registry:file",
+          "target": "app/ama/theme.css"
+        },
+        {
+          "path": "registry/ama/styles/tokens.css",
+          "type": "registry:file",
+          "target": "app/ama/tokens.css"
+        },
+        {
+          "path": "registry/ama/styles/status-chip.css",
+          "type": "registry:file",
+          "target": "app/ama/status-chip.css"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn() with AMA merge config",
+      "description": "Replaces lib/utils.ts. cn() that knows the AMA type roles, density sizes, radii and shadows so className overrides never drop a style.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "type": "registry:lib",
+      "title": "Status keys",
+      "description": "Lifecycle status keys, labels and icon names generated from the tokens. Mirrors the elements.status enum.",
+      "files": [
+        {
+          "path": "registry/ama/lib/status.ts",
+          "type": "registry:lib",
+          "target": "lib/status.ts"
+        }
+      ]
+    },
+    {
+      "name": "lint",
+      "type": "registry:file",
+      "title": "AMA lint rules",
+      "description": "ESLint rules that enforce the guideline: only AMA classes, no arbitrary values, no opacity states, no outline-none, no warning colour in table rows, no raw <select>. Spread amaRules() into eslint.config.mjs.",
+      "devDependencies": [
+        "eslint-plugin-better-tailwindcss"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/lint/eslint.ama.mjs",
+          "type": "registry:file",
+          "target": "eslint.ama.mjs"
+        }
+      ]
+    },
+    {
+      "name": "compat",
+      "type": "registry:file",
+      "title": "Migration shim (ama-os only)",
+      "description": "TEMPORARY. Maps Tailwind defaults still used by ported prototype code (text-sm, text-xs, bg-white, bg-black/50, rounded-2xl, shadow-xl) onto AMA values. Import after theme.css and lint with amaRules({ compat: true }), which warns on every use. Delete when the count reaches zero.",
+      "files": [
+        {
+          "path": "registry/ama/styles/compat.css",
+          "type": "registry:file",
+          "target": "app/ama/compat.css"
+        }
+      ]
+    },
+    {
+      "name": "agents",
+      "type": "registry:file",
+      "title": "Agent rules",
+      "description": "The AMA UI rules for coding and design agents (Claude, Cursor, Figma). Install into every AMA repo.",
+      "files": [
+        {
+          "path": "registry/rules/AGENTS.md",
+          "type": "registry:file",
+          "target": "docs/ama-ui/AGENTS.md"
+        }
+      ]
+    },
+    {
+      "name": "logo",
+      "type": "registry:component",
+      "title": "AMA Logo",
+      "description": "The AMA Precast logo as an inline SVG component with token colours. tone=\"reverse\" on navy chrome, variant=\"mark\" for the top bar. Never retype the wordmark.",
+      "files": [
+        {
+          "path": "registry/ama/brand/logo.tsx",
+          "type": "registry:component",
+          "target": "components/brand/logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Prototype API unchanged. Heights follow density, hover and disabled use tokens, focus uses the global outline.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Counts and tags only. Lifecycle statuses use StatusChip.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Card surface with type roles.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "16px box, 24px hit area, 3:1 border.",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "16px text below md (no iOS zoom), density height, invalid state.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Matches Input.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Label role.",
+      "dependencies": [
+        "@radix-ui/react-label"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "3:1 off state, 24px hit area.",
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Compact by default, density-driven rows and cells, selection with indicator bar, TableCheckboxCell (whole cell toggles).",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Overlay token, z-100, 28px close target.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Right-docked detail panel, overlay token.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Floating layer z-110 (opens above dialogs).",
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/popover.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Floating layer z-110, compact items, overline labels.",
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropdown-menu.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Matches Input. Use instead of raw <select>. Floating layer z-110.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx"
+        }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:ui",
+      "title": "Confirm Dialog",
+      "description": "Replaces window.confirm. Requires dialog and button.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/confirm-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/confirm-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "prompt-dialog",
+      "type": "registry:ui",
+      "title": "Prompt Dialog",
+      "description": "Replaces window.prompt. Requires dialog, button, input and label.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/ama/ui/prompt-dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/prompt-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "status-chip",
+      "type": "registry:ui",
+      "title": "Status Chip",
+      "description": "The only way a lifecycle status is shown: colour family, Lucide icon and label together. Requires theme and status.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/status-chip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/status-chip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Success, warning, info and destructive feedback. Icon plus left rule, never a pill, never in table rows.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/alert.tsx"
+        }
+      ]
+    }
+  ]
+}
