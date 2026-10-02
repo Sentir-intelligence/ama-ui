@@ -1,7 +1,7 @@
 {
   "$extensions": {
     "ama": {
-      "version": "0.3.0"
+      "version": "0.3.1"
     }
   },
   "$description": "AMA UI design tokens v0.3.0. Source of truth. Generated files: tokens.css, globals.css, tw-merge.ts. Do not hand-edit generated files.",
@@ -637,7 +637,7 @@
     "display": {
       "$type": "fontFamily",
       "$value": [
-        "Archivo",
+        "Archivo Narrow",
         "Arial Narrow",
         "Inter",
         "sans-serif"
@@ -661,12 +661,6 @@
         "Consolas",
         "monospace"
       ]
-    }
-  },
-  "font-stretch": {
-    "display": {
-      "$type": "string",
-      "$value": "87.5%"
     }
   },
   "radius": {
@@ -1185,6 +1179,11 @@
         "$type": "color",
         "$value": "{color.white}"
       },
+      "logo": {
+        "$type": "color",
+        "$value": "{color.brand.900}",
+        "$description": "Logo primary fill (AMA letters). Navy in light, white in dark."
+      },
       "chrome": {
         "$type": "color",
         "$value": "{color.brand.900}"
@@ -1610,6 +1609,11 @@
       "brand-foreground": {
         "$type": "color",
         "$value": "{color.brand.950}"
+      },
+      "logo": {
+        "$type": "color",
+        "$value": "{color.white}",
+        "$description": "Logo primary fill (AMA letters). Navy in light, white in dark."
       },
       "chrome": {
         "$type": "color",

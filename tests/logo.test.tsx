@@ -9,9 +9,9 @@ describe("Logo", () => {
     expect(screen.getByRole("img", { name: "AMA Precast" })).toBeInTheDocument();
   });
 
-  it("uses token fills: brand on light, chrome-foreground when reversed", () => {
+  it("uses token fills: logo by default, chrome-foreground when reversed", () => {
     const { container, rerender } = render(<Logo />);
-    expect(container.querySelector("g")).toHaveClass("fill-brand");
+    expect(container.querySelector("g")).toHaveClass("fill-logo");
     rerender(<Logo tone="reverse" />);
     expect(container.querySelector("g")).toHaveClass("fill-chrome-foreground");
   });

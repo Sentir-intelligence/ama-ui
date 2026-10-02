@@ -1,4 +1,4 @@
-/* GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand. */
+/* GENERATED from tokens/ama-tokens.json (v0.3.1) by scripts/build-tokens.mjs. Do not edit by hand. */
 .status-chip { display: inline-flex; flex: none; max-width: 100%; align-items: stretch; height: var(--ama-component-status-chip-height); border: 1px solid var(--status-chip-border); border-radius: var(--ama-component-status-chip-radius); background: var(--status-chip-bg); color: var(--status-chip-fg); font-size: var(--text-label); line-height: var(--text-label--line-height); font-weight: var(--text-label--font-weight); white-space: nowrap; vertical-align: middle; }
 .status-chip__swatch { display: grid; place-items: center; flex: none; aspect-ratio: 1; height: 100%; background: var(--chip-swatch); color: var(--chip-ink); box-shadow: inset 0 0 0 1px var(--chip-edge); border-start-start-radius: calc(var(--ama-component-status-chip-radius) - 1px); border-end-start-radius: calc(var(--ama-component-status-chip-radius) - 1px); }
 .status-chip__swatch svg { width: var(--ama-component-status-chip-icon); height: var(--ama-component-status-chip-icon); stroke-width: 2; }
