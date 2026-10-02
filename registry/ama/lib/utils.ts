@@ -1,4 +1,4 @@
-// GENERATED from tokens/ama-tokens.json (v0.3.1) by scripts/build-tokens.mjs. Do not edit by hand.
+// GENERATED from tokens/ama-tokens.json (v0.3.2) by scripts/build-tokens.mjs. Do not edit by hand.
 // cn() that understands the AMA scale, so type roles, density sizes, radii and shadows are never silently dropped.
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";

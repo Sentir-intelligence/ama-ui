@@ -1,5 +1,12 @@
 # ama-ui
 
+## 0.3.2
+
+- Lint: status colour classes are blocked outside `<StatusChip>`, website yellow (`signal`) outside chrome files (`chromeFiles` option), and logo images or imported logo files instead of `<Logo>`.
+- Lint: with `compat: true` every rule now warns instead of erroring (previously unknown classes and the syntax rules still errored), so ama-os can adopt the rules and ratchet the count down.
+- AGENTS.md: Figma searches must be restricted to the AMA UI library key.
+- Tests for the shipped lint rules (70 tests).
+
 ## 0.3.1
 
 - Display font is Archivo Narrow 700 in code and Figma. The `font-stretch` token is removed.

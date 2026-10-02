@@ -14,7 +14,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 - Semantic utilities only: `bg-primary`, `text-muted-foreground`, `border-input`, `bg-canvas`. The default Tailwind palette does not exist in AMA apps (`bg-blue-500` will not compile).
 - Never write hex, rgb, hsl or oklch in components, and never use arbitrary values (`bg-[#fff]`, `text-[11px]`).
 - Navy (`chrome`) is for the top bar and side nav. Anything on navy sets `data-surface="chrome"` so its focus ring turns yellow.
-- `#FCDA4E` has two roles. On navy chrome it is the brand highlight (active nav indicator). Anywhere else it means Delivered, and only inside a status swatch with its edge and the package-check icon. Never use it for emphasis, badges, buttons or highlights on light or night surfaces.
+- `#FCDA4E` has two roles. On navy chrome it is the brand highlight (active nav indicator). Anywhere else it means Delivered, and only inside a status swatch with its edge and the package-check icon. Never use it for emphasis, badges, buttons or highlights on light or night surfaces. Lint blocks `*-signal` classes outside chrome files (app shell, top bar, side nav, `shell/`); pass `chromeFiles` to `amaRules` if your chrome lives elsewhere.
 - Actions and links are cobalt `primary` / `link`. Links are always underlined.
 - Feedback (`success`, `warning`, `info`, `destructive`) appears only in `<Alert>`, toasts and validation, always with its icon and left rule. Never as pills, never inside table rows.
 
@@ -22,11 +22,11 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 - Lifecycle status is shown only with `<StatusChip status="ifc" />`: a neutral tag with a solid colour swatch holding the status icon, then the label. Colour family, icon and label always travel together. Never rebuild it as a tinted pill.
 - The colour meanings are AMA's business language and must not change: pink IFA, green IFC, blue Scheduled, orange Manufactured, yellow Delivered, greys light to dark along the lifecycle for Not Drawn, Takeoff, Manifested, Dispatched, With Driver.
-- Never use status colours or status icons for anything that is not a status. Never use `Badge` for a status.
+- Never use status colours or status icons for anything that is not a status. Never use `Badge` for a status. Lint blocks `*-status-*` colour classes everywhere; only `<StatusChip>` draws them.
 
 ## Logo
 
-- Use `<Logo />` (registry item `logo`). On navy chrome use `tone="reverse"`; in the top bar use `variant="mark"`. Never retype the wordmark in a font, recolour it outside these tones, or stretch it.
+- Use `<Logo />` (registry item `logo`). On navy chrome use `tone="reverse"`; in the top bar use `variant="mark"`. Never retype the wordmark in a font, recolour it outside these tones, or stretch it. Lint blocks `<img>` logos and imported logo files.
 
 ## Type
 
@@ -62,7 +62,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 ## Figma
 
-- Library file: AMA UI, key `9BtnLlkTrWBscwvFV9DUQC` (https://www.figma.com/design/9BtnLlkTrWBscwvFV9DUQC). Enable it in any AMA design file. Search it before drawing (`search_design_system`), insert instances, never detach.
+- Library file: AMA UI, key `9BtnLlkTrWBscwvFV9DUQC` (https://www.figma.com/design/9BtnLlkTrWBscwvFV9DUQC). Enable it in any AMA design file. Search it before drawing (`search_design_system`) with `includeLibraryKeys: ["lk-9bb346fc868d99120e1c3d4e7981b9acbda2f190691b37b2a563ec03666c6cec8d9616c35607bae0a65f3839588ac02df1f82ad5bcd99cb7e82fc1773db1900d"]`: the team also publishes FIVIC UI and a shadcn community library, which appear in unrestricted searches and must never be used for AMA. Insert instances, never detach.
 - Bind every colour to a variable in the **Color** collection (modes Light and Dark). The Primitives collection is hidden and must never be bound directly. Variable code syntax is the CSS name (`primary` is `var(--primary)`; `feedback/success/soft` is `var(--success-soft)`).
 - Heights and cell padding bind to the **Density** collection (Comfortable, Compact, Touch), radii and fixed sizes to **Shape**. Set modes on the page frame, not per layer.
 - Use the text styles (Heading, Body, Data, Control). Display roles are Archivo Narrow Bold, everything else Inter.

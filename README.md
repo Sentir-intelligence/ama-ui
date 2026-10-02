@@ -52,6 +52,8 @@ import { amaRules } from "./eslint.ama.mjs";
 export default [/* ...existing config */, ...amaRules({ entryPoint: "app/globals.css", compat: true })];
 ```
 
+The rules block Tailwind default classes, arbitrary values, opacity states, focus overrides, warning colours in table rows, raw `<select>`, status colour classes outside `<StatusChip>`, website yellow (`signal`) outside chrome files, and logo images instead of `<Logo>`. With `compat: true` every rule warns instead of erroring, so an existing app can adopt them and ratchet the warning count to zero.
+
 Pin a release with `#vX.Y.Z` on each item. Preview an update with `--diff` before applying it.
 If this repo is private, the shadcn CLI needs a GitHub token in the environment to install.
 
