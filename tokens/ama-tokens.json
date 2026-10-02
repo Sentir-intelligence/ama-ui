@@ -1,10 +1,10 @@
 {
   "$extensions": {
     "ama": {
-      "version": "0.3.1"
+      "version": "0.3.2"
     }
   },
-  "$description": "AMA UI design tokens v0.3.1. Source of truth. Generated files: tokens.css, globals.css, tw-merge.ts. Do not hand-edit generated files.",
+  "$description": "AMA UI design tokens v0.3.2. Source of truth. Generated files: tokens.css, globals.css, tw-merge.ts. Do not hand-edit generated files.",
   "color": {
     "white": {
       "$type": "color",

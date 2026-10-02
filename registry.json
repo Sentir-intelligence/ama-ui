@@ -72,6 +72,11 @@
           "path": "registry/ama/lint/eslint.ama.mjs",
           "type": "registry:file",
           "target": "eslint.ama.mjs"
+        },
+        {
+          "path": "registry/ama/lint/eslint.ama.d.mts",
+          "type": "registry:file",
+          "target": "eslint.ama.d.mts"
         }
       ]
     },
