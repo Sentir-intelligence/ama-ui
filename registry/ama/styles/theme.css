@@ -191,6 +191,7 @@
   ::selection { background: var(--row-selected); }
   [data-surface="chrome"] { --ring: var(--signal); }
   /* Role completions: family, case and features ride on the role class itself, including variant-prefixed use. */
+  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); }
   [class*="text-overline"] { text-transform: uppercase; }
   [class*="text-kpi"], [class*="text-table-cell"] { font-variant-numeric: tabular-nums; }
   [class*="text-id"] { font-feature-settings: "tnum", "zero", "cv08"; }
