@@ -23,6 +23,7 @@ const textPairs = [
   ["sidebar-foreground", "sidebar"], ["sidebar-primary-foreground", "sidebar-primary"], ["sidebar-accent-foreground", "sidebar-accent"],
   ...FEEDBACK.flatMap((k) => [[`${k}-foreground`, k], [`${k}-soft-foreground`, `${k}-soft`], [k, "background"], [k, "card"]]),
   ["status-chip-fg", "status-chip-bg"],
+  ["logo", "background"], ["logo", "canvas"], ["logo", "card"],
 ];
 const nonTextPairs = [
   ...["background", "card", "canvas", "popover"].map((b) => ["input", b]),

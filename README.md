@@ -57,7 +57,7 @@ If this repo is private, the shadcn CLI needs a GitHub token in the environment 
 
 ## Fonts
 
-Self-host with `next/font`: Inter (variable, Latin subset) as `--font-inter`, and Archivo at weight 700, width 87.5 as `--font-archivo`, both with `adjustFontFallback`. Point `--ama-font-sans` and `--ama-font-display` at those variables in the app's root layout. No Google Fonts CDN in production.
+Self-host with `next/font`: Inter (variable, Latin subset) as `--font-inter`, and Archivo Narrow at weight 700 as `--font-archivo-narrow`, both with `adjustFontFallback`. Figma uses the same two families. Point `--ama-font-sans` and `--ama-font-display` at those variables in the app's root layout. No Google Fonts CDN in production.
 
 ## Working on this repo
 

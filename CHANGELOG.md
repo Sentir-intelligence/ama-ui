@@ -1,5 +1,11 @@
 # ama-ui
 
+## 0.3.1
+
+- Display font is Archivo Narrow 700 in code and Figma. The `font-stretch` token is removed.
+- New `logo` colour token (navy in light, white in dark). `<Logo>` uses `fill-logo`, so the default tone follows the theme without a `dark:` class. Added to the contrast suite.
+- AGENTS.md points at the AMA UI Figma library (file key `9BtnLlkTrWBscwvFV9DUQC`) and states its variable, density and component naming rules.
+
 ## 0.3.0
 
 First release. Brand guideline approved after three rounds of specialist review (accessibility, colour, token architecture, typography and density, front-end build).

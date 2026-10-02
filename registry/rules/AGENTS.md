@@ -31,7 +31,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 ## Type
 
 - Use a role, never a size: `text-page-title`, `text-section`, `text-body`, `text-body-sm`, `text-label`, `text-caption`, `text-table-header`, `text-table-cell`, `text-kpi`, `text-id`, `text-button`, `text-field`.
-- Archivo (display font) comes with `text-display` and `text-page-title` only, 24px and up. On phones use `text-page-title sm:text-display`.
+- Archivo Narrow Bold (display font) comes with `text-display` and `text-page-title` only, 24px and up. On phones use `text-page-title sm:text-display`.
 - Shop numbers and IDs use `text-id` (tabular, slashed zero), never a mono font.
 - Table headers are sentence case, never uppercase. Numbers and dates are right-aligned and tabular. Dates read `08 Oct 2026`. Empty values show an en dash in `text-muted-foreground`. Units go in the header (`Area m²`).
 
@@ -53,7 +53,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 ## Fonts
 
-- Self-host with `next/font` (Archivo 700 at width 87.5, Inter variable, Latin subset, `adjustFontFallback`). No Google Fonts or other CDN in production.
+- Self-host with `next/font` (Archivo Narrow 700, Inter variable, Latin subset, `adjustFontFallback`). No Google Fonts or other CDN in production.
 
 ## Changing tokens
 
@@ -62,10 +62,11 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 ## Figma
 
-- Design in files that have the AMA UI library enabled. Search the library before drawing (`search_design_system`), insert instances, never detach.
-- Use variables only (Primitives and Semantic collections, Light and Dark modes). Variable names match the CSS names (`color/primary` is `--primary`).
-- Use text styles per role. Component names and variant properties match the code (`Button` with `variant` and `size`).
-- Figma library file key: to be added when the library is published.
+- Library file: AMA UI, key `9BtnLlkTrWBscwvFV9DUQC` (https://www.figma.com/design/9BtnLlkTrWBscwvFV9DUQC). Enable it in any AMA design file. Search it before drawing (`search_design_system`), insert instances, never detach.
+- Bind every colour to a variable in the **Color** collection (modes Light and Dark). The Primitives collection is hidden and must never be bound directly. Variable code syntax is the CSS name (`primary` is `var(--primary)`; `feedback/success/soft` is `var(--success-soft)`).
+- Heights and cell padding bind to the **Density** collection (Comfortable, Compact, Touch), radii and fixed sizes to **Shape**. Set modes on the page frame, not per layer.
+- Use the text styles (Heading, Body, Data, Control). Display roles are Archivo Narrow Bold, everything else Inter.
+- Component names and variant properties match the code: `Button` (Variant, Size, State), `Badge`, `Checkbox`, `Switch`, `Input`, `Textarea`, `Select`, `Label`, `Card`, `Table/Header cell`, `Table/Cell`, `Table/Checkbox cell`, `Table/Row`, `Dialog`, `Confirm Dialog`, `Prompt Dialog`, `Sheet`, `Popover`, `Dropdown Menu` (+ Item, Label, Separator), `StatusChip` (Status uses the code keys such as `with_driver`; Density Default or Touch), `Alert`, `Logo` (Tone, Variant), icons as `Icon/<lucide-name>`.
 
 ## Migration (ama-os only)
 

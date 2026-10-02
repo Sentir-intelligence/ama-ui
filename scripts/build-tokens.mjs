@@ -33,7 +33,6 @@ for (const mode of ["light", "dark"])
 const L = [HDR, ":root {"];
 for (const [path, t] of walk(T.color)) L.push(`  --ama-${path.join("-")}: ${t.$value};`);
 for (const [k, t] of entries(T.font)) L.push(`  --ama-font-${k}: ${fontList(t.$value)};`);
-L.push(`  --ama-font-stretch-display: ${T["font-stretch"].display.$value};`);
 for (const [k, t] of entries(T.radius)) L.push(`  --ama-radius-${k}: ${t.$value};`);
 for (const [k, t] of entries(T.size)) L.push(`  --ama-size-${k}: ${t.$value};`);
 for (const [k, t] of entries(T.shadow)) L.push(`  --ama-shadow-${k}: ${t.$value};`);
@@ -82,7 +81,7 @@ G.push("}", "", "@layer base {",
   "  ::selection { background: var(--row-selected); }",
   '  [data-surface="chrome"] { --ring: var(--signal); }',
   "  /* Role completions: family, case and features ride on the role class itself, including variant-prefixed use. */",
-  '  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); font-stretch: var(--ama-font-stretch-display); }',
+  '  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); }',
   '  [class*="text-overline"] { text-transform: uppercase; }',
   '  [class*="text-kpi"], [class*="text-table-cell"] { font-variant-numeric: tabular-nums; }',
   '  [class*="text-id"] { font-feature-settings: "tnum", "zero", "cv08"; }',

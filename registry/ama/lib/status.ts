@@ -1,4 +1,4 @@
-// GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand.
+// GENERATED from tokens/ama-tokens.json (v0.3.1) by scripts/build-tokens.mjs. Do not edit by hand.
 // Status keys mirror the database enum (elements.status). Order is the lifecycle ladder, lowest first.
 export const STATUS = {
   "not_drawn": {

@@ -1,4 +1,4 @@
-/* GENERATED from tokens/ama-tokens.json (v0.3.0) by scripts/build-tokens.mjs. Do not edit by hand. */
+/* GENERATED from tokens/ama-tokens.json (v0.3.1) by scripts/build-tokens.mjs. Do not edit by hand. */
 @import "./tokens.css";
 @import "./status-chip.css";
 
@@ -53,6 +53,7 @@
   --color-disabled-foreground: var(--disabled-foreground);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-logo: var(--logo);
   --color-chrome: var(--chrome);
   --color-chrome-foreground: var(--chrome-foreground);
   --color-chrome-muted: var(--chrome-muted);
@@ -190,7 +191,7 @@
   ::selection { background: var(--row-selected); }
   [data-surface="chrome"] { --ring: var(--signal); }
   /* Role completions: family, case and features ride on the role class itself, including variant-prefixed use. */
-  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); font-stretch: var(--ama-font-stretch-display); }
+  [class*="text-display"], [class*="text-page-title"] { font-family: var(--ama-font-display); }
   [class*="text-overline"] { text-transform: uppercase; }
   [class*="text-kpi"], [class*="text-table-cell"] { font-variant-numeric: tabular-nums; }
   [class*="text-id"] { font-feature-settings: "tnum", "zero", "cv08"; }

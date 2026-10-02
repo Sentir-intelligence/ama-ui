@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 // The AMA Precast logo, cleaned from the supplied vector: transparent background, letter counters cut out.
 // Never retype the wordmark in a font. Colours come from tokens, so the logo follows light and dark mode.
-//   tone="default": navy AMA and concrete PRECAST on light surfaces; white AMA in dark mode.
+//   tone="default": AMA uses the logo token (navy in light mode, white in dark mode), PRECAST is concrete.
 //   tone="reverse": white AMA and concrete PRECAST, for navy chrome (top bar, side nav).
 //   variant="mark": AMA letters only, for tight spaces such as the top bar and favicons.
 export interface LogoProps extends React.SVGProps<SVGSVGElement> {
@@ -12,7 +12,7 @@ export interface LogoProps extends React.SVGProps<SVGSVGElement> {
 }
 
 export function Logo({ tone = "default", variant = "lockup", className, ...props }: LogoProps) {
-  const primary = tone === "reverse" ? "fill-chrome-foreground" : "fill-brand dark:fill-chrome-foreground";
+  const primary = tone === "reverse" ? "fill-chrome-foreground" : "fill-logo";
   const mark = variant === "mark";
   return (
     <svg
