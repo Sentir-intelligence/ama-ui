@@ -1,4 +1,4 @@
-/* GENERATED from tokens/ama-tokens.json (v0.3.2) by scripts/build-tokens.mjs. Do not edit by hand. */
+/* GENERATED from tokens/ama-tokens.json (v0.3.3) by scripts/build-tokens.mjs. Do not edit by hand. */
 /* TEMPORARY migration shim for ama-os. Maps Tailwind defaults still used by ported prototype code onto AMA values.
    ESLint warns on every use. Delete this import when the warning count reaches zero. The ama-ui library never uses it. */
 @theme inline {

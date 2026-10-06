@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "16px text below md (no iOS zoom), density height, invalid state.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/input.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport type InputProps = React.InputHTMLAttributes<HTMLInputElement>;\n\n// text-field (16px) below md stops iOS zooming on focus; text-body from md up.\nconst Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, ...props }, ref) => (\n  <input\n    type={type}\n    ref={ref}\n    className={cn(\n      \"flex h-control w-full rounded-md border border-input bg-background px-3 text-field text-foreground md:text-body file:border-0 file:bg-transparent file:text-body file:font-medium disabled:cursor-not-allowed disabled:bg-disabled disabled:text-disabled-foreground aria-invalid:border-destructive\",\n      className\n    )}\n    {...props}\n  />\n));\nInput.displayName = \"Input\";\n\nexport { Input };\n",
+      "type": "registry:ui",
+      "target": "components/ui/input.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

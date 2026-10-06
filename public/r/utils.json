@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "title": "cn() with AMA merge config",
+  "description": "Replaces lib/utils.ts. cn() that knows the AMA type roles, density sizes, radii and shadows so className overrides never drop a style.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/lib/utils.ts",
+      "content": "// GENERATED from tokens/ama-tokens.json (v0.3.3) by scripts/build-tokens.mjs. Do not edit by hand.\n// cn() that understands the AMA scale, so type roles, density sizes, radii and shadows are never silently dropped.\nimport { clsx, type ClassValue } from \"clsx\";\nimport { extendTailwindMerge } from \"tailwind-merge\";\n\nexport const twMerge = extendTailwindMerge({\n  extend: {\n    theme: {\n      text: [\"display\",\"page-title\",\"title\",\"section\",\"body-strong\",\"body\",\"body-sm\",\"label\",\"caption\",\"overline\",\"table-header\",\"table-cell\",\"kpi\",\"button\",\"button-sm\",\"field\",\"id\"],\n      spacing: [\"control\",\"control-sm\",\"control-lg\",\"topbar\",\"row\",\"cell\"],\n      radius: [\"xs\",\"sm\",\"md\",\"lg\",\"xl\"],\n      shadow: [\"xs\",\"sm\",\"md\",\"lg\"],\n    },\n  },\n});\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib",
+      "target": "lib/utils.ts"
+    }
+  ],
+  "type": "registry:lib"
+}

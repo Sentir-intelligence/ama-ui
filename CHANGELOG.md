@@ -1,5 +1,12 @@
 # ama-ui
 
+## 0.3.3
+
+- The registry is now published: built item files are committed to `public/r/` and served from GitHub, so apps add `"@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/<tag>/public/r/{name}.json"` to `components.json` and install with `npx shadcn add @ama/<item>`. The tag in the URL pins the version.
+- Items declare their `registryDependencies` (`@ama/utils`, `@ama/status`, and the components that confirm-dialog and prompt-dialog are built from), so installing one item pulls in what it needs.
+- `npm run registry:check` fails CI when `public/r` is out of date.
+- README and AGENTS.md install instructions use the `@ama` namespace.
+
 ## 0.3.2
 
 - Lint: status colour classes are blocked outside `<StatusChip>`, website yellow (`signal`) outside chrome files (`chromeFiles` option), and logo images or imported logo files instead of `<Logo>`.

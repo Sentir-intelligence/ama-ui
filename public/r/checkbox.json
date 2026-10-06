@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "16px box, 24px hit area, 3:1 border.",
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/checkbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { Check } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// 16px box with a 24px hit area (the ::after pseudo-element), per WCAG 2.5.8.\nconst Checkbox = React.forwardRef<\n  React.ElementRef<typeof CheckboxPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <CheckboxPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"peer relative size-4 shrink-0 rounded-xs border border-input bg-background after:absolute after:-inset-1 disabled:cursor-not-allowed disabled:border-border disabled:bg-disabled data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground\",\n      className\n    )}\n    {...props}\n  >\n    <CheckboxPrimitive.Indicator className=\"flex items-center justify-center text-current\">\n      <Check className=\"size-3.5\" strokeWidth={3} />\n    </CheckboxPrimitive.Indicator>\n  </CheckboxPrimitive.Root>\n));\nCheckbox.displayName = CheckboxPrimitive.Root.displayName;\n\nexport { Checkbox };\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

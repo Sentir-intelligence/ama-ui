@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu",
+  "title": "Dropdown Menu",
+  "description": "Floating layer z-110, compact items, overline labels.",
+  "dependencies": [
+    "@radix-ui/react-dropdown-menu",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/dropdown-menu.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as DropdownMenuPrimitive from \"@radix-ui/react-dropdown-menu\";\nimport { Check, ChevronRight } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nconst DropdownMenu = DropdownMenuPrimitive.Root;\nconst DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;\nconst DropdownMenuGroup = DropdownMenuPrimitive.Group;\nconst DropdownMenuPortal = DropdownMenuPrimitive.Portal;\n\nconst itemBase =\n  \"relative flex h-control-sm cursor-pointer select-none items-center gap-2 rounded-sm text-body outline-hidden transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:text-disabled-foreground [&_svg]:size-4\";\n\nconst DropdownMenuContent = React.forwardRef<\n  React.ElementRef<typeof DropdownMenuPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>\n>(({ className, sideOffset = 4, ...props }, ref) => (\n  <DropdownMenuPrimitive.Portal>\n    <DropdownMenuPrimitive.Content\n      ref={ref}\n      sideOffset={sideOffset}\n      className={cn(\n        \"z-110 min-w-40 overflow-hidden rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95\",\n        className\n      )}\n      {...props}\n    />\n  </DropdownMenuPrimitive.Portal>\n));\nDropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;\n\nconst DropdownMenuItem = React.forwardRef<\n  React.ElementRef<typeof DropdownMenuPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & { inset?: boolean }\n>(({ className, inset, ...props }, ref) => (\n  <DropdownMenuPrimitive.Item ref={ref} className={cn(itemBase, \"px-2\", inset && \"pl-8\", className)} {...props} />\n));\nDropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;\n\nconst DropdownMenuCheckboxItem = React.forwardRef<\n  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,\n  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>\n>(({ className, children, checked, ...props }, ref) => (\n  <DropdownMenuPrimitive.CheckboxItem ref={ref} className={cn(itemBase, \"pl-8 pr-2\", className)} checked={checked} {...props}>\n    <span className=\"absolute left-2 flex size-4 items-center justify-center\">\n      <DropdownMenuPrimitive.ItemIndicator>\n        <Check className=\"size-4\" />\n      </DropdownMenuPrimitive.ItemIndicator>\n    </span>\n    {children}\n  </DropdownMenuPrimitive.CheckboxItem>\n));\nDropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displayName;\n\nconst DropdownMenuLabel = React.forwardRef<\n  React.ElementRef<typeof DropdownMenuPrimitive.Label>,\n  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }\n>(({ className, inset, ...props }, ref) => (\n  <DropdownMenuPrimitive.Label ref={ref} className={cn(\"px-2 py-1.5 text-overline text-muted-foreground\", inset && \"pl-8\", className)} {...props} />\n));\nDropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;\n\nconst DropdownMenuSeparator = React.forwardRef<\n  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,\n  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>\n>(({ className, ...props }, ref) => (\n  <DropdownMenuPrimitive.Separator ref={ref} className={cn(\"-mx-1 my-1 h-px bg-border\", className)} {...props} />\n));\nDropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;\n\nexport {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuCheckboxItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuGroup,\n  DropdownMenuPortal,\n  ChevronRight,\n};\n",
+      "type": "registry:ui",
+      "target": "components/ui/dropdown-menu.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

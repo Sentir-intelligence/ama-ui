@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "Counts and tags only. Lifecycle statuses use StatusChip.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/badge.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\n// For counts and tags only. Lifecycle statuses always use <StatusChip>, never a Badge.\nconst badgeVariants = cva(\"inline-flex h-5 items-center rounded-sm border px-1.5 text-label\", {\n  variants: {\n    variant: {\n      default: \"border-transparent bg-primary text-primary-foreground\",\n      secondary: \"border-border bg-muted text-foreground\",\n      destructive: \"border-transparent bg-destructive text-destructive-foreground\",\n      outline: \"border-border text-foreground\",\n    },\n  },\n  defaultVariants: { variant: \"default\" },\n});\n\nexport interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}\n\nfunction Badge({ className, variant, ...props }: BadgeProps) {\n  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;\n}\n\nexport { Badge, badgeVariants };\n",
+      "type": "registry:ui",
+      "target": "components/ui/badge.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

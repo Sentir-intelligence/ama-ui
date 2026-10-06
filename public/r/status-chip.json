@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-chip",
+  "title": "Status Chip",
+  "description": "The only way a lifecycle status is shown: colour family, Lucide icon and label together. Requires theme and status.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/status"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/status-chip.tsx",
+      "content": "import * as React from \"react\";\nimport {\n  CalendarClock,\n  ClipboardList,\n  Factory,\n  FileCheck,\n  FileClock,\n  PackageCheck,\n  PencilOff,\n  Ruler,\n  Send,\n  Truck,\n  type LucideIcon,\n} from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { STATUS, type StatusKey } from \"@/lib/status\";\n\n// The only way a lifecycle status is shown. A neutral tag with a solid status-colour swatch holding the icon,\n// then the label. Colour family (Andrew's code), icon and label always travel together, so a status reads without\n// colour (colour blindness, glare, Windows high contrast). Styling lives in status-chip.css, driven by data-status.\nexport const STATUS_ICONS: Record<StatusKey, LucideIcon> = {\n  not_drawn: PencilOff,\n  takeoff: Ruler,\n  ifa: FileClock,\n  ifc: FileCheck,\n  scheduled: CalendarClock,\n  manufactured: Factory,\n  manifested: ClipboardList,\n  dispatched: Send,\n  with_driver: Truck,\n  delivered: PackageCheck,\n};\n\nexport interface StatusChipProps extends React.HTMLAttributes<HTMLSpanElement> {\n  status: StatusKey;\n}\n\nexport const StatusChip = React.forwardRef<HTMLSpanElement, StatusChipProps>(({ status, className, children, ...props }, ref) => {\n  const Icon = STATUS_ICONS[status];\n  return (\n    <span ref={ref} data-status={status} className={cn(\"status-chip\", className)} {...props}>\n      <span className=\"status-chip__swatch\" aria-hidden=\"true\">\n        <Icon focusable=\"false\" />\n      </span>\n      <span className=\"status-chip__label\">{children ?? STATUS[status].label}</span>\n    </span>\n  );\n});\nStatusChip.displayName = \"StatusChip\";\n",
+      "type": "registry:ui",
+      "target": "components/ui/status-chip.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

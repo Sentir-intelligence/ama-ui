@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status",
+  "title": "Status keys",
+  "description": "Lifecycle status keys, labels and icon names generated from the tokens. Mirrors the elements.status enum.",
+  "files": [
+    {
+      "path": "registry/ama/lib/status.ts",
+      "content": "// GENERATED from tokens/ama-tokens.json (v0.3.3) by scripts/build-tokens.mjs. Do not edit by hand.\n// Status keys mirror the database enum (elements.status). Order is the lifecycle ladder, lowest first.\nexport const STATUS = {\n  \"not_drawn\": {\n    \"label\": \"Not Drawn\",\n    \"icon\": \"pencil-off\",\n    \"description\": \"No shop drawing yet.\"\n  },\n  \"takeoff\": {\n    \"label\": \"Takeoff\",\n    \"icon\": \"ruler\",\n    \"description\": \"Quantities taken off for estimating.\"\n  },\n  \"ifa\": {\n    \"label\": \"IFA\",\n    \"icon\": \"file-clock\",\n    \"description\": \"Drawing issued for approval.\"\n  },\n  \"ifc\": {\n    \"label\": \"IFC\",\n    \"icon\": \"file-check\",\n    \"description\": \"Drawing issued for construction. Only IFC elements can be scheduled or cast.\"\n  },\n  \"scheduled\": {\n    \"label\": \"Scheduled\",\n    \"icon\": \"calendar-clock\",\n    \"description\": \"Booked for manufacture.\"\n  },\n  \"manufactured\": {\n    \"label\": \"Manufactured\",\n    \"icon\": \"factory\",\n    \"description\": \"Cast (pour docket recorded).\"\n  },\n  \"manifested\": {\n    \"label\": \"Manifested\",\n    \"icon\": \"clipboard-list\",\n    \"description\": \"Staged, load documentation printed and driver notified.\"\n  },\n  \"dispatched\": {\n    \"label\": \"Dispatched\",\n    \"icon\": \"send\",\n    \"description\": \"Driver has left the warehouse with the load.\"\n  },\n  \"with_driver\": {\n    \"label\": \"With Driver\",\n    \"icon\": \"truck\",\n    \"description\": \"Driver has had to keep the load overnight.\"\n  },\n  \"delivered\": {\n    \"label\": \"Delivered\",\n    \"icon\": \"package-check\",\n    \"description\": \"Delivered to site.\"\n  }\n} as const;\n\nexport type StatusKey = keyof typeof STATUS;\nexport const STATUS_KEYS = Object.keys(STATUS) as StatusKey[];\n",
+      "type": "registry:lib",
+      "target": "lib/status.ts"
+    }
+  ],
+  "type": "registry:lib"
+}
