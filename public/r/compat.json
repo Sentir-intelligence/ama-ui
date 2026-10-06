@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "compat",
+  "title": "Migration shim (ama-os only)",
+  "description": "TEMPORARY. Maps Tailwind defaults still used by ported prototype code (text-sm, text-xs, bg-white, bg-black/50, rounded-2xl, shadow-xl) onto AMA values. Import after theme.css and lint with amaRules({ compat: true }), which warns on every use. Delete when the count reaches zero.",
+  "files": [
+    {
+      "path": "registry/ama/styles/compat.css",
+      "content": "/* GENERATED from tokens/ama-tokens.json (v0.3.3) by scripts/build-tokens.mjs. Do not edit by hand. */\n/* TEMPORARY migration shim for ama-os. Maps Tailwind defaults still used by ported prototype code onto AMA values.\n   ESLint warns on every use. Delete this import when the warning count reaches zero. The ama-ui library never uses it. */\n@theme inline {\n  --text-xs: 12px; --text-xs--line-height: 16px;\n  --text-sm: 14px; --text-sm--line-height: 20px;\n  --text-base: 16px; --text-base--line-height: 24px;\n  --text-lg: 16px; --text-lg--line-height: 24px;\n  --text-xl: 20px; --text-xl--line-height: 28px;\n  --text-2xl: 24px; --text-2xl--line-height: 32px;\n  --text-3xl: 32px; --text-3xl--line-height: 40px;\n  --color-white: var(--ama-white);\n  --color-black: var(--ama-black);\n  --radius: var(--ama-radius-md);\n  --radius-2xl: var(--ama-radius-xl);\n  --radius-3xl: var(--ama-radius-xl);\n  --shadow: var(--ama-shadow-sm);\n  --shadow-xl: var(--ama-shadow-lg);\n  --shadow-2xl: var(--ama-shadow-lg);\n}\n",
+      "type": "registry:file",
+      "target": "app/ama/compat.css"
+    }
+  ],
+  "type": "registry:file"
+}

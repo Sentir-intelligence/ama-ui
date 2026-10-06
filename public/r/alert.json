@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Success, warning, info and destructive feedback. Icon plus left rule, never a pill, never in table rows.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/alert.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { CircleCheck, Info, TriangleAlert, CircleX, type LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Feedback for alerts, inline validation summaries and toasts. Always icon plus left rule, never a pill,\n// so feedback can't be mistaken for a lifecycle status. Never place inside table rows.\nconst alertVariants = cva(\"flex gap-2.5 rounded-md border border-l-4 p-3 text-body-sm text-foreground\", {\n  variants: {\n    variant: {\n      success: \"border-success-border border-l-success bg-success-soft\",\n      warning: \"border-warning-border border-l-warning bg-warning-soft\",\n      info: \"border-info-border border-l-info bg-info-soft\",\n      destructive: \"border-destructive-border border-l-destructive bg-destructive-soft\",\n    },\n  },\n  defaultVariants: { variant: \"info\" },\n});\n\nconst ICON: Record<NonNullable<VariantProps<typeof alertVariants>[\"variant\"]>, [LucideIcon, string]> = {\n  success: [CircleCheck, \"text-success-soft-foreground\"],\n  warning: [TriangleAlert, \"text-warning-soft-foreground\"],\n  info: [Info, \"text-info-soft-foreground\"],\n  destructive: [CircleX, \"text-destructive-soft-foreground\"],\n};\n\nexport interface AlertProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\">, VariantProps<typeof alertVariants> {\n  title?: React.ReactNode;\n}\n\nexport const Alert = React.forwardRef<HTMLDivElement, AlertProps>(({ className, variant = \"info\", title, children, ...props }, ref) => {\n  const [Icon, tone] = ICON[variant ?? \"info\"];\n  return (\n    <div ref={ref} role={variant === \"destructive\" || variant === \"warning\" ? \"alert\" : \"status\"} className={cn(alertVariants({ variant }), className)} {...props}>\n      <Icon className={cn(\"mt-0.5 size-4 shrink-0\", tone)} aria-hidden=\"true\" />\n      <div className=\"flex flex-col gap-0.5\">\n        {title && <div className={cn(\"text-body-strong\", tone)}>{title}</div>}\n        {children && <div>{children}</div>}\n      </div>\n    </div>\n  );\n});\nAlert.displayName = \"Alert\";\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

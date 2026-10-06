@@ -5,7 +5,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 ## Before you build anything
 
-1. Check the registry first. If a component exists in ama-ui, install it (`npx shadcn add Sentir-intelligence/ama-ui/<item>`). Never restyle a primitive locally.
+1. Check the registry first. If a component exists in ama-ui, install it (`npx shadcn add @ama/<item>`, with the `@ama` registry pinned to a tag in `components.json`). Never restyle a primitive locally.
 2. If something is missing, stop and flag it as a library gap. Do not build a one-off.
 3. Lucide icons only.
 

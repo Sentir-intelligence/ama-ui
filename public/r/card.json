@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "Card surface with type roles.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/card.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nconst Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"rounded-lg border border-border bg-card text-card-foreground shadow-sm\", className)} {...props} />\n));\nCard.displayName = \"Card\";\n\nconst CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"flex flex-col gap-1 p-4\", className)} {...props} />\n));\nCardHeader.displayName = \"CardHeader\";\n\nconst CardTitle = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"text-section\", className)} {...props} />\n));\nCardTitle.displayName = \"CardTitle\";\n\nconst CardDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"text-body-sm text-muted-foreground\", className)} {...props} />\n));\nCardDescription.displayName = \"CardDescription\";\n\nconst CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"p-4 pt-0\", className)} {...props} />\n));\nCardContent.displayName = \"CardContent\";\n\nconst CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn(\"flex items-center gap-2 p-4 pt-0\", className)} {...props} />\n));\nCardFooter.displayName = \"CardFooter\";\n\nexport { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };\n",
+      "type": "registry:ui",
+      "target": "components/ui/card.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

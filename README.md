@@ -25,15 +25,25 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 
 Prerequisites: Tailwind v4 and a `components.json` (`npx shadcn@latest init`).
 
-```bash
-# install the AMA theme, libraries, lint rules and agent rules (run once per app)
-npx shadcn@latest add Sentir-intelligence/ama-ui/theme Sentir-intelligence/ama-ui/utils Sentir-intelligence/ama-ui/status Sentir-intelligence/ama-ui/lint Sentir-intelligence/ama-ui/agents
+ama-ui is a namespaced shadcn registry. The built item files live in `public/r/` and are served straight from GitHub, so the version is pinned by the tag in the URL. Add this to `components.json`:
+
+```json
+"registries": {
+  "@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/v0.3.3/public/r/{name}.json"
+}
 ```
 
 ```bash
-# install all components
-npx shadcn@latest add Sentir-intelligence/ama-ui/button Sentir-intelligence/ama-ui/badge Sentir-intelligence/ama-ui/card Sentir-intelligence/ama-ui/checkbox Sentir-intelligence/ama-ui/input Sentir-intelligence/ama-ui/textarea Sentir-intelligence/ama-ui/label Sentir-intelligence/ama-ui/switch Sentir-intelligence/ama-ui/table Sentir-intelligence/ama-ui/dialog Sentir-intelligence/ama-ui/sheet Sentir-intelligence/ama-ui/popover Sentir-intelligence/ama-ui/dropdown-menu Sentir-intelligence/ama-ui/select Sentir-intelligence/ama-ui/confirm-dialog Sentir-intelligence/ama-ui/prompt-dialog Sentir-intelligence/ama-ui/status-chip Sentir-intelligence/ama-ui/alert Sentir-intelligence/ama-ui/logo
+# install the AMA theme, libraries, lint rules and agent rules (run once per app)
+npx shadcn@latest add @ama/theme @ama/utils @ama/status @ama/lint @ama/agents
 ```
+
+```bash
+# install all components (each pulls in what it depends on, e.g. @ama/utils)
+npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo
+```
+
+To upgrade, change the tag in the `@ama` URL, commit, re-run `npx shadcn@latest add` for the installed items with `--overwrite`, and review the git diff before committing.
 
 Then `app/globals.css` becomes:
 
@@ -54,7 +64,6 @@ export default [/* ...existing config */, ...amaRules({ entryPoint: "app/globals
 
 The rules block Tailwind default classes, arbitrary values, opacity states, focus overrides, warning colours in table rows, raw `<select>`, status colour classes outside `<StatusChip>`, website yellow (`signal`) outside chrome files, and logo images instead of `<Logo>`. With `compat: true` every rule warns instead of erroring, so an existing app can adopt them and ratchet the warning count to zero.
 
-Pin a release with `#vX.Y.Z` on each item. Preview an update with `--diff` before applying it.
 If this repo is private, the shadcn CLI needs a GitHub token in the environment to install.
 
 ## Fonts
