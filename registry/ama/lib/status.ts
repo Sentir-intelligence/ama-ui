@@ -6,11 +6,6 @@ export const STATUS = {
     "icon": "pencil-off",
     "description": "No shop drawing yet."
   },
-  "takeoff": {
-    "label": "Takeoff",
-    "icon": "ruler",
-    "description": "Quantities taken off for estimating."
-  },
   "ifa": {
     "label": "IFA",
     "icon": "file-clock",
@@ -29,27 +24,27 @@ export const STATUS = {
   "manufactured": {
     "label": "Manufactured",
     "icon": "factory",
-    "description": "Cast (pour docket recorded)."
+    "description": "QA marks Poured."
   },
   "manifested": {
     "label": "Manifested",
     "icon": "clipboard-list",
-    "description": "Staged, load documentation printed and driver notified."
+    "description": "Load booked by the office."
   },
   "dispatched": {
     "label": "Dispatched",
     "icon": "send",
-    "description": "Driver has left the warehouse with the load."
+    "description": "Driver form done and the truck has left."
   },
   "with_driver": {
     "label": "With Driver",
     "icon": "truck",
-    "description": "Driver has had to keep the load overnight."
+    "description": "Not delivered; the load is kept at the driver's depot overnight."
   },
   "delivered": {
     "label": "Delivered",
     "icon": "package-check",
-    "description": "Delivered to site."
+    "description": "Proof of delivery."
   }
 } as const;
 
