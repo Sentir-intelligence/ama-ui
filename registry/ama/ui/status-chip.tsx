@@ -7,7 +7,6 @@ import {
   FileClock,
   PackageCheck,
   PencilOff,
-  Ruler,
   Send,
   Truck,
   type LucideIcon,
@@ -20,7 +19,6 @@ import { STATUS, type StatusKey } from "@/lib/status";
 // colour (colour blindness, glare, Windows high contrast). Styling lives in status-chip.css, driven by data-status.
 export const STATUS_ICONS: Record<StatusKey, LucideIcon> = {
   not_drawn: PencilOff,
-  takeoff: Ruler,
   ifa: FileClock,
   ifc: FileCheck,
   scheduled: CalendarClock,

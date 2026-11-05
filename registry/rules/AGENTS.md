@@ -14,14 +14,14 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 - Semantic utilities only: `bg-primary`, `text-muted-foreground`, `border-input`, `bg-canvas`. The default Tailwind palette does not exist in AMA apps (`bg-blue-500` will not compile).
 - Never write hex, rgb, hsl or oklch in components, and never use arbitrary values (`bg-[#fff]`, `text-[11px]`).
 - Navy (`chrome`) is for the top bar and side nav. Anything on navy sets `data-surface="chrome"` so its focus ring turns yellow.
-- `#FCDA4E` has two roles. On navy chrome it is the brand highlight (active nav indicator). Anywhere else it means Delivered, and only inside a status swatch with its edge and the package-check icon. Never use it for emphasis, badges, buttons or highlights on light or night surfaces. Lint blocks `*-signal` classes outside chrome files (app shell, top bar, side nav, `shell/`); pass `chromeFiles` to `amaRules` if your chrome lives elsewhere.
+- `#FCDA4E` has two roles. On navy chrome it is the brand highlight (active nav indicator). On any other surface yellow means the delivery family (Dispatched, With Driver and Delivered), and only inside a status swatch with its edge and icon. Never use it for emphasis, badges, buttons or highlights on light or night surfaces. Lint blocks `*-signal` classes outside chrome files (app shell, top bar, side nav, `shell/`); pass `chromeFiles` to `amaRules` if your chrome lives elsewhere.
 - Actions and links are cobalt `primary` / `link`. Links are always underlined.
 - Feedback (`success`, `warning`, `info`, `destructive`) appears only in `<Alert>`, toasts and validation, always with its icon and left rule. Never as pills, never inside table rows.
 
 ## Status
 
 - Lifecycle status is shown only with `<StatusChip status="ifc" />`: a neutral tag with a solid colour swatch holding the status icon, then the label. Colour family, icon and label always travel together. Never rebuild it as a tinted pill.
-- The colour meanings are AMA's business language and must not change: pink IFA, green IFC, blue Scheduled, orange Manufactured, yellow Delivered, greys light to dark along the lifecycle for Not Drawn, Takeoff, Manifested, Dispatched, With Driver.
+- The colour meanings are AMA's business language and must not change: pink IFA, green IFC, blue Scheduled, orange Manufactured, then equal steps from that orange to signal yellow for Manifested, Dispatched, With Driver and Delivered. Not Drawn is concrete grey.
 - Never use status colours or status icons for anything that is not a status. Never use `Badge` for a status. Lint blocks `*-status-*` colour classes everywhere; only `<StatusChip>` draws them.
 
 ## Logo

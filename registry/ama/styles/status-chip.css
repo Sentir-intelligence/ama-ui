@@ -7,7 +7,6 @@
 [data-density="touch"] .status-chip__swatch svg { width: var(--ama-component-status-chip-icon-touch); height: var(--ama-component-status-chip-icon-touch); }
 @media (forced-colors: active) { .status-chip__swatch { border-inline-end: 1px solid CanvasText; } }
 .status-chip[data-status="not_drawn"] { --chip-swatch: var(--status-not-drawn-swatch); --chip-ink: var(--status-not-drawn-ink); --chip-edge: var(--status-not-drawn-edge); }
-.status-chip[data-status="takeoff"] { --chip-swatch: var(--status-takeoff-swatch); --chip-ink: var(--status-takeoff-ink); --chip-edge: var(--status-takeoff-edge); }
 .status-chip[data-status="ifa"] { --chip-swatch: var(--status-ifa-swatch); --chip-ink: var(--status-ifa-ink); --chip-edge: var(--status-ifa-edge); }
 .status-chip[data-status="ifc"] { --chip-swatch: var(--status-ifc-swatch); --chip-ink: var(--status-ifc-ink); --chip-edge: var(--status-ifc-edge); }
 .status-chip[data-status="scheduled"] { --chip-swatch: var(--status-scheduled-swatch); --chip-ink: var(--status-scheduled-ink); --chip-edge: var(--status-scheduled-edge); }
