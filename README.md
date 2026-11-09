@@ -20,7 +20,7 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 | `button` `badge` `card` `checkbox` `input` `textarea` `label` `switch` `table` `dialog` `sheet` `popover` `dropdown-menu` `select` `confirm-dialog` `prompt-dialog` | The prototype's 16 primitives, re-skinned. **APIs unchanged**, so feature components need no edits. |
 | `status-chip` `alert` | New: the only way to show a lifecycle status, and the feedback component. |
 | `logo` | The AMA Precast logo as a token-coloured SVG component (`tone="reverse"` on navy, `variant="mark"` for the top bar). Static files in `public/brand/`. |
-| `tabs` | Underline tabs for switching views of one record. Active is the label plus a 2px primary indicator; height follows density. |
+| `tabs` | Underline tabs for switching views of one record. Active is the label plus a 2px primary indicator; optional `count`, `mention` and `unread` props; height follows density. |
 | `toggle-group` | Segmented control for 2 to 4 peer options inside a panel. Selected is the card fill plus a border. |
 | `avatar` | 28px circle with the person's photo, or initials on accent. Always next to the person's name. |
 | `tooltip` | Short text on hover or focus for icon buttons and truncated values. Floating layer z-110. |

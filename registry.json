@@ -469,7 +469,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "Underline tabs for switching views of one record. Active is the foreground label plus a 2px primary indicator. Height follows density (44px+ in touch). Not for picking between peer options inside a panel.",
+      "description": "Underline tabs for switching views of one record. Active is the foreground label plus a 2px primary indicator. Optional count, mention and unread markers via props. Height follows density (44px+ in touch). Not for picking between peer options inside a panel.",
       "dependencies": [
         "@radix-ui/react-tabs"
       ],
