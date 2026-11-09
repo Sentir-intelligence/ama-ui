@@ -553,6 +553,26 @@
           "target": "components/icons/stage-cloud.tsx"
         }
       ]
+    },
+    {
+      "name": "colour-swatch",
+      "type": "registry:ui",
+      "title": "Colour Swatch",
+      "description": "Stage cloud colour picker: a radio group of round 28px buttons, each the stage-cloud glyph in one of the chart tokens 1 to 5. Selected shows the ring. Every swatch needs an aria-label naming the colour.",
+      "dependencies": [
+        "@radix-ui/react-radio-group"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/colour-swatch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/colour-swatch.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/stage-cloud"
+      ]
     }
   ]
 }

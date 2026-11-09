@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "colour-swatch",
+  "title": "Colour Swatch",
+  "description": "Stage cloud colour picker: a radio group of round 28px buttons, each the stage-cloud glyph in one of the chart tokens 1 to 5. Selected shows the ring. Every swatch needs an aria-label naming the colour.",
+  "dependencies": [
+    "@radix-ui/react-radio-group"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/stage-cloud"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/colour-swatch.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\nimport { StageCloud } from \"@/components/icons/stage-cloud\";\nimport { cn } from \"@/lib/utils\";\n\n// Stage cloud colour picker: a radio group of round 28px buttons. Each swatch is the stage-cloud glyph\n// drawn in the colour it will draw on the plan. The set is fixed to the chart tokens 1 to 5.\n// Selected shows the ring. Every swatch needs an aria-label that names the colour.\nconst SWATCH_COLOURS = {\n  1: \"text-chart-1\",\n  2: \"text-chart-2\",\n  3: \"text-chart-3\",\n  4: \"text-chart-4\",\n  5: \"text-chart-5\",\n} as const;\n\ntype SwatchColour = keyof typeof SWATCH_COLOURS;\n\nconst ColourSwatchGroup = React.forwardRef<\n  React.ElementRef<typeof RadioGroupPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>\n>(({ className, orientation = \"horizontal\", ...props }, ref) => (\n  <RadioGroupPrimitive.Root\n    ref={ref}\n    orientation={orientation}\n    className={cn(\"flex flex-wrap items-center gap-2\", className)}\n    {...props}\n  />\n));\nColourSwatchGroup.displayName = \"ColourSwatchGroup\";\n\nexport interface ColourSwatchProps\n  extends Omit<React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>, \"children\" | \"aria-label\"> {\n  colour: SwatchColour;\n  \"aria-label\": string;\n}\n\nconst ColourSwatch = React.forwardRef<React.ElementRef<typeof RadioGroupPrimitive.Item>, ColourSwatchProps>(\n  ({ className, colour, ...props }, ref) => (\n    <RadioGroupPrimitive.Item\n      ref={ref}\n      data-colour={colour}\n      className={cn(\n        \"inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full border-2 border-transparent transition-colors hover:bg-accent disabled:cursor-not-allowed data-[state=checked]:border-ring\",\n        SWATCH_COLOURS[colour],\n        className\n      )}\n      {...props}\n    >\n      <StageCloud size={20} />\n    </RadioGroupPrimitive.Item>\n  )\n);\nColourSwatch.displayName = \"ColourSwatch\";\n\nexport { ColourSwatchGroup, ColourSwatch, SWATCH_COLOURS };\nexport type { SwatchColour };\n",
+      "type": "registry:ui",
+      "target": "components/ui/colour-swatch.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

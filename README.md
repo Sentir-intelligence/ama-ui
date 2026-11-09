@@ -25,6 +25,7 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 | `avatar` | 28px circle with the person's photo, or initials on accent. Always next to the person's name. |
 | `tooltip` | Short text on hover or focus for icon buttons and truncated values. Floating layer z-110. |
 | `stage-cloud` | The AMA stage-cloud glyph (Draw stage) as a Lucide-style icon component. The only non-Lucide icon. |
+| `colour-swatch` | Stage cloud colour picker: radio group of 28px swatches in the chart tokens 1 to 5, ring when selected. |
 
 ## Install in an app
 
@@ -45,7 +46,7 @@ npx shadcn@latest add @ama/theme @ama/utils @ama/status @ama/lint @ama/agents
 
 ```bash
 # install all components (each pulls in what it depends on, e.g. @ama/utils)
-npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo @ama/tabs @ama/toggle-group @ama/avatar @ama/tooltip @ama/stage-cloud
+npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo @ama/tabs @ama/toggle-group @ama/avatar @ama/tooltip @ama/stage-cloud @ama/colour-swatch
 ```
 
 To upgrade, change the tag in the `@ama` URL, commit, re-run `npx shadcn@latest add` for the installed items with `--overwrite`, and review the git diff before committing.
