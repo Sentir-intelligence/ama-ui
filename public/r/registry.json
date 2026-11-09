@@ -502,6 +502,25 @@
       "registryDependencies": [
         "@ama/utils"
       ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "28px circle: the person's photo, or initials in primary on accent. Always paired with the person's name; never the only identifier.",
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
     }
   ]
 }

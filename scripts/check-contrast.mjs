@@ -17,7 +17,7 @@ const textPairs = [
   ["placeholder", "background"], ["link", "background"], ["link", "canvas"], ["link", "card"],
   ["primary-foreground", "primary"], ["primary-foreground", "primary-hover"],
   ["destructive-foreground", "destructive"], ["destructive-foreground", "destructive-hover"], ["destructive-soft-foreground", "destructive-soft"], ["destructive", "background"],
-  ["secondary-foreground", "secondary"], ["accent-foreground", "accent"],
+  ["secondary-foreground", "secondary"], ["accent-foreground", "accent"], ["primary", "accent"],
   ["chrome-foreground", "chrome"], ["chrome-muted", "chrome"], ["chrome-foreground", "chrome-hover"],
   ["signal-foreground", "signal"], ["brand-foreground", "brand"], ["card-foreground", "card"], ["popover-foreground", "popover"],
   ["sidebar-foreground", "sidebar"], ["sidebar-primary-foreground", "sidebar-primary"], ["sidebar-accent-foreground", "sidebar-accent"],
