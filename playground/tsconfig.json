@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "paths": {
+      "@/components/ui/*": ["../registry/ama/ui/*"],
+      "@/components/brand/*": ["../registry/ama/brand/*"],
+      "@/components/icons/*": ["../registry/ama/icons/*"],
+      "@/lib/*": ["../registry/ama/lib/*"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

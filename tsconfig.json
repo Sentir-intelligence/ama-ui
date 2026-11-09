@@ -18,5 +18,5 @@
       "@/lib/*": ["./registry/ama/lib/*"]
     }
   },
-  "include": ["registry", "tests", "vitest.config.ts", "vitest.setup.ts"]
+  "include": ["registry", "tests", "playground/src", "playground/vite.config.ts", "vitest.config.ts", "vitest.setup.ts"]
 }

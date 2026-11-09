@@ -84,6 +84,7 @@ npm ci
 npm run check
 ```
 
+- `npm run playground` opens a hot-reloading page with every component in light and dark mode at each density, imported straight from `registry/`. See [`playground/README.md`](playground/README.md).
 - Change tokens only in `tokens/ama-tokens.json`, then `npm run tokens`. Generated files are never edited by hand.
 - `npm run contrast` checks every text and non-text pair in both modes against WCAG 2.2 AA.
 - Add a changeset for every change (`npm run changeset`). Renaming or removing a token or prop is a major version.

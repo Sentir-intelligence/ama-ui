@@ -4,9 +4,9 @@ import globals from "globals";
 import { amaRules } from "./registry/ama/lint/eslint.ama.mjs";
 
 export default [
-  { ignores: ["node_modules", ".build", "public", "docs"] },
+  { ignores: ["node_modules", ".build", "public", "docs", "playground/dist"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   { files: ["scripts/**/*.mjs", "registry/ama/lint/*.mjs", "*.mjs"], languageOptions: { globals: globals.node } },
-  ...amaRules({ entryPoint: "app/globals.css", files: ["registry/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}"] }),
+  ...amaRules({ entryPoint: "app/globals.css", files: ["registry/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}", "playground/**/*.{ts,tsx}"] }),
 ];

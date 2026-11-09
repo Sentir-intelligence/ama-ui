@@ -1,0 +1,12 @@
+/* Mirrors a consuming app's globals.css, but imports the theme straight from the registry source. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../../registry/ama/styles/theme.css";
+
+@source "../../registry";
+@source "./";
+
+/* Self-hosted fonts (see main.tsx). The variable Inter package registers its family as "Inter Variable". */
+:root {
+  --ama-font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+}

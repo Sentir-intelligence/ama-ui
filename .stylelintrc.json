@@ -1,6 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["node_modules/**", ".build/**", "registry/ama/styles/**"],
+  "ignoreFiles": ["node_modules/**", ".build/**", "registry/ama/styles/**", "playground/dist/**"],
   "rules": {
     "color-no-hex": true,
     "color-named": "never",
