@@ -521,6 +521,25 @@
       "registryDependencies": [
         "@ama/utils"
       ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Short supplementary text on hover or focus for icon buttons and truncated values. Inverse colours, floating layer z-110. Never the only copy of important information. Wrap the app once in TooltipProvider.",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
     }
   ]
 }

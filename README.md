@@ -23,6 +23,7 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 | `tabs` | Underline tabs for switching views of one record. Active is the label plus a 2px primary indicator; height follows density. |
 | `toggle-group` | Segmented control for 2 to 4 peer options inside a panel. Selected is the card fill plus a border. |
 | `avatar` | 28px circle with the person's photo, or initials on accent. Always next to the person's name. |
+| `tooltip` | Short text on hover or focus for icon buttons and truncated values. Floating layer z-110. |
 
 ## Install in an app
 
@@ -43,7 +44,7 @@ npx shadcn@latest add @ama/theme @ama/utils @ama/status @ama/lint @ama/agents
 
 ```bash
 # install all components (each pulls in what it depends on, e.g. @ama/utils)
-npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo @ama/tabs @ama/toggle-group @ama/avatar
+npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo @ama/tabs @ama/toggle-group @ama/avatar @ama/tooltip
 ```
 
 To upgrade, change the tag in the `@ama` URL, commit, re-run `npx shadcn@latest add` for the installed items with `--overwrite`, and review the git diff before committing.
