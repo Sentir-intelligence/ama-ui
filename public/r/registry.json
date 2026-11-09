@@ -483,6 +483,25 @@
       "registryDependencies": [
         "@ama/utils"
       ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Segmented control for 2 to 4 peer options inside a panel. Selected is the card fill plus a border. Height follows density. Not for page-level navigation: use tabs.",
+      "dependencies": [
+        "@radix-ui/react-toggle-group"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
     }
   ]
 }
