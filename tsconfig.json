@@ -14,6 +14,7 @@
     "paths": {
       "@/components/ui/*": ["./registry/ama/ui/*"],
       "@/components/brand/*": ["./registry/ama/brand/*"],
+      "@/components/icons/*": ["./registry/ama/icons/*"],
       "@/lib/*": ["./registry/ama/lib/*"]
     }
   },

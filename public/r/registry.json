@@ -540,6 +540,19 @@
       "registryDependencies": [
         "@ama/utils"
       ]
+    },
+    {
+      "name": "stage-cloud",
+      "type": "registry:component",
+      "title": "Stage cloud icon",
+      "description": "AMA glyph: a free-shape stage outline with a cloud edge, the line Draw stage draws on the plan. Lucide grammar and API (size, strokeWidth, currentColor stroke). The only non-Lucide icon.",
+      "files": [
+        {
+          "path": "registry/ama/icons/stage-cloud.tsx",
+          "type": "registry:component",
+          "target": "components/icons/stage-cloud.tsx"
+        }
+      ]
     }
   ]
 }
