@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "28px circle: the person's photo, or initials in primary on accent. Always paired with the person's name; never the only identifier.",
+  "dependencies": [
+    "@radix-ui/react-avatar"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/avatar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\";\nimport { cn } from \"@/lib/utils\";\n\n// 28px circle: the person's photo, or their initials on accent while it loads or when there is none.\n// Always pair it with the person's name nearby; an avatar is never the only identifier.\n// Resize with className for larger uses (size-16 on Profile).\nconst Avatar = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Root\n    ref={ref}\n    className={cn(\"relative flex size-7 shrink-0 overflow-hidden rounded-full\", className)}\n    {...props}\n  />\n));\nAvatar.displayName = AvatarPrimitive.Root.displayName;\n\nconst AvatarImage = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Image>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>\n>(({ className, alt = \"\", ...props }, ref) => (\n  <AvatarPrimitive.Image ref={ref} alt={alt} className={cn(\"aspect-square size-full object-cover\", className)} {...props} />\n));\nAvatarImage.displayName = AvatarPrimitive.Image.displayName;\n\nconst AvatarFallback = React.forwardRef<\n  React.ElementRef<typeof AvatarPrimitive.Fallback>,\n  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>\n>(({ className, ...props }, ref) => (\n  <AvatarPrimitive.Fallback\n    ref={ref}\n    className={cn(\"flex size-full items-center justify-center rounded-full bg-accent text-label text-primary\", className)}\n    {...props}\n  />\n));\nAvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;\n\nexport { Avatar, AvatarImage, AvatarFallback };\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

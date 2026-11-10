@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "Short supplementary text on hover or focus for icon buttons and truncated values. Inverse colours, floating layer z-110. Never the only copy of important information. Wrap the app once in TooltipProvider.",
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/tooltip.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\";\nimport { cn } from \"@/lib/utils\";\n\n// Short supplementary text on hover or focus, for icon buttons and truncated values.\n// Never the only copy of important information. Wrap the app once in <TooltipProvider>.\nconst TooltipProvider = TooltipPrimitive.Provider;\nconst Tooltip = TooltipPrimitive.Root;\nconst TooltipTrigger = TooltipPrimitive.Trigger;\n\n// z-110: floating layer, so a tooltip inside a dialog (z-100) renders in front of it.\nconst TooltipContent = React.forwardRef<\n  React.ElementRef<typeof TooltipPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>\n>(({ className, sideOffset = 4, ...props }, ref) => (\n  <TooltipPrimitive.Portal>\n    <TooltipPrimitive.Content\n      ref={ref}\n      sideOffset={sideOffset}\n      className={cn(\n        \"z-110 max-w-xs rounded-md bg-foreground px-2 py-1 text-body-sm text-background animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95\",\n        className\n      )}\n      {...props}\n    />\n  </TooltipPrimitive.Portal>\n));\nTooltipContent.displayName = TooltipPrimitive.Content.displayName;\n\nexport { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent };\n",
+      "type": "registry:ui",
+      "target": "components/ui/tooltip.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

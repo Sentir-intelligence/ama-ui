@@ -464,6 +464,115 @@
       "registryDependencies": [
         "@ama/utils"
       ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Underline tabs for switching views of one record. Active is the foreground label plus a 2px primary indicator. Optional count, mention and unread markers via props. Height follows density (44px+ in touch). Not for picking between peer options inside a panel.",
+      "dependencies": [
+        "@radix-ui/react-tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Segmented control for 2 to 4 peer options inside a panel. Selected is the card fill plus a border. Height follows density. Not for page-level navigation: use tabs.",
+      "dependencies": [
+        "@radix-ui/react-toggle-group"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "28px circle: the person's photo, or initials in primary on accent. Always paired with the person's name; never the only identifier.",
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/avatar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Short supplementary text on hover or focus for icon buttons and truncated values. Inverse colours, floating layer z-110. Never the only copy of important information. Wrap the app once in TooltipProvider.",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "stage-cloud",
+      "type": "registry:component",
+      "title": "Stage cloud icon",
+      "description": "AMA glyph: a free-shape stage outline with a cloud edge, the line Draw stage draws on the plan. Lucide grammar and API (size, strokeWidth, currentColor stroke). The only non-Lucide icon.",
+      "files": [
+        {
+          "path": "registry/ama/icons/stage-cloud.tsx",
+          "type": "registry:component",
+          "target": "components/icons/stage-cloud.tsx"
+        }
+      ]
+    },
+    {
+      "name": "colour-swatch",
+      "type": "registry:ui",
+      "title": "Colour Swatch",
+      "description": "Stage cloud colour picker: a radio group of round 28px buttons, each the stage-cloud glyph in one of the chart tokens 1 to 5. Selected shows the ring. Every swatch needs an aria-label naming the colour.",
+      "dependencies": [
+        "@radix-ui/react-radio-group"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/colour-swatch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/colour-swatch.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/stage-cloud"
+      ]
     }
   ]
 }

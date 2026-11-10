@@ -7,7 +7,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 1. Check the registry first. If a component exists in ama-ui, install it (`npx shadcn add @ama/<item>`, with the `@ama` registry pinned to a tag in `components.json`). Never restyle a primitive locally.
 2. If something is missing, stop and flag it as a library gap. Do not build a one-off.
-3. Lucide icons only.
+3. Lucide icons only. The one AMA glyph is `stage-cloud` (registry item, `components/icons/stage-cloud.tsx`).
 
 ## Colour
 
@@ -40,7 +40,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 - Set density once per surface: `data-density="compact"` (office tables, the `<Table>` default), `comfortable` (forms, admin), `touch` (factory tablets, driver phones).
 - Components use `h-control`, `h-row`, `px-cell`, `text-table-cell`, so they adapt automatically. Never branch on device inside a component.
 - Spacing uses the Tailwind 4px scale (`p-2`, `gap-3`). Radii: `rounded-md` controls, `rounded-lg` cards, `rounded-xl` dialogs.
-- Layers: dialogs and sheets `z-100`, floating menus `z-110`, toasts `z-120`.
+- Layers: dialogs and sheets `z-100`, floating menus and tooltips `z-110`, toasts `z-120`.
 
 ## Interaction and accessibility
 
@@ -66,7 +66,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 - Bind every colour to a variable in the **Color** collection (modes Light and Dark). The Primitives collection is hidden and must never be bound directly. Variable code syntax is the CSS name (`primary` is `var(--primary)`; `feedback/success/soft` is `var(--success-soft)`).
 - Heights and cell padding bind to the **Density** collection (Comfortable, Compact, Touch), radii and fixed sizes to **Shape**. Set modes on the page frame, not per layer.
 - Use the text styles (Heading, Body, Data, Control). Display roles are Archivo Narrow Bold, everything else Inter.
-- Component names and variant properties match the code: `Button` (Variant, Size, State), `Badge`, `Checkbox`, `Switch`, `Input`, `Textarea`, `Select`, `Label`, `Card`, `Table/Header cell`, `Table/Cell`, `Table/Checkbox cell`, `Table/Row`, `Dialog`, `Confirm Dialog`, `Prompt Dialog`, `Sheet`, `Popover`, `Dropdown Menu` (+ Item, Label, Separator), `StatusChip` (Status uses the code keys such as `with_driver`; Density Default or Touch), `Alert`, `Logo` (Tone, Variant), icons as `Icon/<lucide-name>`.
+- Component names and variant properties match the code: `Button` (Variant, Size, State), `Badge`, `Checkbox`, `Switch`, `Input`, `Textarea`, `Select`, `Label`, `Card`, `Table/Header cell`, `Table/Cell`, `Table/Checkbox cell`, `Table/Row`, `Dialog`, `Confirm Dialog`, `Prompt Dialog`, `Sheet`, `Popover`, `Dropdown Menu` (+ Item, Label, Separator), `StatusChip` (Status uses the code keys such as `with_driver`; Density Default or Touch), `Alert`, `Logo` (Tone, Variant), `Tabs/Trigger` (State, Size), `Toggle Group/Item` (Selected), `Avatar` (Type), `Tooltip`, `Icon/stage-cloud`, `Colour swatch` (Selected), icons as `Icon/<lucide-name>`.
 
 ## Migration (ama-os only)
 
