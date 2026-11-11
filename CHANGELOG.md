@@ -1,5 +1,15 @@
 # ama-ui
 
+## 0.3.5
+
+Patterns from the AMA UI Figma library, for Settings and the Front door (AMA-309). Patterns are a new registry section: `registry/ama/patterns/`, installed as `@ama/<name>` into `components/patterns/`. They take props and send events; they never fetch data, check permissions or apply business rules (ADR-0020: ama-ui draws, ama-os decides). Each has a test, its Figma name in AGENTS.md and every state in the playground.
+
+- `person-row`: Pattern/Person row for Settings, Users and roles. Avatar (photo or initials), name, email and company, the role badge, and Invited until the invite is accepted. With `onSelect` the whole row is one 64px button with a chevron.
+- `phone-page-header`: Pattern/Phone page header, the sticky 56px header for phone pages that are not a panel. Back (`onBack`), the title on one line, and one optional icon action (`action: { icon, label, onClick }`), each a 44px target.
+- `code-input`: Pattern/Code input, the 8-digit email sign-in code, one digit per box. Digits only; a pasted or autofilled code fills every box; backspace moves back; `onComplete` fires on the last digit; `invalid` draws destructive borders and sets `aria-invalid`.
+- Playground: separate Components and Patterns pages (`#/components`, `#/patterns`) in the top bar.
+- `npm run tokens:figma` compares `tokens/figma-color.json` (the Figma Color collection, exported with `scripts/figma-export-color.js`) with the tokens. It is not in `npm run check` yet: it reports 17 status colour differences (Not Drawn, Manifested, Dispatched, With Driver) that wait on a design decision, because the Figma values fail the swatch contrast rule (Not Drawn against Takeoff in light, Manufactured against Manifested in dark). The status colours are unchanged in this release.
+
 ## 0.3.4
 
 New components from the AMA UI Figma library. Each is a registry item with a test, and its Figma name is listed in AGENTS.md.

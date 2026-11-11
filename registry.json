@@ -573,6 +573,64 @@
         "@ama/utils",
         "@ama/stage-cloud"
       ]
+    },
+    {
+      "name": "person-row",
+      "type": "registry:component",
+      "title": "Person row",
+      "description": "Pattern/Person row: one person in Settings, Users and roles. Avatar (photo or initials), name, email and company, the role badge, and Invited until the invite is accepted. With onSelect the whole row is one 64px button with a chevron. Draws only; who is listed and their role come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/person-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/person-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/avatar",
+        "@ama/badge"
+      ]
+    },
+    {
+      "name": "phone-page-header",
+      "type": "registry:component",
+      "title": "Phone page header",
+      "description": "Pattern/Phone page header: the sticky 56px header for phone pages that are not a panel (Settings and similar). Back, the title on one line, and one optional icon action, each a 44px target. The page's main action belongs in the bottom bar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-page-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-page-header.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
+      ]
+    },
+    {
+      "name": "code-input",
+      "type": "registry:component",
+      "title": "Code input",
+      "description": "Pattern/Code input: the 8-digit email sign-in code, one digit per box. Digits only; paste or the phone's one-time-code autofill fills every box; onComplete fires on the last digit; invalid draws destructive borders. Never checks the code: the app does.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/code-input.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/code-input.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/input"
+      ]
     }
   ]
 }

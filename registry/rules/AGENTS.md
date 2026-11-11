@@ -9,6 +9,12 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 2. If something is missing, stop and flag it as a library gap. Do not build a one-off.
 3. Lucide icons only. The one AMA glyph is `stage-cloud` (registry item, `components/icons/stage-cloud.tsx`).
 
+## Patterns
+
+- Patterns are the Figma `Pattern/...` components, built from the components above. They live in `registry/ama/patterns/` and install as `@ama/<name>` into `components/patterns/`. Check them before composing a screen; a missing pattern is a library gap, not a one-off.
+- **ama-ui draws, ama-os decides** (ADR-0020). A pattern takes props and sends events. It never fetches data, checks permissions or applies business rules; every state in Figma is drawable from props alone. Props are on each Figma component's description.
+- Patterns so far: `Pattern/Person row` (`<PersonRow>`), `Pattern/Phone page header` (`<PhonePageHeader>`), `Pattern/Code input` (`<CodeInput>`).
+
 ## Colour
 
 - Semantic utilities only: `bg-primary`, `text-muted-foreground`, `border-input`, `bg-canvas`. The default Tailwind palette does not exist in AMA apps (`bg-blue-500` will not compile).

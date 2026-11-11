@@ -24,9 +24,18 @@ npm run playground:build  # optional: production build into playground/dist (git
 - **Hover and focus** are real: hover or tab through the components to check those states.
 - **Tokens:** after editing `tokens/ama-tokens.json`, run `npm run tokens`. The playground picks up the regenerated CSS.
 
-## Adding a component
+## Pages
 
-When you add a component to `registry/ama`, add a `<Section>` for it in `src/app.tsx`. Show its variants, its selected or active state and its disabled state.
+Two pages, switched from the top bar and kept in the URL hash, so a link opens the right one:
+
+- **Components** (`#/components`, the default): every component in `registry/ama/ui`, `brand` and `icons`. Source `src/pages/components.tsx`.
+- **Patterns** (`#/patterns`): every Figma `Pattern/...` component in `registry/ama/patterns`, in each state it is drawn in. Phone patterns sit in a 390px frame. Source `src/pages/patterns.tsx`.
+
+`src/app.tsx` is the shell (top bar, theme, density, routing); `src/parts.tsx` has the shared `Section`, `Row` and `Phone`.
+
+## Adding a component or pattern
+
+When you add a component to `registry/ama`, add a `<Section>` for it in `src/pages/components.tsx`; a pattern goes in `src/pages/patterns.tsx`. Show its variants, its selected or active state and its disabled state. A pattern shows every state of its Figma component, drawn from props alone.
 
 The playground is covered by the root `npm run check`. Typecheck and the AMA lint rules (`amaRules`) run on `playground/src`, so the page itself only uses AMA tokens and type roles. That makes it a working example of the rules as well as of the components.
 
@@ -34,7 +43,10 @@ The playground is covered by the root `npm run check`. Typecheck and the AMA lin
 
 | File | What it does |
 |---|---|
-| `vite.config.ts` | Aliases `@/components/ui`, `@/components/brand`, `@/components/icons` and `@/lib` to `../registry/ama/*`. |
+| `vite.config.ts` | Aliases `@/components/ui`, `@/components/brand`, `@/components/icons`, `@/components/patterns` and `@/lib` to `../registry/ama/*`. |
 | `src/globals.css` | Imports Tailwind and the AMA theme from the registry source. It mirrors an app's `globals.css`. |
 | `src/main.tsx` | Loads the self-hosted fonts (Inter variable and Archivo Narrow 700) and mounts the app. |
-| `src/app.tsx` | The page: top bar controls and one section per component. |
+| `src/app.tsx` | The shell: top bar with the Components and Patterns pages, theme and density, and the hash routing. |
+| `src/pages/components.tsx` | One section per component. |
+| `src/pages/patterns.tsx` | One section per pattern, in every state. |
+| `src/parts.tsx` | The shared `Section`, `Row` and `Phone` (a 390px frame for phone patterns). |

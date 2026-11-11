@@ -15,6 +15,7 @@
       "@/components/ui/*": ["./registry/ama/ui/*"],
       "@/components/brand/*": ["./registry/ama/brand/*"],
       "@/components/icons/*": ["./registry/ama/icons/*"],
+      "@/components/patterns/*": ["./registry/ama/patterns/*"],
       "@/lib/*": ["./registry/ama/lib/*"]
     }
   },

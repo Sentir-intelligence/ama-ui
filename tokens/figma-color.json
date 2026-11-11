@@ -1,0 +1,438 @@
+{
+  "$description": "The AMA UI Figma library's Color collection (file 9BtnLlkTrWBscwvFV9DUQC), both modes, aliases resolved to hex. Exported 2026-11-11 with scripts/figma-export-color.js. Re-export before each release; npm run tokens:figma compares it with tokens/ama-tokens.json.",
+  "exported": "2026-11-11",
+  "modes": [
+    "Light",
+    "Dark"
+  ],
+  "variables": {
+    "background": {
+      "Light": "#FFFFFF",
+      "Dark": "#13161E"
+    },
+    "foreground": {
+      "Light": "#191A1E",
+      "Dark": "#EDEEF2"
+    },
+    "canvas": {
+      "Light": "#EDEEF2",
+      "Dark": "#0D0F17"
+    },
+    "card": {
+      "Light": "#FFFFFF",
+      "Dark": "#1B1E27"
+    },
+    "card-foreground": {
+      "Light": "#191A1E",
+      "Dark": "#EDEEF2"
+    },
+    "popover": {
+      "Light": "#FFFFFF",
+      "Dark": "#23262F"
+    },
+    "popover-foreground": {
+      "Light": "#191A1E",
+      "Dark": "#EDEEF2"
+    },
+    "primary": {
+      "Light": "#4D60BA",
+      "Dark": "#8FA3ED"
+    },
+    "primary-foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#0F0A35"
+    },
+    "primary-hover": {
+      "Light": "#3B4A97",
+      "Dark": "#B4C5FE"
+    },
+    "secondary": {
+      "Light": "#FFFFFF",
+      "Dark": "#1B1E27"
+    },
+    "secondary-foreground": {
+      "Light": "#2A2B30",
+      "Dark": "#EDEEF2"
+    },
+    "muted": {
+      "Light": "#EDEEF2",
+      "Dark": "#23262F"
+    },
+    "muted-foreground": {
+      "Light": "#666871",
+      "Dark": "#A5A7AF"
+    },
+    "placeholder": {
+      "Light": "#666871",
+      "Dark": "#A5A7AF"
+    },
+    "accent": {
+      "Light": "#EDEEF2",
+      "Dark": "#23262F"
+    },
+    "accent-foreground": {
+      "Light": "#2A2B30",
+      "Dark": "#EDEEF2"
+    },
+    "destructive": {
+      "Light": "#B33636",
+      "Dark": "#E8605B"
+    },
+    "destructive-foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#350808"
+    },
+    "destructive-hover": {
+      "Light": "#902828",
+      "Dark": "#FCB1AA"
+    },
+    "destructive-soft": {
+      "Light": "#FEF4F3",
+      "Dark": "#350808"
+    },
+    "destructive-soft-foreground": {
+      "Light": "#902828",
+      "Dark": "#FCB1AA"
+    },
+    "destructive-border": {
+      "Light": "#FED2CD",
+      "Dark": "#6E1B1B"
+    },
+    "border": {
+      "Light": "#DCDEE3",
+      "Dark": "#2A2D37"
+    },
+    "border-strong": {
+      "Light": "#C5C7CD",
+      "Dark": "#3B3D43"
+    },
+    "input": {
+      "Light": "#84868E",
+      "Dark": "#84868E"
+    },
+    "ring": {
+      "Light": "#4D60BA",
+      "Dark": "#8FA3ED"
+    },
+    "link": {
+      "Light": "#4D60BA",
+      "Dark": "#B4C5FE"
+    },
+    "row-hover": {
+      "Light": "#F6F7FA",
+      "Dark": "#23262F"
+    },
+    "row-selected": {
+      "Light": "#F4F7FE",
+      "Dark": "#202742"
+    },
+    "selected-indicator": {
+      "Light": "#4D60BA",
+      "Dark": "#8FA3ED"
+    },
+    "skeleton": {
+      "Light": "#EDEEF2",
+      "Dark": "#23262F"
+    },
+    "overlay": {
+      "Light": "#0F0A3580",
+      "Dark": "#000000A6"
+    },
+    "surface-sunken": {
+      "Light": "#F6F7FA",
+      "Dark": "#0D0F17"
+    },
+    "disabled": {
+      "Light": "#EDEEF2",
+      "Dark": "#23262F"
+    },
+    "disabled-foreground": {
+      "Light": "#84868E",
+      "Dark": "#666871"
+    },
+    "brand": {
+      "Light": "#1A2250",
+      "Dark": "#B4C5FE"
+    },
+    "brand-foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#0F0A35"
+    },
+    "chrome": {
+      "Light": "#1A2250",
+      "Dark": "#0F0A35"
+    },
+    "chrome-foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#FFFFFF"
+    },
+    "chrome-muted": {
+      "Light": "#CDCED2",
+      "Dark": "#A5A7AF"
+    },
+    "chrome-border": {
+      "Light": "#2B3675",
+      "Dark": "#1A2250"
+    },
+    "chrome-hover": {
+      "Light": "#2B3675",
+      "Dark": "#1A2250"
+    },
+    "signal": {
+      "Light": "#FCDA4E",
+      "Dark": "#FCDA4E"
+    },
+    "signal-foreground": {
+      "Light": "#1A2250",
+      "Dark": "#0F0A35"
+    },
+    "feedback/success/default": {
+      "Light": "#057A4F",
+      "Dark": "#68D7A1"
+    },
+    "feedback/success/foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#13161E"
+    },
+    "feedback/success/soft": {
+      "Light": "#D9F7E5",
+      "Dark": "#0E3020"
+    },
+    "feedback/success/border": {
+      "Light": "#96D5B2",
+      "Dark": "#255940"
+    },
+    "feedback/success/soft-foreground": {
+      "Light": "#057A4F",
+      "Dark": "#68D7A1"
+    },
+    "feedback/warning/default": {
+      "Light": "#996003",
+      "Dark": "#FCBE62"
+    },
+    "feedback/warning/foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#13161E"
+    },
+    "feedback/warning/soft": {
+      "Light": "#FFF0D3",
+      "Dark": "#3A270B"
+    },
+    "feedback/warning/border": {
+      "Light": "#EDC388",
+      "Dark": "#694D22"
+    },
+    "feedback/warning/soft-foreground": {
+      "Light": "#996003",
+      "Dark": "#FCBE62"
+    },
+    "feedback/info/default": {
+      "Light": "#0E7397",
+      "Dark": "#65CDF3"
+    },
+    "feedback/info/foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#13161E"
+    },
+    "feedback/info/soft": {
+      "Light": "#DCF3FE",
+      "Dark": "#042E3B"
+    },
+    "feedback/info/border": {
+      "Light": "#96D2EA",
+      "Dark": "#16556A"
+    },
+    "feedback/info/soft-foreground": {
+      "Light": "#0E7397",
+      "Dark": "#65CDF3"
+    },
+    "chart/1": {
+      "Light": "#3D4D9C",
+      "Dark": "#8A9FF0"
+    },
+    "chart/2": {
+      "Light": "#079FA6",
+      "Dark": "#47C7C7"
+    },
+    "chart/3": {
+      "Light": "#8C54B2",
+      "Dark": "#A95CBB"
+    },
+    "chart/4": {
+      "Light": "#A58B66",
+      "Dark": "#E2C69F"
+    },
+    "chart/5": {
+      "Light": "#2F3C4A",
+      "Dark": "#657383"
+    },
+    "sidebar/default": {
+      "Light": "#1A2250",
+      "Dark": "#0F0A35"
+    },
+    "sidebar/foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#FFFFFF"
+    },
+    "sidebar/primary": {
+      "Light": "#FCDA4E",
+      "Dark": "#FCDA4E"
+    },
+    "sidebar/primary-foreground": {
+      "Light": "#1A2250",
+      "Dark": "#0F0A35"
+    },
+    "sidebar/accent": {
+      "Light": "#2B3675",
+      "Dark": "#1A2250"
+    },
+    "sidebar/accent-foreground": {
+      "Light": "#FFFFFF",
+      "Dark": "#FFFFFF"
+    },
+    "sidebar/border": {
+      "Light": "#2B3675",
+      "Dark": "#1A2250"
+    },
+    "sidebar/ring": {
+      "Light": "#FCDA4E",
+      "Dark": "#FCDA4E"
+    },
+    "status/chip/bg": {
+      "Light": "#FFFFFF",
+      "Dark": "#23262F"
+    },
+    "status/chip/border": {
+      "Light": "#C5C7CD",
+      "Dark": "#3B3D43"
+    },
+    "status/chip/fg": {
+      "Light": "#191A1E",
+      "Dark": "#EDEEF2"
+    },
+    "status/ifa/swatch": {
+      "Light": "#BC3575",
+      "Dark": "#E65D99"
+    },
+    "status/ifa/ink": {
+      "Light": "#FFFFFF",
+      "Dark": "#1A2250"
+    },
+    "status/ifa/edge": {
+      "Light": "#BC3575",
+      "Dark": "#E65D99"
+    },
+    "status/ifc/swatch": {
+      "Light": "#45B164",
+      "Dark": "#61CB7C"
+    },
+    "status/ifc/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/ifc/edge": {
+      "Light": "#3AA75B",
+      "Dark": "#61CB7C"
+    },
+    "status/scheduled/swatch": {
+      "Light": "#057BBC",
+      "Dark": "#3D9ADB"
+    },
+    "status/scheduled/ink": {
+      "Light": "#FFFFFF",
+      "Dark": "#1A2250"
+    },
+    "status/scheduled/edge": {
+      "Light": "#057BBC",
+      "Dark": "#3D9ADB"
+    },
+    "status/manufactured/swatch": {
+      "Light": "#D8732B",
+      "Dark": "#ED8641"
+    },
+    "status/manufactured/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/manufactured/edge": {
+      "Light": "#D8732B",
+      "Dark": "#ED8641"
+    },
+    "status/delivered/swatch": {
+      "Light": "#FCDA4E",
+      "Dark": "#FCDA4E"
+    },
+    "status/delivered/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/delivered/edge": {
+      "Light": "#AD9105",
+      "Dark": "#FCDA4E"
+    },
+    "status/takeoff/swatch": {
+      "Light": "#C5C7CD",
+      "Dark": "#505259"
+    },
+    "status/takeoff/ink": {
+      "Light": "#1A2250",
+      "Dark": "#FFFFFF"
+    },
+    "status/takeoff/edge": {
+      "Light": "#909298",
+      "Dark": "#6F7178"
+    },
+    "status/not-drawn/swatch": {
+      "Light": "#CDCED2",
+      "Dark": "#3B3D43"
+    },
+    "status/not-drawn/ink": {
+      "Light": "#1A2250",
+      "Dark": "#FFFFFF"
+    },
+    "status/not-drawn/edge": {
+      "Light": "#84868E",
+      "Dark": "#6F7178"
+    },
+    "status/manifested/swatch": {
+      "Light": "#E28D33",
+      "Dark": "#E28D33"
+    },
+    "status/manifested/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/manifested/edge": {
+      "Light": "#D17D1D",
+      "Dark": "#E28D33"
+    },
+    "status/with-driver/swatch": {
+      "Light": "#F4C045",
+      "Dark": "#F4C045"
+    },
+    "status/with-driver/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/with-driver/edge": {
+      "Light": "#BC8A00",
+      "Dark": "#F4C045"
+    },
+    "status/dispatched/swatch": {
+      "Light": "#ECA73C",
+      "Dark": "#ECA73C"
+    },
+    "status/dispatched/ink": {
+      "Light": "#1A2250",
+      "Dark": "#1A2250"
+    },
+    "status/dispatched/edge": {
+      "Light": "#C78400",
+      "Dark": "#ECA73C"
+    },
+    "logo": {
+      "Light": "#1A2250",
+      "Dark": "#FFFFFF"
+    }
+  }
+}

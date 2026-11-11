@@ -26,6 +26,7 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 | `tooltip` | Short text on hover or focus for icon buttons and truncated values. Floating layer z-110. |
 | `stage-cloud` | The AMA stage-cloud glyph (Draw stage) as a Lucide-style icon component. The only non-Lucide icon. |
 | `colour-swatch` | Stage cloud colour picker: radio group of 28px swatches in the chart tokens 1 to 5, ring when selected. |
+| `person-row` `phone-page-header` `code-input` | Patterns (Figma `Pattern/...`), installed into `components/patterns/`: a person in Settings, Users and roles; the phone page header; the 8-digit sign-in code. They take props and send events; the app decides what to show (ADR-0020). |
 
 ## Install in an app
 
@@ -35,7 +36,7 @@ ama-ui is a namespaced shadcn registry. The built item files live in `public/r/`
 
 ```json
 "registries": {
-  "@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/v0.3.4/public/r/{name}.json"
+  "@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/v0.3.5/public/r/{name}.json"
 }
 ```
 
@@ -47,6 +48,9 @@ npx shadcn@latest add @ama/theme @ama/utils @ama/status @ama/lint @ama/agents
 ```bash
 # install all components (each pulls in what it depends on, e.g. @ama/utils)
 npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input @ama/textarea @ama/label @ama/switch @ama/table @ama/dialog @ama/sheet @ama/popover @ama/dropdown-menu @ama/select @ama/confirm-dialog @ama/prompt-dialog @ama/status-chip @ama/alert @ama/logo @ama/tabs @ama/toggle-group @ama/avatar @ama/tooltip @ama/stage-cloud @ama/colour-swatch
+
+# patterns
+npx shadcn@latest add @ama/person-row @ama/phone-page-header @ama/code-input
 ```
 
 To upgrade, change the tag in the `@ama` URL, commit, re-run `npx shadcn@latest add` for the installed items with `--overwrite`, and review the git diff before committing.
