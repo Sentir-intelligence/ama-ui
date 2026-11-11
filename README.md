@@ -36,7 +36,7 @@ ama-ui is a namespaced shadcn registry. The built item files live in `public/r/`
 
 ```json
 "registries": {
-  "@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/v0.3.4/public/r/{name}.json"
+  "@ama": "https://raw.githubusercontent.com/Sentir-intelligence/ama-ui/v0.3.5/public/r/{name}.json"
 }
 ```
 
