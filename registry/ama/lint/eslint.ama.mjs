@@ -41,7 +41,7 @@ const BASE_SYNTAX = [
 ];
 const SIGNAL_SYNTAX = {
   selector: CLASS_TEXT(SIGNAL_CLASS),
-  message: "Website yellow (signal) is only for highlights on navy chrome. Elsewhere yellow means Delivered and appears only inside <StatusChip>. Add the file to chromeFiles if it renders on navy chrome.",
+  message: "Website yellow (signal) is only for highlights on navy chrome. On any other surface yellow means the delivery family (Dispatched, With Driver and Delivered) and appears only inside <StatusChip>. Add the file to chromeFiles if it renders on navy chrome.",
 };
 const CHROME_FILES = ["**/{app-shell,top-bar,topbar,side-nav,sidenav,sidebar,nav-bar,navbar}*.{ts,tsx,js,jsx}", "**/shell/**/*.{ts,tsx,js,jsx}"];
 

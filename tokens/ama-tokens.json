@@ -1,10 +1,10 @@
 {
   "$extensions": {
     "ama": {
-      "version": "0.3.5"
+      "version": "0.3.6"
     }
   },
-  "$description": "AMA UI design tokens v0.3.5. Source of truth. Generated files: tokens.css, globals.css, tw-merge.ts. Do not hand-edit generated files.",
+  "$description": "AMA UI design tokens v0.3.6. Source of truth. Generated files: tokens.css, globals.css, tw-merge.ts. Do not hand-edit generated files.",
   "color": {
     "white": {
       "$type": "color",
@@ -232,7 +232,7 @@
       "not-drawn": {
         "swatch": {
           "$type": "color",
-          "$value": "#DCDEE3"
+          "$value": "#CDCED2"
         },
         "ink": {
           "$type": "color",
@@ -240,45 +240,19 @@
         },
         "edge": {
           "$type": "color",
-          "$value": "#909297"
+          "$value": "#84868E"
         },
         "swatch-dark": {
           "$type": "color",
-          "$value": "#3B3D43"
+          "$value": "#CDCED2"
         },
         "ink-dark": {
-          "$type": "color",
-          "$value": "#FFFFFF"
-        },
-        "edge-dark": {
-          "$type": "color",
-          "$value": "#6F7178"
-        }
-      },
-      "takeoff": {
-        "swatch": {
-          "$type": "color",
-          "$value": "#C5C7CD"
-        },
-        "ink": {
           "$type": "color",
           "$value": "#1A2250"
         },
-        "edge": {
-          "$type": "color",
-          "$value": "#909298"
-        },
-        "swatch-dark": {
-          "$type": "color",
-          "$value": "#505259"
-        },
-        "ink-dark": {
-          "$type": "color",
-          "$value": "#FFFFFF"
-        },
         "edge-dark": {
           "$type": "color",
-          "$value": "#6F7178"
+          "$value": "#CDCED2"
         }
       },
       "ifa": {
@@ -388,7 +362,7 @@
       "manifested": {
         "swatch": {
           "$type": "color",
-          "$value": "#A5A7AF"
+          "$value": "#E28D33"
         },
         "ink": {
           "$type": "color",
@@ -396,37 +370,37 @@
         },
         "edge": {
           "$type": "color",
-          "$value": "#909299"
+          "$value": "#D17D1D"
         },
         "swatch-dark": {
           "$type": "color",
-          "$value": "#666871"
+          "$value": "#D8732B"
         },
         "ink-dark": {
           "$type": "color",
-          "$value": "#FFFFFF"
+          "$value": "#1A2250"
         },
         "edge-dark": {
           "$type": "color",
-          "$value": "#6F717A"
+          "$value": "#D8732B"
         }
       },
       "dispatched": {
         "swatch": {
           "$type": "color",
-          "$value": "#505259"
+          "$value": "#ECA73C"
         },
         "ink": {
           "$type": "color",
-          "$value": "#FFFFFF"
+          "$value": "#1A2250"
         },
         "edge": {
           "$type": "color",
-          "$value": "#505259"
+          "$value": "#C78400"
         },
         "swatch-dark": {
           "$type": "color",
-          "$value": "#A5A7AF"
+          "$value": "#ECA73C"
         },
         "ink-dark": {
           "$type": "color",
@@ -434,25 +408,25 @@
         },
         "edge-dark": {
           "$type": "color",
-          "$value": "#A5A7AF"
+          "$value": "#ECA73C"
         }
       },
       "with-driver": {
         "swatch": {
           "$type": "color",
-          "$value": "#2A2B30"
+          "$value": "#F4C045"
         },
         "ink": {
           "$type": "color",
-          "$value": "#FFFFFF"
+          "$value": "#1A2250"
         },
         "edge": {
           "$type": "color",
-          "$value": "#2A2B30"
+          "$value": "#BC8A00"
         },
         "swatch-dark": {
           "$type": "color",
-          "$value": "#DCDEE3"
+          "$value": "#F4C045"
         },
         "ink-dark": {
           "$type": "color",
@@ -460,7 +434,7 @@
         },
         "edge-dark": {
           "$type": "color",
-          "$value": "#DCDEE3"
+          "$value": "#F4C045"
         }
       },
       "delivered": {
@@ -1396,18 +1370,6 @@
         "$type": "color",
         "$value": "{color.status.delivered.edge}"
       },
-      "status-takeoff-swatch": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.swatch}"
-      },
-      "status-takeoff-ink": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.ink}"
-      },
-      "status-takeoff-edge": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.edge}"
-      },
       "status-not-drawn-swatch": {
         "$type": "color",
         "$value": "{color.status.not-drawn.swatch}"
@@ -1827,18 +1789,6 @@
         "$type": "color",
         "$value": "{color.status.delivered.edge-dark}"
       },
-      "status-takeoff-swatch": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.swatch-dark}"
-      },
-      "status-takeoff-ink": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.ink-dark}"
-      },
-      "status-takeoff-edge": {
-        "$type": "color",
-        "$value": "{color.status.takeoff.edge-dark}"
-      },
       "status-not-drawn-swatch": {
         "$type": "color",
         "$value": "{color.status.not-drawn.swatch-dark}"
@@ -1895,11 +1845,6 @@
       "icon": "pencil-off",
       "description": "No shop drawing yet."
     },
-    "takeoff": {
-      "label": "Takeoff",
-      "icon": "ruler",
-      "description": "Quantities taken off for estimating."
-    },
     "ifa": {
       "label": "IFA",
       "icon": "file-clock",
@@ -1918,27 +1863,27 @@
     "manufactured": {
       "label": "Manufactured",
       "icon": "factory",
-      "description": "Cast (pour docket recorded)."
+      "description": "QA marks Poured."
     },
     "manifested": {
       "label": "Manifested",
       "icon": "clipboard-list",
-      "description": "Staged, load documentation printed and driver notified."
+      "description": "Load booked by the office."
     },
     "dispatched": {
       "label": "Dispatched",
       "icon": "send",
-      "description": "Driver has left the warehouse with the load."
+      "description": "Driver form done and the truck has left."
     },
     "with-driver": {
       "label": "With Driver",
       "icon": "truck",
-      "description": "Driver has had to keep the load overnight."
+      "description": "Not delivered; the load is kept at the driver's depot overnight."
     },
     "delivered": {
       "label": "Delivered",
       "icon": "package-check",
-      "description": "Delivered to site."
+      "description": "Proof of delivery."
     }
   }
 }

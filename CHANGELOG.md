@@ -1,5 +1,14 @@
 # ama-ui
 
+## 0.3.6
+
+The status colour ladder is retuned and Takeoff is removed. The contrast suite passes again (it failed with the earlier Figma values: Not Drawn against Takeoff in light, Manufactured against Manifested in dark).
+
+- **Breaking: Takeoff is removed** from `STATUS_KEYS`, the status tokens and `<StatusChip>`. Released as a 0.3.x version by decision; an app that still shows Takeoff must stop before upgrading.
+- Not Drawn uses concrete grey. Manifested, Dispatched and With Driver step from status orange to signal yellow, and their descriptions follow the delivery ladder.
+- Dark Manifested uses status orange (`#D8732B`) so it stays distinct from the dark Manufactured swatch.
+- `npm run tokens:figma` still reports differences until the AMA UI Figma library takes these values: dark Not Drawn and dark Manifested, and the deprecated Takeoff variables. It stays out of `npm run check` until then.
+
 ## 0.3.5
 
 Patterns from the AMA UI Figma library, for Settings and the Front door (AMA-309). Patterns are a new registry section: `registry/ama/patterns/`, installed as `@ama/<name>` into `components/patterns/`. They take props and send events; they never fetch data, check permissions or apply business rules (ADR-0020: ama-ui draws, ama-os decides). Each has a test, its Figma name in AGENTS.md and every state in the playground.
