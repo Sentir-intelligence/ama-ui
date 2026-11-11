@@ -3,16 +3,20 @@
 // dark. Figma names map to token names by path: "status/ifa/swatch" is status-ifa-swatch,
 // "feedback/success/default" is success, "sidebar/default" is sidebar, "chart/1" is chart-1.
 // Fails on a value that differs, a Figma colour with no token, or a token with no Figma colour.
+// A Figma variable marked deprecated is listed and skipped.
 import { readFileSync } from "node:fs";
 import { figmaToToken, compareFigma } from "./lib/figma-tokens.mjs";
 
 const figma = JSON.parse(readFileSync("tokens/figma-color.json", "utf8"));
 const tokens = JSON.parse(readFileSync("tokens/ama-tokens.json", "utf8"));
-const { differ, onlyFigma, onlyTokens } = compareFigma(figma.variables, tokens);
+const { differ, onlyFigma, onlyTokens, deprecated } = compareFigma(figma.variables, tokens);
 
 for (const d of differ) console.error(`${d.mode}: ${d.token} is ${d.tokens} in ama-ui, ${d.figma} in Figma (${d.figmaName})`);
 for (const n of onlyFigma) console.error(`Figma ${n} (${figmaToToken(n)}) has no semantic token`);
 for (const k of onlyTokens) console.error(`token ${k} has no Figma colour`);
+if (deprecated.length) {
+  console.log(`Deprecated in Figma, not compared (delete them from the library): ${deprecated.join(", ")}`);
+}
 const problems = differ.length + onlyFigma.length + onlyTokens.length;
 if (problems) {
   console.error(`\n${problems} difference(s) between Figma (exported ${figma.exported}) and tokens/ama-tokens.json.`);

@@ -27,4 +27,20 @@ describe("Figma Color collection vs tokens", () => {
     expect(onlyTokens).toContain("background");
     expect(onlyTokens).not.toContain("primary");
   });
+
+  it("lists a deprecated Figma variable without failing on it", () => {
+    const figma = {
+      "status/takeoff/swatch": { Light: "#C5C7CD", Dark: "#505259", deprecated: "Deprecated: do not use." },
+    };
+    const { differ, onlyFigma, deprecated } = compareFigma(figma, tokens);
+    expect(deprecated).toEqual(["status/takeoff/swatch"]);
+    expect(differ).toEqual([]);
+    expect(onlyFigma).toEqual([]);
+  });
+
+  it("matches the committed Figma export", () => {
+    const figma = JSON.parse(readFileSync("tokens/figma-color.json", "utf8"));
+    const { differ, onlyFigma, onlyTokens } = compareFigma(figma.variables, tokens);
+    expect({ differ, onlyFigma, onlyTokens }).toEqual({ differ: [], onlyFigma: [], onlyTokens: [] });
+  });
 });

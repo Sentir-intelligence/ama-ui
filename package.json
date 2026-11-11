@@ -16,7 +16,7 @@
     "lint": "eslint . && stylelint \"**/*.css\"",
     "test": "vitest run",
     "registry": "shadcn build -o public/r",
-    "check": "npm run tokens:check && npm run contrast && npm run typecheck && npm run lint && npm run css && npm test && npm run registry:check",
+    "check": "npm run tokens:check && npm run tokens:figma && npm run contrast && npm run typecheck && npm run lint && npm run css && npm test && npm run registry:check",
     "changeset": "changeset",
     "playground": "vite playground",
     "playground:build": "vite build playground",

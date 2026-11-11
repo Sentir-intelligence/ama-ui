@@ -1,5 +1,5 @@
 {
-  "$description": "The AMA UI Figma library's Color collection (file 9BtnLlkTrWBscwvFV9DUQC), both modes, aliases resolved to hex. Exported 2026-11-11 with scripts/figma-export-color.js. Re-export before each release; npm run tokens:figma compares it with tokens/ama-tokens.json.",
+  "$description": "The AMA UI Figma library's Color collection (file 9BtnLlkTrWBscwvFV9DUQC), both modes, aliases resolved to hex. A variable whose Figma description says it is deprecated carries that description in \"deprecated\"; the check lists it and does not fail on it. Exported with scripts/figma-export-color.js. Re-export before each release; npm run tokens:figma (part of npm run check) compares it with tokens/ama-tokens.json.",
   "exported": "2026-11-11",
   "modes": [
     "Light",
@@ -372,31 +372,34 @@
     },
     "status/takeoff/swatch": {
       "Light": "#C5C7CD",
-      "Dark": "#505259"
+      "Dark": "#505259",
+      "deprecated": "Deprecated 2026-11-05: Takeoff is removed from AMA OS. Do not use."
     },
     "status/takeoff/ink": {
       "Light": "#1A2250",
-      "Dark": "#FFFFFF"
+      "Dark": "#FFFFFF",
+      "deprecated": "Deprecated 2026-11-05: Takeoff is removed from AMA OS. Do not use."
     },
     "status/takeoff/edge": {
       "Light": "#909298",
-      "Dark": "#6F7178"
+      "Dark": "#6F7178",
+      "deprecated": "Deprecated 2026-11-05: Takeoff is removed from AMA OS. Do not use."
     },
     "status/not-drawn/swatch": {
       "Light": "#CDCED2",
-      "Dark": "#3B3D43"
+      "Dark": "#CDCED2"
     },
     "status/not-drawn/ink": {
       "Light": "#1A2250",
-      "Dark": "#FFFFFF"
+      "Dark": "#1A2250"
     },
     "status/not-drawn/edge": {
       "Light": "#84868E",
-      "Dark": "#6F7178"
+      "Dark": "#CDCED2"
     },
     "status/manifested/swatch": {
       "Light": "#E28D33",
-      "Dark": "#E28D33"
+      "Dark": "#D8732B"
     },
     "status/manifested/ink": {
       "Light": "#1A2250",
@@ -404,7 +407,7 @@
     },
     "status/manifested/edge": {
       "Light": "#D17D1D",
-      "Dark": "#E28D33"
+      "Dark": "#D8732B"
     },
     "status/with-driver/swatch": {
       "Light": "#F4C045",
