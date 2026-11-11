@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "person-row",
+  "title": "Person row",
+  "description": "Pattern/Person row: one person in Settings, Users and roles. Avatar (photo or initials), name, email and company, the role badge, and Invited until the invite is accepted. With onSelect the whole row is one 64px button with a chevron. Draws only; who is listed and their role come from the app.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/avatar",
+    "@ama/badge"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/person-row.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronRight } from \"lucide-react\";\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\";\nimport { Badge } from \"@/components/ui/badge\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Person row: one person in Settings · Users and roles. Avatar (photo or initials), name,\n// detail (email · company), the role as a badge, and Invited until the invite is accepted.\n// With onSelect the whole row is one 64px button that opens the person, with a chevron.\n// Draws only: who is listed, their role and whether they are invited come from the app.\n\nexport interface PersonRowProps\n  extends Omit<React.HTMLAttributes<HTMLElement>, \"onSelect\" | \"role\"> {\n  name: string;\n  /** Email · company (or the number of views for other external people). */\n  detail: string;\n  /** Shown as the role badge. */\n  role: string;\n  /** The person's photo; initials from the name when missing or while it loads. */\n  avatarUrl?: string;\n  /** Shows the Invited badge (the person has not signed in yet). */\n  invited?: boolean;\n  /** Opens the person. Without it the row is not interactive. */\n  onSelect?: () => void;\n}\n\n/** Up to two initials: the first letters of the first and last words of the name. */\nexport function initialsOf(name: string): string {\n  const words = name.trim().split(/\\s+/).filter(Boolean);\n  if (words.length === 0) return \"?\";\n  const first = words[0][0];\n  const last = words.length > 1 ? words[words.length - 1][0] : \"\";\n  return (first + last).toUpperCase();\n}\n\nconst PersonRow = React.forwardRef<HTMLElement, PersonRowProps>(\n  ({ name, detail, role, avatarUrl, invited = false, onSelect, className, ...props }, ref) => {\n    const content = (\n      <>\n        <Avatar className=\"shrink-0\">\n          {avatarUrl && <AvatarImage src={avatarUrl} />}\n          <AvatarFallback>{initialsOf(name)}</AvatarFallback>\n        </Avatar>\n        <span className=\"flex min-w-0 flex-1 flex-col gap-0.5\">\n          <span className=\"truncate text-body-strong text-foreground\">{name}</span>\n          <span className=\"truncate text-caption text-muted-foreground\">{detail}</span>\n        </span>\n        {invited && (\n          <Badge variant=\"outline\" className=\"shrink-0\">\n            Invited\n          </Badge>\n        )}\n        <Badge variant=\"secondary\" className=\"shrink-0\">\n          {role}\n        </Badge>\n        {onSelect && <ChevronRight aria-hidden className=\"size-6 shrink-0 text-foreground\" />}\n      </>\n    );\n    const rowClass = cn(\n      \"flex min-h-16 w-full items-center gap-3 border-b border-border bg-card py-2.5 pl-4 pr-3 text-left\",\n      className\n    );\n    if (onSelect) {\n      return (\n        <button\n          ref={ref as React.Ref<HTMLButtonElement>}\n          type=\"button\"\n          onClick={onSelect}\n          className={cn(rowClass, \"hover:bg-row-hover\")}\n          {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}\n        >\n          {content}\n        </button>\n      );\n    }\n    return (\n      <div ref={ref as React.Ref<HTMLDivElement>} className={rowClass} {...props}>\n        {content}\n      </div>\n    );\n  }\n);\nPersonRow.displayName = \"PersonRow\";\n\nexport { PersonRow };\n",
+      "type": "registry:component",
+      "target": "components/patterns/person-row.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

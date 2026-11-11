@@ -573,6 +573,27 @@
         "@ama/utils",
         "@ama/stage-cloud"
       ]
+    },
+    {
+      "name": "person-row",
+      "type": "registry:component",
+      "title": "Person row",
+      "description": "Pattern/Person row: one person in Settings, Users and roles. Avatar (photo or initials), name, email and company, the role badge, and Invited until the invite is accepted. With onSelect the whole row is one 64px button with a chevron. Draws only; who is listed and their role come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/person-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/person-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/avatar",
+        "@ama/badge"
+      ]
     }
   ]
 }

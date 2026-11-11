@@ -14,6 +14,7 @@ export default defineConfig({
       { find: /^@\/components\/ui\/(.*)$/, replacement: registry("ui") },
       { find: /^@\/components\/brand\/(.*)$/, replacement: registry("brand") },
       { find: /^@\/components\/icons\/(.*)$/, replacement: registry("icons") },
+      { find: /^@\/components\/patterns\/(.*)$/, replacement: registry("patterns") },
       { find: /^@\/lib\/(.*)$/, replacement: registry("lib") },
     ],
   },

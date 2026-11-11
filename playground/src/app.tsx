@@ -2,6 +2,7 @@ import * as React from "react";
 import { MoreHorizontal, Plus, Trash2 } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { StageCloud } from "@/components/icons/stage-cloud";
+import { PersonRow } from "@/components/patterns/person-row";
 import { Alert } from "@/components/ui/alert";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -82,6 +83,11 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
       <div className="flex flex-wrap items-center gap-3">{children}</div>
     </div>
   );
+}
+
+// A phone-width frame for patterns drawn at 390px in Figma.
+function Phone({ children }: { children: React.ReactNode }) {
+  return <div className="w-full max-w-sm overflow-hidden rounded-lg border border-border bg-card">{children}</div>;
 }
 
 const BUTTON_VARIANTS = ["default", "destructive", "outline", "secondary", "ghost", "link"] as const;
@@ -453,6 +459,24 @@ export function App() {
             <Logo tone="reverse" />
             <Logo tone="reverse" variant="mark" className="h-6" />
           </div>
+        </Section>
+
+        <Section
+          title="Pattern: Person row"
+          note="Settings, Users and roles. Photo or initials, name, email and company, role, and Invited until the invite is accepted. With onSelect the row is one 64px button."
+        >
+          <Phone>
+            <PersonRow name="Ben Ryan" detail="ben@hutchinson.com.au · Hutchinson" role="Builder" onSelect={() => {}} />
+            <PersonRow name="Maria Thompson" detail="maria@amaprecast.com.au" role="QA" avatarUrl="/missing.jpg" onSelect={() => {}} />
+            <PersonRow name="Sam Lee" detail="sam@hutchinson.com.au · Hutchinson" role="Builder" invited onSelect={() => {}} />
+            <PersonRow
+              name="A person with a very long name that does not fit"
+              detail="a.very.long.email.address@a-long-company-name.com.au · A long company name"
+              role="Other external"
+              onSelect={() => {}}
+            />
+            <PersonRow name="Jacob Marschke" detail="Not interactive (no onSelect)" role="Admin" />
+          </Phone>
         </Section>
       </main>
     </TooltipProvider>
