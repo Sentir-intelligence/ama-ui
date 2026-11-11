@@ -1,8 +1,9 @@
 import * as React from "react";
-import { MoreHorizontal, Plus, Trash2 } from "lucide-react";
+import { MoreHorizontal, Plus, Trash2, UserPlus } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { StageCloud } from "@/components/icons/stage-cloud";
 import { PersonRow } from "@/components/patterns/person-row";
+import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { Alert } from "@/components/ui/alert";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -476,6 +477,24 @@ export function App() {
               onSelect={() => {}}
             />
             <PersonRow name="Jacob Marschke" detail="Not interactive (no onSelect)" role="Admin" />
+          </Phone>
+        </Section>
+
+        <Section
+          title="Pattern: Phone page header"
+          note="Phone pages that are not a panel. Back, title on one line, one optional icon action; 44px targets, 56px tall, sticky."
+        >
+          <Phone>
+            <PhonePageHeader title="Users and roles" onBack={() => {}} />
+          </Phone>
+          <Phone>
+            <PhonePageHeader title="People" onBack={() => {}} action={{ icon: UserPlus, label: "Invite person", onClick: () => {} }} />
+          </Phone>
+          <Phone>
+            <PhonePageHeader title="Settings" />
+          </Phone>
+          <Phone>
+            <PhonePageHeader title="A page title that is far too long to fit on one line" onBack={() => {}} action={{ icon: UserPlus, label: "Invite person", onClick: () => {} }} />
           </Phone>
         </Section>
       </main>

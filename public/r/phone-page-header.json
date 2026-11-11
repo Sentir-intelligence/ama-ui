@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-page-header",
+  "title": "Phone page header",
+  "description": "Pattern/Phone page header: the sticky 56px header for phone pages that are not a panel (Settings and similar). Back, the title on one line, and one optional icon action, each a 44px target. The page's main action belongs in the bottom bar.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-page-header.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronLeft, type LucideIcon } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone page header: the sticky 56px header for phone pages that are not a panel\n// (Settings and similar). Back, the title on one line, and one optional icon action. Back and the\n// action are 44px targets. The page's main action belongs in the bottom bar, not here.\n\nexport interface PhonePageHeaderAction {\n  icon: LucideIcon;\n  /** The accessible name; there is no visible label. */\n  label: string;\n  onClick: () => void;\n}\n\nexport interface PhonePageHeaderProps extends React.HTMLAttributes<HTMLElement> {\n  title: string;\n  /** Shows the back button. Without it there is none. */\n  onBack?: () => void;\n  /** The accessible name of the back button. */\n  backLabel?: string;\n  /** One icon action on the right. */\n  action?: PhonePageHeaderAction;\n}\n\nconst iconButton = \"size-11 shrink-0 rounded-sm\";\n\nconst PhonePageHeader = React.forwardRef<HTMLElement, PhonePageHeaderProps>(\n  ({ title, onBack, backLabel = \"Back\", action, className, ...props }, ref) => {\n    const ActionIcon = action?.icon;\n    return (\n      <header\n        ref={ref}\n        className={cn(\n          \"sticky top-0 z-10 flex h-14 items-center gap-1 border-b border-border bg-card px-1\",\n          className\n        )}\n        {...props}\n      >\n        {onBack && (\n          <Button variant=\"ghost\" size=\"icon\" className={iconButton} aria-label={backLabel} onClick={onBack}>\n            <ChevronLeft aria-hidden />\n          </Button>\n        )}\n        <h1 className={cn(\"min-w-0 flex-1 truncate text-title text-foreground\", !onBack && \"pl-3\")}>{title}</h1>\n        {action && ActionIcon && (\n          <Button variant=\"ghost\" size=\"icon\" className={iconButton} aria-label={action.label} onClick={action.onClick}>\n            <ActionIcon aria-hidden />\n          </Button>\n        )}\n      </header>\n    );\n  }\n);\nPhonePageHeader.displayName = \"PhonePageHeader\";\n\nexport { PhonePageHeader };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-page-header.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

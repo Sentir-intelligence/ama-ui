@@ -594,6 +594,26 @@
         "@ama/avatar",
         "@ama/badge"
       ]
+    },
+    {
+      "name": "phone-page-header",
+      "type": "registry:component",
+      "title": "Phone page header",
+      "description": "Pattern/Phone page header: the sticky 56px header for phone pages that are not a panel (Settings and similar). Back, the title on one line, and one optional icon action, each a 44px target. The page's main action belongs in the bottom bar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-page-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-page-header.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
+      ]
     }
   ]
 }
