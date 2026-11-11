@@ -20,7 +20,8 @@
     "changeset": "changeset",
     "playground": "vite playground",
     "playground:build": "vite build playground",
-    "registry:check": "node scripts/check-registry.mjs"
+    "registry:check": "node scripts/check-registry.mjs",
+    "tokens:figma": "node scripts/check-figma-tokens.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.3.1",
