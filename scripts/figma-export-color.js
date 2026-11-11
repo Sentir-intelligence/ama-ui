@@ -27,6 +27,8 @@ for (const id of col.variableIds) {
   if (!v || v.resolvedType !== "COLOR") continue;
   const row = {};
   for (const m of col.modes) row[m.name] = await resolve(v.valuesByMode[m.modeId], m.name);
+  // A deprecated variable keeps its description, so the check can list it without failing.
+  if (/deprecated/i.test(v.description || "")) row.deprecated = v.description;
   variables[v.name] = row;
 }
 return { modes: col.modes.map((m) => m.name), variables };

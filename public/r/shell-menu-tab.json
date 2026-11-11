@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-menu-tab",
+  "title": "Shell menu tab",
+  "description": "Pattern/Shell menu tab: one tab across the top of the shell's menu sheet (Views, Documents, Activity). Icon over label, 48px; active is foreground with a 2px selected indicator underneath. role=tab.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-menu-tab.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport type { LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell menu tab: one tab across the top of the shell's menu sheet (Views, Documents,\n// Activity). Icon over the label, the full 48px bar height; the active tab is foreground with a\n// 2px selected indicator underneath. Use inside an element with role=\"tablist\".\n\nexport interface ShellMenuTabProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  icon: LucideIcon;\n  label: string;\n  active?: boolean;\n}\n\nconst ShellMenuTab = React.forwardRef<HTMLButtonElement, ShellMenuTabProps>(\n  ({ icon: Icon, label, active = false, className, ...props }, ref) => (\n    <button\n      ref={ref}\n      type=\"button\"\n      role=\"tab\"\n      aria-selected={active}\n      className={cn(\n        \"relative flex h-topbar flex-1 cursor-pointer flex-col items-center justify-center gap-0.5\",\n        active ? \"text-foreground\" : \"text-muted-foreground hover:text-foreground\",\n        className\n      )}\n      {...props}\n    >\n      <Icon aria-hidden className=\"size-5\" />\n      <span className=\"text-label\">{label}</span>\n      {active && <span aria-hidden className=\"absolute inset-x-0 bottom-0 h-0.5 bg-selected-indicator\" />}\n    </button>\n  )\n);\nShellMenuTab.displayName = \"ShellMenuTab\";\n\nexport { ShellMenuTab };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-menu-tab.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

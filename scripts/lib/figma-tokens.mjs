@@ -25,15 +25,25 @@ export function semanticColours(tokens, mode) {
   return out;
 }
 
-/** Every difference between the Figma export and the tokens, in both modes. */
+/**
+ * Every difference between the Figma export and the tokens, in both modes. A Figma variable
+ * marked deprecated (its description says so) is listed in `deprecated` and not compared: it is
+ * on its way out of the library, and the tokens may already have dropped it.
+ */
 export function compareFigma(figmaVariables, tokens) {
   const modes = { light: "Light", dark: "Dark" };
   const semantic = Object.fromEntries(Object.keys(modes).map((m) => [m, semanticColours(tokens, m)]));
   const differ = [];
   const onlyFigma = [];
+  const deprecated = [];
   const mapped = new Set();
   for (const [name, values] of Object.entries(figmaVariables)) {
     const token = figmaToToken(name);
+    if (values.deprecated) {
+      deprecated.push(name);
+      if (token in semantic.light) mapped.add(token);
+      continue;
+    }
     if (!(token in semantic.light)) { onlyFigma.push(name); continue; }
     mapped.add(token);
     for (const [mode, figmaMode] of Object.entries(modes)) {
@@ -44,5 +54,5 @@ export function compareFigma(figmaVariables, tokens) {
     }
   }
   const onlyTokens = Object.keys(semantic.light).filter((k) => !mapped.has(k));
-  return { differ, onlyFigma, onlyTokens };
+  return { differ, onlyFigma, onlyTokens, deprecated };
 }

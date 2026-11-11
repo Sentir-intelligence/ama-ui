@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-activity-item",
+  "title": "Shell activity item",
+  "description": "Pattern/Shell activity item: one entry in the shell's Activity tab: the comment, then project · panel and how long ago. With onSelect it is a button that opens the thread.",
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-activity-item.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell activity item: one entry in the shell's Activity tab. The comment or change, then\n// where it happened (project · panel) and how long ago. With onSelect the whole item is a button\n// that opens the thread.\n\nexport interface ShellActivityItemProps extends Omit<React.HTMLAttributes<HTMLElement>, \"onSelect\"> {\n  comment: string;\n  /** Where it happened, for example \"AMA237 · A-2P068\". */\n  trail: string;\n  /** How long ago, for example \"3d\". */\n  age: string;\n  onSelect?: () => void;\n}\n\nconst ShellActivityItem = React.forwardRef<HTMLElement, ShellActivityItemProps>(\n  ({ comment, trail, age, onSelect, className, ...props }, ref) => {\n    const content = (\n      <>\n        <span className=\"text-table-cell text-foreground\">{comment}</span>\n        <span className=\"flex items-baseline gap-1 text-muted-foreground\">\n          <span className=\"min-w-0 truncate text-id\">{trail}</span>\n          <span className=\"shrink-0 text-caption\">· {age}</span>\n        </span>\n      </>\n    );\n    const base = \"flex w-full flex-col items-start gap-0.5 px-4 py-3 text-left\";\n    if (onSelect) {\n      return (\n        <button\n          ref={ref as React.Ref<HTMLButtonElement>}\n          type=\"button\"\n          onClick={onSelect}\n          className={cn(base, \"cursor-pointer hover:bg-accent\", className)}\n          {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}\n        >\n          {content}\n        </button>\n      );\n    }\n    return (\n      <div ref={ref as React.Ref<HTMLDivElement>} className={cn(base, className)} {...props}>\n        {content}\n      </div>\n    );\n  }\n);\nShellActivityItem.displayName = \"ShellActivityItem\";\n\nexport { ShellActivityItem };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-activity-item.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

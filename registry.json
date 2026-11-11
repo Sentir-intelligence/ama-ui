@@ -631,6 +631,134 @@
         "@ama/utils",
         "@ama/input"
       ]
+    },
+    {
+      "name": "shell-rail-item",
+      "type": "registry:component",
+      "title": "Shell rail item",
+      "description": "Pattern/Shell rail item: one item in the app rail on navy chrome (Views, Documents, Activity, Settings, Reader). 72 x 56, icon over a caption; active draws the yellow signal indicator and sets aria-current; the focus ring is yellow on chrome. asChild wraps the app's link.",
+      "dependencies": [
+        "lucide-react",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-rail-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-rail-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "shell-panel-row",
+      "type": "registry:component",
+      "title": "Shell panel row",
+      "description": "Pattern/Shell panel row: one row in the shell's side panel and menu sheet (views, documents, Settings sections). Optional icon, label, meta and pin star; active fills the selected row colour with the left indicator. Height follows the density. asChild wraps the app's link; the pin is its own button.",
+      "dependencies": [
+        "lucide-react",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-panel-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-panel-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "shell-chrome-button",
+      "type": "registry:component",
+      "title": "Shell chrome button",
+      "description": "Pattern/Shell chrome button: a button on navy chrome (Open menu, Scan, update). Icon only is a 44px square needing a label; showLabel makes a filled 44px pill with the label. Yellow focus ring.",
+      "dependencies": [
+        "lucide-react",
+        "@radix-ui/react-slot"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-chrome-button.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-chrome-button.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "shell-avatar",
+      "type": "registry:component",
+      "title": "Shell avatar",
+      "description": "Pattern/Shell avatar: the account button at the bottom of the app rail. 44px target, 32px circle on chrome with the initial or photo. A button, for the account menu's trigger.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-avatar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-avatar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "shell-menu-tab",
+      "type": "registry:component",
+      "title": "Shell menu tab",
+      "description": "Pattern/Shell menu tab: one tab across the top of the shell's menu sheet (Views, Documents, Activity). Icon over label, 48px; active is foreground with a 2px selected indicator underneath. role=tab.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-menu-tab.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-menu-tab.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "shell-activity-item",
+      "type": "registry:component",
+      "title": "Shell activity item",
+      "description": "Pattern/Shell activity item: one entry in the shell's Activity tab: the comment, then project \u00b7 panel and how long ago. With onSelect it is a button that opens the thread.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/shell-activity-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/shell-activity-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "preview-bar",
+      "type": "registry:component",
+      "title": "Preview bar",
+      "description": "Pattern/Preview bar: shown while Admin or IT preview another shell as someone (Front door 10.9). Names the shell and the person, with Exit. Info soft fill, info border underneath, under the page header. Draws only; the app makes the preview read only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/preview-bar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/preview-bar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
+      ]
     }
   ]
 }

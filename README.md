@@ -26,7 +26,7 @@ Rules for people and agents: [`registry/rules/AGENTS.md`](registry/rules/AGENTS.
 | `tooltip` | Short text on hover or focus for icon buttons and truncated values. Floating layer z-110. |
 | `stage-cloud` | The AMA stage-cloud glyph (Draw stage) as a Lucide-style icon component. The only non-Lucide icon. |
 | `colour-swatch` | Stage cloud colour picker: radio group of 28px swatches in the chart tokens 1 to 5, ring when selected. |
-| `person-row` `phone-page-header` `code-input` | Patterns (Figma `Pattern/...`), installed into `components/patterns/`: a person in Settings, Users and roles; the phone page header; the 8-digit sign-in code. They take props and send events; the app decides what to show (ADR-0020). |
+| `person-row` `phone-page-header` `code-input` `shell-rail-item` `shell-panel-row` `shell-chrome-button` `shell-avatar` `shell-menu-tab` `shell-activity-item` `preview-bar` | Patterns (Figma `Pattern/...`), installed into `components/patterns/`: a person in Settings, Users and roles; the phone page header; the 8-digit sign-in code; the app shell's rail items, panel rows, chrome buttons, account avatar, menu tabs and activity items; the bar shown while previewing another shell. They take props and send events; the app decides what to show (ADR-0020). |
 
 ## Install in an app
 
@@ -51,6 +51,7 @@ npx shadcn@latest add @ama/button @ama/badge @ama/card @ama/checkbox @ama/input 
 
 # patterns
 npx shadcn@latest add @ama/person-row @ama/phone-page-header @ama/code-input
+npx shadcn@latest add @ama/shell-rail-item @ama/shell-panel-row @ama/shell-chrome-button @ama/shell-avatar @ama/shell-menu-tab @ama/shell-activity-item @ama/preview-bar
 ```
 
 To upgrade, change the tag in the `@ama` URL, commit, re-run `npx shadcn@latest add` for the installed items with `--overwrite`, and review the git diff before committing.

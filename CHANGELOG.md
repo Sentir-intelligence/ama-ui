@@ -1,5 +1,14 @@
 # ama-ui
 
+## 0.3.7
+
+The app shell's patterns, for Settings navigation (ST-1) and the front door's launcher and preview (FD-3): rail items, panel rows, chrome buttons, the account avatar, menu tabs, activity items and the Preview bar. The release check now also compares the tokens with Figma.
+
+### Patch Changes
+
+- 5c35d7c: `npm run check` now runs `npm run tokens:figma`, so a Figma colour or token change that is not mirrored fails the release. `tokens/figma-color.json` is re-exported (2026-11-11): it matches the tokens in light and dark. Figma variables marked deprecated in their description (the three Takeoff colours, until they are deleted from the library) are listed and not compared; the export script records that mark.
+- 5186585: Shell patterns from the Figma library: Shell rail item, Shell panel row, Shell chrome button, Shell avatar, Shell menu tab and Shell activity item, plus the Preview bar (Front door 10.9). Files named `shell-*` count as navy chrome for the signal yellow lint rule.
+
 ## 0.3.6
 
 The status colour ladder is retuned and Takeoff is removed. The contrast suite passes again (it failed with the earlier Figma values: Not Drawn against Takeoff in light, Manufactured against Manifested in dark).

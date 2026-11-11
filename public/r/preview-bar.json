@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "preview-bar",
+  "title": "Preview bar",
+  "description": "Pattern/Preview bar: shown while Admin or IT preview another shell as someone (Front door 10.9). Names the shell and the person, with Exit. Info soft fill, info border underneath, under the page header. Draws only; the app makes the preview read only.",
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/preview-bar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Preview bar: shown while Admin or IT preview another shell as someone, read only (Front\n// door 10.9). Names the shell and the person, with Exit. Sits under the page header. Info soft\n// fill with an info border underneath. Draws only: the app makes the preview read only.\n\nexport interface PreviewBarProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** The shell being previewed, for example \"Builder\". */\n  shell: string;\n  /** Who it is previewed as, for example \"Ben Ryan\". */\n  person: string;\n  onExit: () => void;\n  exitLabel?: string;\n}\n\nconst PreviewBar = React.forwardRef<HTMLDivElement, PreviewBarProps>(\n  ({ shell, person, onExit, exitLabel = \"Exit\", className, ...props }, ref) => (\n    <div\n      ref={ref}\n      role=\"status\"\n      className={cn(\n        \"flex min-h-13 items-center gap-2 border-b border-info-border bg-info-soft py-1 pl-4 pr-2\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"min-w-0 flex-1 truncate text-label text-info-soft-foreground\">\n        Preview · {shell} · {person}\n      </span>\n      <Button variant=\"link\" className=\"h-11 shrink-0 px-2\" onClick={onExit}>\n        {exitLabel}\n      </Button>\n    </div>\n  )\n);\nPreviewBar.displayName = \"PreviewBar\";\n\nexport { PreviewBar };\n",
+      "type": "registry:component",
+      "target": "components/patterns/preview-bar.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
