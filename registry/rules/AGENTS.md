@@ -13,7 +13,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 - Patterns are the Figma `Pattern/...` components, built from the components above. They live in `registry/ama/patterns/` and install as `@ama/<name>` into `components/patterns/`. Check them before composing a screen; a missing pattern is a library gap, not a one-off.
 - **ama-ui draws, ama-os decides** (ADR-0020). A pattern takes props and sends events. It never fetches data, checks permissions or applies business rules; every state in Figma is drawable from props alone. Props are on each Figma component's description.
-- Patterns so far: `Pattern/Person row` (`<PersonRow>`), `Pattern/Phone page header` (`<PhonePageHeader>`).
+- Patterns so far: `Pattern/Person row` (`<PersonRow>`), `Pattern/Phone page header` (`<PhonePageHeader>`), `Pattern/Code input` (`<CodeInput>`).
 
 ## Colour
 

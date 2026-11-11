@@ -2,6 +2,7 @@ import * as React from "react";
 import { MoreHorizontal, Plus, Trash2, UserPlus } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { StageCloud } from "@/components/icons/stage-cloud";
+import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { Alert } from "@/components/ui/alert";
@@ -89,6 +90,28 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 // A phone-width frame for patterns drawn at 390px in Figma.
 function Phone({ children }: { children: React.ReactNode }) {
   return <div className="w-full max-w-sm overflow-hidden rounded-lg border border-border bg-card">{children}</div>;
+}
+
+// A live code input: any code but 48219376 is treated as wrong, to show the invalid state.
+function LiveCodeInput() {
+  const [code, setCode] = React.useState("");
+  const [wrong, setWrong] = React.useState(false);
+  return (
+    <div className="flex flex-col gap-2">
+      <CodeInput
+        value={code}
+        invalid={wrong}
+        onChange={(next) => {
+          setCode(next);
+          setWrong(false);
+        }}
+        onComplete={(full) => setWrong(full !== "48219376")}
+      />
+      <span className="text-caption text-muted-foreground">
+        {wrong ? "Wrong code (try 48219376)" : code.length === 8 ? "Signed in" : `${code.length} of 8`}
+      </span>
+    </div>
+  );
 }
 
 const BUTTON_VARIANTS = ["default", "destructive", "outline", "secondary", "ghost", "link"] as const;
@@ -496,6 +519,30 @@ export function App() {
           <Phone>
             <PhonePageHeader title="A page title that is far too long to fit on one line" onBack={() => {}} action={{ icon: UserPlus, label: "Invite person", onClick: () => {} }} />
           </Phone>
+        </Section>
+
+        <Section
+          title="Pattern: Code input"
+          note="The 8-digit email sign-in code. Type, paste or autofill; backspace moves back; the last digit completes. The app checks the code and sets invalid."
+        >
+          <Row label="Live">
+            <LiveCodeInput />
+          </Row>
+          <Row label="Empty">
+            <CodeInput value="" onChange={() => {}} />
+          </Row>
+          <Row label="Typing">
+            <CodeInput value="4821" onChange={() => {}} />
+          </Row>
+          <Row label="Filled">
+            <CodeInput value="48219376" onChange={() => {}} />
+          </Row>
+          <Row label="Invalid">
+            <CodeInput value="48219370" onChange={() => {}} invalid />
+          </Row>
+          <Row label="Disabled">
+            <CodeInput value="4821" onChange={() => {}} disabled />
+          </Row>
         </Section>
       </main>
     </TooltipProvider>

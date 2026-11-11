@@ -614,6 +614,23 @@
         "@ama/utils",
         "@ama/button"
       ]
+    },
+    {
+      "name": "code-input",
+      "type": "registry:component",
+      "title": "Code input",
+      "description": "Pattern/Code input: the 8-digit email sign-in code, one digit per box. Digits only; paste or the phone's one-time-code autofill fills every box; onComplete fires on the last digit; invalid draws destructive borders. Never checks the code: the app does.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/code-input.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/code-input.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/input"
+      ]
     }
   ]
 }
