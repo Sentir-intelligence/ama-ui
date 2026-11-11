@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-chrome-button",
+  "title": "Shell chrome button",
+  "description": "Pattern/Shell chrome button: a button on navy chrome (Open menu, Scan, update). Icon only is a 44px square needing a label; showLabel makes a filled 44px pill with the label. Yellow focus ring.",
+  "dependencies": [
+    "lucide-react",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-chrome-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport type { LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell chrome button: a button on navy chrome (Open menu, Scan, the update prompt). Icon\n// only is a 44px square with a 24px icon and needs a label for screen readers; with showLabel it\n// is a filled 44px pill with a 20px icon and the label. Focus is the yellow chrome ring.\n\nexport interface ShellChromeButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  icon: LucideIcon;\n  /** The accessible name, and the visible text when showLabel is set. */\n  label: string;\n  showLabel?: boolean;\n  asChild?: boolean;\n}\n\nconst ShellChromeButton = React.forwardRef<HTMLButtonElement, ShellChromeButtonProps>(\n  ({ icon: Icon, label, showLabel = false, asChild = false, className, children, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    const inner = showLabel ? (\n      <>\n        <Icon aria-hidden className=\"size-5\" />\n        <span className=\"text-button\">{label}</span>\n      </>\n    ) : (\n      <Icon aria-hidden className=\"size-6\" />\n    );\n    return (\n      <Comp\n        ref={ref}\n        data-surface=\"chrome\"\n        aria-label={showLabel ? undefined : label}\n        {...(asChild ? {} : { type: \"button\" as const })}\n        className={cn(\n          \"inline-flex h-11 shrink-0 cursor-pointer items-center justify-center rounded-md text-chrome-foreground\",\n          showLabel ? \"gap-2 bg-chrome-hover px-3\" : \"w-11 hover:bg-chrome-hover\",\n          className\n        )}\n        {...props}\n      >\n        {asChild ? React.cloneElement(children as React.ReactElement<{ children?: React.ReactNode }>, undefined, inner) : inner}\n      </Comp>\n    );\n  }\n);\nShellChromeButton.displayName = \"ShellChromeButton\";\n\nexport { ShellChromeButton };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-chrome-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

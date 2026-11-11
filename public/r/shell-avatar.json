@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-avatar",
+  "title": "Shell avatar",
+  "description": "Pattern/Shell avatar: the account button at the bottom of the app rail. 44px target, 32px circle on chrome with the initial or photo. A button, for the account menu's trigger.",
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-avatar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell avatar: the account button at the bottom of the app rail. A 44px target with a\n// 32px circle on chrome showing the person's initial (or photo). It is a button so it can open the\n// account menu (wrap it in the menu's trigger with asChild).\n\nexport interface ShellAvatarProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  /** The person's name or email; the first letter is shown when there is no photo. */\n  name: string;\n  /** Profile photo. */\n  src?: string;\n  /** Accessible name. Default \"Account\". */\n  label?: string;\n}\n\nconst ShellAvatar = React.forwardRef<HTMLButtonElement, ShellAvatarProps>(\n  ({ name, src, label = \"Account\", className, ...props }, ref) => {\n    const initial = name.trim().charAt(0).toUpperCase() || \"?\";\n    return (\n      <button\n        ref={ref}\n        type=\"button\"\n        data-surface=\"chrome\"\n        aria-label={label}\n        className={cn(\n          \"inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full\",\n          className\n        )}\n        {...props}\n      >\n        <span className=\"flex size-8 items-center justify-center overflow-hidden rounded-full bg-chrome-hover text-label text-chrome-foreground\">\n          {src ? <img src={src} alt=\"\" className=\"size-full object-cover\" /> : initial}\n        </span>\n      </button>\n    );\n  }\n);\nShellAvatar.displayName = \"ShellAvatar\";\n\nexport { ShellAvatar };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-avatar.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

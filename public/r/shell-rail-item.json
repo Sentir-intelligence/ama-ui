@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-rail-item",
+  "title": "Shell rail item",
+  "description": "Pattern/Shell rail item: one item in the app rail on navy chrome (Views, Documents, Activity, Settings, Reader). 72 x 56, icon over a caption; active draws the yellow signal indicator and sets aria-current; the focus ring is yellow on chrome. asChild wraps the app's link.",
+  "dependencies": [
+    "lucide-react",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-rail-item.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport type { LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell rail item: one item in the app rail on navy chrome (Views, Documents, Activity,\n// Settings, Reader). 72 x 56, icon over a caption. Active draws the yellow signal indicator on\n// the left and sets aria-current; focus is the yellow chrome ring. With asChild it wraps the app's\n// own link (Next Link), so ama-ui never decides where an item goes.\n\nexport interface ShellRailItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  icon: LucideIcon;\n  label: string;\n  /** The item for the current page: indicator, white caption and aria-current=\"page\". */\n  active?: boolean;\n  /** Render the single child (a link) instead of a button. */\n  asChild?: boolean;\n}\n\nconst ShellRailItem = React.forwardRef<HTMLButtonElement, ShellRailItemProps>(\n  ({ icon: Icon, label, active = false, asChild = false, className, children, ...props }, ref) => {\n    const Comp = asChild ? Slot : \"button\";\n    const inner = (\n      <>\n        <Icon aria-hidden className={cn(\"size-5\", active ? \"text-chrome-foreground\" : \"text-chrome-muted\")} />\n        <span className={cn(\"text-caption\", active ? \"text-chrome-foreground\" : \"text-chrome-muted\")}>{label}</span>\n        {active && <span aria-hidden className=\"absolute left-0 top-3 h-8 w-0.75 bg-signal\" />}\n      </>\n    );\n    return (\n      <Comp\n        ref={ref}\n        data-surface=\"chrome\"\n        aria-current={active ? \"page\" : undefined}\n        {...(asChild ? {} : { type: \"button\" as const })}\n        className={cn(\n          \"relative flex h-14 w-18 shrink-0 cursor-pointer flex-col items-center justify-center gap-1 rounded-md hover:bg-chrome-hover\",\n          className\n        )}\n        {...props}\n      >\n        {asChild ? React.cloneElement(children as React.ReactElement<{ children?: React.ReactNode }>, undefined, inner) : inner}\n      </Comp>\n    );\n  }\n);\nShellRailItem.displayName = \"ShellRailItem\";\n\nexport { ShellRailItem };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-rail-item.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

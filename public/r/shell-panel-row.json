@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shell-panel-row",
+  "title": "Shell panel row",
+  "description": "Pattern/Shell panel row: one row in the shell's side panel and menu sheet (views, documents, Settings sections). Optional icon, label, meta and pin star; active fills the selected row colour with the left indicator. Height follows the density. asChild wraps the app's link; the pin is its own button.",
+  "dependencies": [
+    "lucide-react",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/shell-panel-row.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { Star, type LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Shell panel row: one row in the shell's side panel and menu sheet (views, documents,\n// Settings sections). Optional icon, the label on one line, optional meta, and the pin star when\n// the row can be pinned. Active fills the selected row colour with the left indicator. The row\n// height follows the density (32 compact, 48 touch). With asChild the label part wraps the app's\n// link. The pin is its own button, so pinning never opens the row.\n\nexport interface ShellPanelRowProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"onSelect\"> {\n  label: string;\n  icon?: LucideIcon;\n  /** Short text on the right, for example a count. */\n  meta?: string;\n  /** The row for the current page. */\n  active?: boolean;\n  /** Opens the row. Ignored with asChild, where the child is the link. */\n  onSelect?: () => void;\n  /** Render the single child (a link) as the row's main target. */\n  asChild?: boolean;\n  /** Shows the pin star; pinned fills it. Omit for rows that cannot be pinned. */\n  pin?: { pinned: boolean; onToggle: () => void; label?: string };\n}\n\nconst ShellPanelRow = React.forwardRef<HTMLDivElement, ShellPanelRowProps>(\n  ({ label, icon: Icon, meta, active = false, onSelect, asChild = false, pin, className, children, ...props }, ref) => {\n    const Main = asChild ? Slot : \"button\";\n    const body = (\n      <>\n        {Icon && <Icon aria-hidden className={cn(\"size-4 shrink-0\", active ? \"text-primary\" : \"text-muted-foreground\")} />}\n        <span className=\"min-w-0 flex-1 truncate text-table-cell text-foreground\">{label}</span>\n        {meta && <span className=\"shrink-0 text-id text-muted-foreground\">{meta}</span>}\n      </>\n    );\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          \"group relative flex h-row items-center pr-3\",\n          active ? \"bg-row-selected indicator-left\" : \"hover:bg-accent\",\n          className\n        )}\n        {...props}\n      >\n        <Main\n          {...(asChild ? {} : { type: \"button\" as const, onClick: onSelect })}\n          aria-current={active ? \"page\" : undefined}\n          className=\"flex h-full min-w-0 flex-1 cursor-pointer items-center gap-2.5 pl-4 text-left\"\n        >\n          {asChild ? React.cloneElement(children as React.ReactElement<{ children?: React.ReactNode }>, undefined, body) : body}\n        </Main>\n        {pin && (\n          <button\n            type=\"button\"\n            aria-label={pin.label ?? (pin.pinned ? `Unpin ${label}` : `Pin ${label}`)}\n            aria-pressed={pin.pinned}\n            onClick={pin.onToggle}\n            className={cn(\n              \"flex h-full w-7 shrink-0 cursor-pointer items-center justify-center\",\n              pin.pinned ? \"text-primary\" : \"text-transparent group-hover:text-muted-foreground focus-visible:text-muted-foreground\"\n            )}\n          >\n            <Star aria-hidden className={cn(\"size-4\", pin.pinned && \"fill-primary\")} />\n          </button>\n        )}\n      </div>\n    );\n  }\n);\nShellPanelRow.displayName = \"ShellPanelRow\";\n\nexport { ShellPanelRow };\n",
+      "type": "registry:component",
+      "target": "components/patterns/shell-panel-row.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
