@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "visibility-tag",
+  "title": "Visibility tag",
+  "description": "Pattern/Visibility tag: who can see a comment, Internal (Lock) or External (Globe), with an optional menu chevron.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/visibility-tag.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronDown, Globe, Lock } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Visibility tag: who can see a comment. Internal (Lock) is AMA staff only; External (Globe)\n// is shared with the builder. 20px, outlined, never colour alone: the icon and the word both say it.\n// With `menu` it is a button with a chevron that opens the app's visibility menu.\n// Draws only: who may change the visibility comes from the app.\n\nexport type Visibility = \"internal\" | \"external\";\n\nexport interface VisibilityTagProps extends React.HTMLAttributes<HTMLElement> {\n  visibility: Visibility;\n  /** Draws a chevron and renders a button; the app opens the menu on click. */\n  menu?: boolean;\n}\n\nconst VisibilityTag = React.forwardRef<HTMLElement, VisibilityTagProps>(\n  ({ visibility, menu = false, className, ...props }, ref) => {\n    const Icon = visibility === \"internal\" ? Lock : Globe;\n    const base = cn(\n      \"inline-flex h-5 shrink-0 items-center gap-1 rounded-sm border border-border px-1.5 text-caption text-muted-foreground\",\n      className\n    );\n    const content = (\n      <>\n        <Icon aria-hidden className=\"size-3\" />\n        {visibility === \"internal\" ? \"Internal\" : \"External\"}\n        {menu && <ChevronDown aria-hidden className=\"-mr-1 size-3\" />}\n      </>\n    );\n    if (menu) {\n      return (\n        <button\n          ref={ref as React.Ref<HTMLButtonElement>}\n          type=\"button\"\n          aria-haspopup=\"menu\"\n          className={cn(base, \"cursor-pointer hover:bg-accent\")}\n          {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}\n        >\n          {content}\n        </button>\n      );\n    }\n    return (\n      <span ref={ref as React.Ref<HTMLSpanElement>} data-visibility={visibility} className={base} {...props}>\n        {content}\n      </span>\n    );\n  }\n);\nVisibilityTag.displayName = \"VisibilityTag\";\n\nexport { VisibilityTag };\n",
+      "type": "registry:component",
+      "target": "components/patterns/visibility-tag.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

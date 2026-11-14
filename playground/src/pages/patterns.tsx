@@ -1,5 +1,12 @@
 import * as React from "react";
 import { Clock, FileText, LayoutGrid, Menu, ScanLine, ScanSearch, Settings, Table2, UserPlus } from "lucide-react";
+import { ActivityComment, ActivityMention } from "@/components/patterns/activity-comment";
+import { ActivityComposer } from "@/components/patterns/activity-composer";
+import { ActivityLogLine } from "@/components/patterns/activity-log-line";
+import { ActivityTabs } from "@/components/patterns/activity-tabs";
+import { RaisedItem } from "@/components/patterns/raised-item";
+import { VisibilityTag } from "@/components/patterns/visibility-tag";
+import { VisibilityToggle } from "@/components/patterns/visibility-toggle";
 import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
@@ -17,6 +24,9 @@ import { ShellMenuTab } from "@/components/patterns/shell-menu-tab";
 import { ShellPanelRow } from "@/components/patterns/shell-panel-row";
 import { ShellRailItem } from "@/components/patterns/shell-rail-item";
 import { Phone, Row, Section } from "../parts";
+
+// A flat grey square standing in for a photo.
+const SWATCH = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23888'/%3E%3C/svg%3E";
 
 // A live code input: any code but 48219376 is treated as wrong, to show the invalid state.
 function LiveCodeInput() {
@@ -325,6 +335,96 @@ export function PatternsPage() {
           <PhotoTile size={72} state="add" onSelect={() => {}} />
           <PhotoTile size={72} state="uploading" progress={60} />
           <PhotoTile size={72} state="not-synced" />
+        </Row>
+      </Section>
+
+      <Section
+        title="Activity tab"
+        note="The Activity tab parts. Use the theme and density switches for light, dark and each density; Touch tabs and the icon-only post type are the phone forms."
+      >
+        <Row label="Activity tabs: Staff, Builder (default 40px), Staff touch (48px)">
+          <div className="flex w-full flex-col gap-3">
+            <ActivityTabs counts={{ mentions: { count: 1, unread: true }, comments: { count: 3 }, alerts: { count: 1, unread: true }, log: { count: 12 } }} />
+            <ActivityTabs audience="builder" counts={{ raised: { count: 3, unread: true }, comments: { count: 2 }, updates: { count: 1, unread: true } }} />
+            <ActivityTabs size="touch" counts={{ mentions: { mention: true }, comments: { count: 3 }, log: { count: 12 } }} />
+          </div>
+        </Row>
+        <Row label="Visibility tag: Internal, External, with menu">
+          <VisibilityTag visibility="internal" />
+          <VisibilityTag visibility="external" />
+          <VisibilityTag visibility="internal" menu />
+        </Row>
+        <Row label="Visibility toggle: Internal, External">
+          <VisibilityToggle value="internal" onChange={() => {}} />
+          <VisibilityToggle value="external" onChange={() => {}} />
+        </Row>
+        <Row label="Activity comment: plain, unread with mention and photos (+N), with replies">
+          <div className="flex w-full max-w-3xl flex-col divide-y divide-border rounded-lg border border-border">
+            <ActivityComment author="Alex Rivera" initials="AR" age="2h" onReply={() => {}}>
+              Rebar cage checked and signed off.
+            </ActivityComment>
+            <ActivityComment
+              author="Sam Chen"
+              initials="SC"
+              age="5m"
+              unread
+              visibility="external"
+              photos={Array.from({ length: 6 }, (_, i) => ({ src: `${SWATCH}#${i}`, alt: `Photo ${i + 1}` }))}
+              onReply={() => {}}
+            >
+              <ActivityMention>@Alex</ActivityMention> plates are out of position, photos attached.
+            </ActivityComment>
+            <ActivityComment author="Jo Park" initials="JP" age="1d" onReply={() => {}} replySummary="1 reply · last 3h ago">
+              Can we pour Thursday?
+              <ActivityComment author="Alex Rivera" initials="AR" age="3h">
+                Yes, once the defect is closed.
+              </ActivityComment>
+            </ActivityComment>
+          </div>
+        </Row>
+        <Row label="Activity log line">
+          <div className="w-full max-w-3xl rounded-lg border border-border">
+            <ActivityLogLine who="Sam Chen" when="2h ago">
+              Status changed to <strong>Poured</strong>
+            </ActivityLogLine>
+            <ActivityLogLine who="Alex Rivera" when="1d ago" visibility="external">
+              Planned date set to <strong>14 Nov</strong>
+            </ActivityLogLine>
+          </div>
+        </Row>
+        <Row label="Raised item: AMA defect Open, In progress, AMA change request In review, Builder defect In dispute, Closed, from Visibuild">
+          <div className="flex w-full max-w-3xl flex-col divide-y divide-border rounded-lg border border-border">
+            <RaisedItem kind="defect" state="open" reference="D-012" meta="Raised by Sam Chen, 2d ago" actions={[{ label: "Start work", onAction: () => {} }, { label: "Dispute", onAction: () => {} }]} />
+            <RaisedItem kind="defect" state="in-progress" reference="D-013" meta="Raised by Sam Chen, 3d ago" actions={[{ label: "Ready for review", onAction: () => {} }, { label: "Dispute", onAction: () => {} }]} />
+            <RaisedItem kind="change-request" state="in-review" reference="CR-031" meta="Raised by Jo Park, 1d ago" actions={[{ label: "Accept", onAction: () => {} }, { label: "Decline", onAction: () => {} }]} />
+            <RaisedItem kind="defect" state="in-dispute" reference="D-014" meta="Raised by the builder, 4d ago" actions={[{ label: "Close", onAction: () => {} }, { label: "Reopen", onAction: () => {} }]} />
+            <RaisedItem kind="issue" state="closed" reference="I-004" meta="Closed 1w ago" />
+            <RaisedItem kind="defect" state="open" reference="D-015" meta="From Visibuild, read only" openInVisibuildHref="#" />
+          </div>
+        </Row>
+        <Row label="Activity composer: Internal, External, No toggle, Builder comment, Builder change request, Builder defect, Builder issue">
+          <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-border">
+            <ActivityComposer postTo={["L2-P005", "Level 2"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            <ActivityComposer mode="external" postTo={["L2-P005", "Level 2"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            <ActivityComposer mode="no-toggle" postTo={["L2-P005"]} postToValue="L2-P005" />
+            {(["comment", "change-request", "defect", "issue"] as const).map((t) => (
+              <ActivityComposer key={t} mode="builder" postType={t} postTo={["L2-P005"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            ))}
+          </div>
+        </Row>
+        <Row label="Activity composer: attached photos, phone (icon-only post type), reply">
+          <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-border">
+            <ActivityComposer
+              postTo={["L2-P005"]}
+              postToValue="L2-P005"
+              onAddPhoto={() => {}}
+              photos={[{ src: SWATCH }]}
+            />
+            <Phone>
+              <ActivityComposer mode="builder" compact postType="defect" onAddPhoto={() => {}} />
+            </Phone>
+            <ActivityComposer reply />
+          </div>
         </Row>
       </Section>
 

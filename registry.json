@@ -371,7 +371,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Matches Input. Use instead of raw <select>. Floating layer z-110.",
+      "description": "Matches Input. Use instead of raw <select>. Optional leading icon, and an icon-only mode. Floating layer z-110.",
       "dependencies": [
         "@radix-ui/react-select",
         "lucide-react"
@@ -867,6 +867,144 @@
         "@ama/utils",
         "@ama/button",
         "@ama/photo-tile"
+      ]
+    },
+    {
+      "name": "visibility-tag",
+      "type": "registry:component",
+      "title": "Visibility tag",
+      "description": "Pattern/Visibility tag: who can see a comment, Internal (Lock) or External (Globe), with an optional menu chevron.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/visibility-tag.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/visibility-tag.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "visibility-toggle",
+      "type": "registry:component",
+      "title": "Visibility toggle",
+      "description": "Pattern/Visibility toggle: the Internal or External choice in the Activity composer.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/visibility-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/visibility-toggle.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-tabs",
+      "type": "registry:component",
+      "title": "Activity tabs",
+      "description": "Pattern/Activity tabs and Activity tabs touch: the staff (All, Mentions, Comments, Alerts, Log) or builder (All, Raised, Comments, Updates) filter row.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-tabs.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-tabs.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/tabs"
+      ]
+    },
+    {
+      "name": "activity-log-line",
+      "type": "registry:component",
+      "title": "Activity log line",
+      "description": "Pattern/Activity log line: one automatic entry in the Log with icon, sentence, who and when, and a visibility tag.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-log-line.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-log-line.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-comment",
+      "type": "registry:component",
+      "title": "Activity comment",
+      "description": "Pattern/Activity comment: avatar, name, age, visibility, body with @mention, photo grid with +N, reply footer, unread state and indented replies.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-comment.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-comment.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/avatar",
+        "@ama/button",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-composer",
+      "type": "registry:component",
+      "title": "Activity composer",
+      "description": "Pattern/Activity composer: Post to, visibility toggle or builder post type, input, add photo and send, in seven modes with attached photos.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-composer.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-composer.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/input",
+        "@ama/select",
+        "@ama/visibility-toggle"
+      ]
+    },
+    {
+      "name": "raised-item",
+      "type": "registry:component",
+      "title": "Raised item",
+      "description": "Pattern/Raised item: a defect, change request or issue raised on a panel, with state colour, actions and Open in Visibuild.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/raised-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/raised-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
       ]
     }
   ]

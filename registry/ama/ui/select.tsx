@@ -10,24 +10,37 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 // Styled to match Input. Prefer this over a raw <select> everywhere.
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "flex h-control w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-field text-foreground md:text-body disabled:cursor-not-allowed disabled:bg-disabled disabled:text-disabled-foreground data-[placeholder]:text-placeholder aria-invalid:border-destructive [&>span]:line-clamp-1",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-));
+// `icon` draws a leading Lucide icon. `showValue={false}` is the icon-only select (icon and chevron,
+// no text, as the post type on phones): the value stays in the DOM for screen readers, so give the
+// trigger an aria-label.
+export interface SelectTriggerProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
+  icon?: React.ReactNode;
+  showValue?: boolean;
+}
+
+const SelectTrigger = React.forwardRef<React.ElementRef<typeof SelectPrimitive.Trigger>, SelectTriggerProps>(
+  ({ className, children, icon, showValue = true, ...props }, ref) => (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "flex h-control w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 text-field text-foreground md:text-body disabled:cursor-not-allowed disabled:bg-disabled disabled:text-disabled-foreground data-[placeholder]:text-placeholder aria-invalid:border-destructive [&>span]:line-clamp-1",
+        !showValue && "w-auto justify-center gap-1",
+        className
+      )}
+      {...props}
+    >
+      {icon && (
+        <span aria-hidden className="flex shrink-0 items-center text-muted-foreground [&>svg]:size-4">
+          {icon}
+        </span>
+      )}
+      {showValue ? children : <span className="sr-only">{children}</span>}
+      <SelectPrimitive.Icon asChild>
+        <ChevronDown className="size-4 shrink-0 text-muted-foreground" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  )
+);
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectScrollUpButton = React.forwardRef<
