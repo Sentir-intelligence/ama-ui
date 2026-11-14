@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "activity-log-line",
+  "title": "Activity log line",
+  "description": "Pattern/Activity log line: one automatic entry in the Log with icon, sentence, who and when, and a visibility tag.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/visibility-tag"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/activity-log-line.tsx",
+      "content": "import * as React from \"react\";\nimport { History } from \"lucide-react\";\nimport { VisibilityTag, type Visibility } from \"@/components/patterns/visibility-tag\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Activity log line: one automatic entry in the Log (a status change, a field edit). A 28px\n// icon slot, the sentence with the changed parts in bold, then \"who · when\" muted, and a visibility\n// tag. Pass the sentence as children so the app can wrap the changed parts in <strong>.\n// Draws only: the wording comes from the app.\n\nexport interface ActivityLogLineProps extends React.HTMLAttributes<HTMLDivElement> {\n  /** Lucide icon for the slot; defaults to History. */\n  icon?: React.ReactNode;\n  who: string;\n  when: string;\n  visibility?: Visibility;\n}\n\nconst ActivityLogLine = React.forwardRef<HTMLDivElement, ActivityLogLineProps>(\n  ({ icon, who, when, visibility = \"internal\", children, className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex items-start gap-3 px-4 py-2\", className)} {...props}>\n      <span aria-hidden className=\"flex size-7 shrink-0 items-center justify-center text-muted-foreground [&>svg]:size-4\">\n        {icon ?? <History />}\n      </span>\n      <p className=\"min-w-0 flex-1 pt-1 text-body text-foreground [&_strong]:text-body-strong\">\n        {children}\n        <span className=\"text-body-sm text-muted-foreground\">\n          {\" \"}\n          · {who} · {when}\n        </span>\n      </p>\n      <VisibilityTag visibility={visibility} />\n    </div>\n  )\n);\nActivityLogLine.displayName = \"ActivityLogLine\";\n\nexport { ActivityLogLine };\n",
+      "type": "registry:component",
+      "target": "components/patterns/activity-log-line.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

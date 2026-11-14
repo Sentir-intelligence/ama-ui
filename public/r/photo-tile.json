@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "photo-tile",
+  "title": "Photo tile",
+  "description": "Pattern/Photo tile: a cover-cropped photo thumbnail, 56 or 72. States Photo, Add (dashed, opens the camera or file picker), Uploading (progress bar) and Not synced (cloud badge). With onSelect it is a button. Draws only; uploads and sync come from the app.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/photo-tile.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Camera, CloudUpload } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Photo tile: a photo thumbnail, cover-cropped. State: photo, add (dashed tile that opens\n// the camera on phones and the file picker on desktop), uploading (progress bar) and not-synced\n// (cloud badge until the photo reaches Visibuild). Size 56 or 72. With onSelect the tile is a button\n// (full screen for a photo, the picker for Add). Draws only: uploads and sync come from the app.\n\nexport interface PhotoTileProps extends Omit<React.HTMLAttributes<HTMLElement>, \"onSelect\"> {\n  state?: \"photo\" | \"add\" | \"uploading\" | \"not-synced\";\n  size?: 56 | 72;\n  /** The thumbnail; a skeleton fill shows while it is missing. */\n  src?: string;\n  alt?: string;\n  /** Uploading: 0 to 100. */\n  progress?: number;\n  onSelect?: () => void;\n}\n\nconst PhotoTile = React.forwardRef<HTMLElement, PhotoTileProps>(\n  ({ state = \"photo\", size = 56, src, alt = \"\", progress = 0, onSelect, className, ...props }, ref) => {\n    const add = state === \"add\";\n    const content = (\n      <>\n        {add ? (\n          <>\n            <Camera aria-hidden className=\"size-4\" />\n            <span className=\"text-caption text-muted-foreground\">Add</span>\n          </>\n        ) : src ? (\n          <img src={src} alt={alt} className=\"absolute inset-0 size-full object-cover\" />\n        ) : (\n          <span aria-hidden className=\"absolute inset-0 bg-skeleton\" />\n        )}\n        {state === \"uploading\" && (\n          <span\n            role=\"progressbar\"\n            aria-label=\"Uploading\"\n            aria-valuemin={0}\n            aria-valuemax={100}\n            aria-valuenow={Math.round(progress)}\n            className=\"absolute inset-x-1 bottom-1 h-1 overflow-hidden rounded-full bg-card\"\n          >\n            <span className=\"block h-full rounded-full bg-primary\" style={{ width: `${Math.min(100, Math.max(0, progress))}%` }} />\n          </span>\n        )}\n        {state === \"not-synced\" && (\n          <span\n            role=\"img\"\n            aria-label=\"Not synced\"\n            className=\"absolute right-1 top-0.75 flex size-5 items-center justify-center rounded-full bg-card\"\n          >\n            <CloudUpload aria-hidden className=\"size-3\" />\n          </span>\n        )}\n      </>\n    );\n    const base = cn(\n      \"relative flex shrink-0 flex-col items-center justify-center gap-0.5 overflow-hidden rounded-lg border text-muted-foreground\",\n      size === 72 ? \"size-18\" : \"size-14\",\n      add ? \"border-dashed border-border-strong bg-card\" : \"border-border bg-surface-sunken\",\n      className\n    );\n    if (onSelect) {\n      return (\n        <button\n          ref={ref as React.Ref<HTMLButtonElement>}\n          type=\"button\"\n          aria-label={add ? \"Add photo\" : alt || \"Open photo\"}\n          onClick={onSelect}\n          className={cn(base, \"hover:bg-accent\")}\n          {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}\n        >\n          {content}\n        </button>\n      );\n    }\n    return (\n      <div ref={ref as React.Ref<HTMLDivElement>} className={base} {...props}>\n        {content}\n      </div>\n    );\n  }\n);\nPhotoTile.displayName = \"PhotoTile\";\n\nexport { PhotoTile };\n",
+      "type": "registry:component",
+      "target": "components/patterns/photo-tile.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

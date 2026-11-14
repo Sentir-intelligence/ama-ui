@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "visibility-toggle",
+  "title": "Visibility toggle",
+  "description": "Pattern/Visibility toggle: the Internal or External choice in the Activity composer.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/visibility-tag"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/visibility-toggle.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Check, Globe, Lock } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport type { Visibility } from \"@/components/patterns/visibility-tag\";\n\n// Pattern/Visibility toggle: the two-segment choice in the Activity composer, Internal or External.\n// The chosen segment is tinted with a tick; the other shows its icon. One is always chosen.\n// Draws only: the app decides which visibilities a person may use (the toggle is left out for people\n// who can only post one kind).\n\nexport interface VisibilityToggleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\"> {\n  value: Visibility;\n  onChange?: (value: Visibility) => void;\n  disabled?: boolean;\n}\n\nconst SEGMENTS = [\n  { value: \"internal\", label: \"Internal\", Icon: Lock },\n  { value: \"external\", label: \"External\", Icon: Globe },\n] as const;\n\nconst VisibilityToggle = React.forwardRef<HTMLDivElement, VisibilityToggleProps>(\n  ({ value, onChange, disabled, className, ...props }, ref) => (\n    <div\n      ref={ref}\n      role=\"radiogroup\"\n      aria-label=\"Visibility\"\n      className={cn(\"inline-flex h-control shrink-0 overflow-hidden rounded-md border border-input\", className)}\n      {...props}\n    >\n      {SEGMENTS.map(({ value: v, label, Icon }, i) => {\n        const on = v === value;\n        const Glyph = on ? Check : Icon;\n        return (\n          <button\n            key={v}\n            type=\"button\"\n            role=\"radio\"\n            aria-checked={on}\n            disabled={disabled}\n            onClick={() => onChange?.(v)}\n            className={cn(\n              \"inline-flex cursor-pointer items-center gap-1 px-3 text-body disabled:cursor-not-allowed disabled:text-disabled-foreground\",\n              i > 0 && \"border-l border-input\",\n              on ? \"bg-row-selected text-body-strong text-primary\" : \"bg-background text-muted-foreground hover:bg-accent\"\n            )}\n          >\n            <Glyph aria-hidden className=\"size-4\" />\n            {label}\n          </button>\n        );\n      })}\n    </div>\n  )\n);\nVisibilityToggle.displayName = \"VisibilityToggle\";\n\nexport { VisibilityToggle };\n",
+      "type": "registry:component",
+      "target": "components/patterns/visibility-toggle.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

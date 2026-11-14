@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qa-ring",
+  "title": "QA ring",
+  "description": "Pattern/QA ring: QA progress as a ring. Compact 16, Touch 24, Large 64. Arc is done, a red arc and dot show a failed check, a ticked full ring is complete, a dashed grey ring is not scheduled. Draws only; the counts come from the app.",
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/qa-ring.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/QA ring: QA progress as a ring (checks done of total). Compact 16 and Touch 24 for rows\n// and boards; Large 64 for the Overview QA card. The arc is done; a red arc and dot show a failed\n// check; a full ring with a tick is complete; a dashed grey ring is not scheduled.\n// Draws only: the counts come from the app.\n\nexport interface QaRingProps extends React.SVGAttributes<SVGSVGElement> {\n  /** Checks done (passed or N/A). */\n  done: number;\n  total: number;\n  /** Checks currently failed. */\n  failed?: number;\n  /** False draws the dashed ring: QA is not scheduled for this panel. */\n  scheduled?: boolean;\n  size?: \"compact\" | \"touch\" | \"large\";\n}\n\nconst SIZE_CLASS = { compact: \"size-4\", touch: \"size-6\", large: \"size-16\" } as const;\nconst STROKE = 2.5;\nconst R = 12 - STROKE / 2;\nconst C = 2 * Math.PI * R;\n\nfunction arc(from: number, fraction: number) {\n  // A stroke-dasharray arc starting at `from` (0 to 1) clockwise from 12 o'clock.\n  return {\n    strokeDasharray: `${Math.max(0, fraction) * C} ${C}`,\n    transform: `rotate(${from * 360 - 90} 12 12)`,\n  };\n}\n\nconst QaRing = React.forwardRef<SVGSVGElement, QaRingProps>(\n  ({ done, total, failed = 0, scheduled = true, size = \"compact\", className, ...props }, ref) => {\n    const ready = scheduled && total > 0;\n    const complete = ready && done >= total && failed === 0;\n    const fraction = ready ? Math.min(1, done / total) : 0;\n    const label = !ready\n      ? \"QA not scheduled\"\n      : `${done} of ${total} checks done${failed > 0 ? `, ${failed} failed` : \"\"}`;\n    return (\n      <svg\n        ref={ref}\n        role=\"img\"\n        aria-label={label}\n        viewBox=\"0 0 24 24\"\n        fill=\"none\"\n        data-size={size}\n        className={cn(\"shrink-0\", SIZE_CLASS[size], className)}\n        {...props}\n      >\n        <circle\n          cx=\"12\"\n          cy=\"12\"\n          r={R}\n          strokeWidth={STROKE}\n          className={ready ? \"stroke-border\" : \"stroke-muted-foreground\"}\n          strokeDasharray={ready ? undefined : \"2 2.5\"}\n        />\n        {ready && fraction > 0 && (\n          <circle cx=\"12\" cy=\"12\" r={R} strokeWidth={STROKE} className=\"stroke-primary\" {...arc(0, fraction)} />\n        )}\n        {ready && failed > 0 && done > 0 && !complete && (\n          <circle\n            cx=\"12\"\n            cy=\"12\"\n            r={R}\n            strokeWidth={STROKE}\n            className=\"stroke-destructive\"\n            {...arc(fraction, Math.min(failed, total - done) / total)}\n          />\n        )}\n        {ready && failed > 0 && <circle cx=\"12\" cy=\"12\" r=\"2.25\" className=\"fill-destructive\" />}\n        {complete && (\n          <path d=\"M8 12.5l2.7 2.7L16 9.5\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\" className=\"stroke-primary\" />\n        )}\n      </svg>\n    );\n  }\n);\nQaRing.displayName = \"QaRing\";\n\nexport { QaRing };\n",
+      "type": "registry:component",
+      "target": "components/patterns/qa-ring.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

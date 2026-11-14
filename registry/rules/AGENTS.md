@@ -13,7 +13,7 @@ Source of truth: `Sentir-intelligence/ama-ui`. Tokens: `tokens/ama-tokens.json`.
 
 - Patterns are the Figma `Pattern/...` components, built from the components above. They live in `registry/ama/patterns/` and install as `@ama/<name>` into `components/patterns/`. Check them before composing a screen; a missing pattern is a library gap, not a one-off.
 - **ama-ui draws, ama-os decides** (ADR-0020). A pattern takes props and sends events. It never fetches data, checks permissions or applies business rules; every state in Figma is drawable from props alone. Props are on each Figma component's description.
-- Patterns so far: `Pattern/Person row` (`<PersonRow>`), `Pattern/Phone page header` (`<PhonePageHeader>`), `Pattern/Code input` (`<CodeInput>`).
+- Patterns so far: `Pattern/Person row` (`<PersonRow>`), `Pattern/Phone page header` (`<PhonePageHeader>`), `Pattern/Code input` (`<CodeInput>`), `Pattern/QA item` (`<QaItem>`), `Pattern/QA answer` (`<QaAnswer>`), `Pattern/QA defect` (`<QaDefect>`), `Pattern/QA ring` (`<QaRing>`), `Pattern/Metric card` (`<MetricCard>`), `Pattern/Photo tile` (`<PhotoTile>`), `Pattern/Activity tabs` and `Activity tabs touch` (`<ActivityTabs size>`), `Pattern/Activity comment` (`<ActivityComment>`), `Pattern/Activity composer` (`<ActivityComposer>`), `Pattern/Activity log line` (`<ActivityLogLine>`), `Pattern/Visibility tag` (`<VisibilityTag>`), `Pattern/Visibility toggle` (`<VisibilityToggle>`), `Pattern/Raised item` (`<RaisedItem>`), `Pattern/Phone header` (`<PhoneHeader>`), `Pattern/Phone tab bar` (`<PhoneTabBar>`), `Pattern/Phone tab bar item` (`<PhoneTabBarItem>`), `Pattern/Phone scan button` (`<PhoneScanButton>`), `Pattern/Phone panel row` (`<PhonePanelRow>`).
 
 ## Colour
 

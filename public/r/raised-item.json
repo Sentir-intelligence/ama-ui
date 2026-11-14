@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "raised-item",
+  "title": "Raised item",
+  "description": "Pattern/Raised item: a defect, change request or issue raised on a panel, with state colour, actions and Open in Visibuild.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/raised-item.tsx",
+      "content": "import * as React from \"react\";\nimport { CircleAlert, ExternalLink, FilePen, TriangleAlert } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Raised item: a defect, change request or issue raised on a panel, in the Activity tab's\n// Raised view. Colour follows the state: Open and In dispute warn, In progress and In review inform,\n// Closed is done. The title reads \"Defect D-012 · Open\", the meta says who raised it and when.\n// Actions sit below as small outline buttons, indented to the text:\n//   AMA defect         Open: Start work, Dispute. In progress: Ready for review, Dispute.\n//   AMA change request Open: Mark in review. In review: Accept, Decline.\n//   Builder defect     In review or In dispute: Close, Reopen.\n// Items that come read-only from Visibuild show \"Open in Visibuild\" instead.\n// Draws only: who may act and what the action does come from the app (actions are passed in).\n\nexport type RaisedKind = \"defect\" | \"change-request\" | \"issue\";\nexport type RaisedState = \"open\" | \"in-progress\" | \"in-review\" | \"in-dispute\" | \"closed\";\n\nexport interface RaisedItemAction {\n  label: string;\n  onAction: () => void;\n}\n\nexport interface RaisedItemProps extends React.HTMLAttributes<HTMLDivElement> {\n  kind: RaisedKind;\n  state: RaisedState;\n  /** Reference and name, e.g. \"D-012\". */\n  reference: string;\n  /** \"Raised by Sam, 2d ago\". */\n  meta?: string;\n  actions?: RaisedItemAction[];\n  openInVisibuildHref?: string;\n}\n\nconst KIND = {\n  defect: { label: \"Defect\", Icon: TriangleAlert },\n  \"change-request\": { label: \"Change request\", Icon: FilePen },\n  issue: { label: \"Issue\", Icon: CircleAlert },\n} as const;\n\nconst STATE = {\n  open: { label: \"Open\", tone: \"bg-warning-soft text-warning-soft-foreground\" },\n  \"in-dispute\": { label: \"In dispute\", tone: \"bg-warning-soft text-warning-soft-foreground\" },\n  \"in-progress\": { label: \"In progress\", tone: \"bg-info-soft text-info-soft-foreground\" },\n  \"in-review\": { label: \"In review\", tone: \"bg-info-soft text-info-soft-foreground\" },\n  closed: { label: \"Closed\", tone: \"bg-success-soft text-success-soft-foreground\" },\n} as const;\n\nconst RaisedItem = React.forwardRef<HTMLDivElement, RaisedItemProps>(\n  ({ kind, state, reference, meta, actions = [], openInVisibuildHref, className, ...props }, ref) => {\n    const { label, Icon } = KIND[kind];\n    const s = STATE[state];\n    return (\n      <div ref={ref} data-state={state} className={cn(\"flex items-start gap-3 px-4 py-3\", className)} {...props}>\n        <span aria-hidden className={cn(\"flex size-7 shrink-0 items-center justify-center rounded-full [&>svg]:size-4\", s.tone)}>\n          <Icon />\n        </span>\n        <div className=\"flex min-w-0 flex-1 flex-col gap-1\">\n          <p className=\"text-body-strong text-foreground\">\n            {label} {reference} · {s.label}\n          </p>\n          {meta && <p className=\"text-body-sm text-muted-foreground\">{meta}</p>}\n          {(actions.length > 0 || openInVisibuildHref) && (\n            <div className=\"flex flex-wrap items-center gap-2 pt-1\">\n              {actions.map((a) => (\n                <Button key={a.label} type=\"button\" size=\"sm\" variant=\"outline\" onClick={a.onAction}>\n                  {a.label}\n                </Button>\n              ))}\n              {openInVisibuildHref && (\n                <Button asChild size=\"sm\" variant=\"link\">\n                  <a href={openInVisibuildHref} target=\"_blank\" rel=\"noreferrer\">\n                    Open in Visibuild\n                    <ExternalLink aria-hidden />\n                  </a>\n                </Button>\n              )}\n            </div>\n          )}\n        </div>\n      </div>\n    );\n  }\n);\nRaisedItem.displayName = \"RaisedItem\";\n\nexport { RaisedItem };\n",
+      "type": "registry:component",
+      "target": "components/patterns/raised-item.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

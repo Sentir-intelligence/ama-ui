@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "activity-tabs",
+  "title": "Activity tabs",
+  "description": "Pattern/Activity tabs and Activity tabs touch: the staff (All, Mentions, Comments, Alerts, Log) or builder (All, Raised, Comments, Updates) filter row.",
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/tabs"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/activity-tabs.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Tabs, TabsList, TabsTrigger } from \"@/components/ui/tabs\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Activity tabs (and Activity tabs touch): the filter row at the top of a panel's Activity\n// tab. Staff see All, Mentions, Comments, Alerts, Log; builders see All, Raised, Comments, Updates.\n// Size follows density: default is 40px, touch is 48px. Counts and the dot markers come from the app.\n// Draws only: what each filter shows and its counts are decided by the app.\n\nexport type ActivityTabsAudience = \"staff\" | \"builder\";\n\nexport interface ActivityTabCounts {\n  count?: number;\n  /** Staff Mentions: the current user is mentioned. */\n  mention?: boolean;\n  unread?: boolean;\n}\n\nconst TABS = {\n  staff: [\n    { value: \"all\", label: \"All\" },\n    { value: \"mentions\", label: \"Mentions\" },\n    { value: \"comments\", label: \"Comments\" },\n    { value: \"alerts\", label: \"Alerts\" },\n    { value: \"log\", label: \"Log\" },\n  ],\n  builder: [\n    { value: \"all\", label: \"All\" },\n    { value: \"raised\", label: \"Raised\" },\n    { value: \"comments\", label: \"Comments\" },\n    { value: \"updates\", label: \"Updates\" },\n  ],\n} as const;\n\nexport interface ActivityTabsProps extends Omit<React.ComponentPropsWithoutRef<typeof Tabs>, \"onValueChange\"> {\n  audience?: ActivityTabsAudience;\n  size?: \"default\" | \"touch\";\n  /** Per tab value, e.g. { comments: { count: 3 }, mentions: { unread: true } }. */\n  counts?: Partial<Record<string, ActivityTabCounts>>;\n  onValueChange?: (value: string) => void;\n}\n\nconst ActivityTabs = React.forwardRef<React.ElementRef<typeof Tabs>, ActivityTabsProps>(\n  ({ audience = \"staff\", size = \"default\", counts = {}, value, defaultValue = \"all\", onValueChange, className, ...props }, ref) => (\n    <Tabs\n      ref={ref}\n      value={value}\n      defaultValue={value === undefined ? defaultValue : undefined}\n      onValueChange={onValueChange}\n      className={className}\n      {...props}\n    >\n      <TabsList aria-label=\"Activity\" className={cn(\"gap-1\", size === \"touch\" && \"overflow-x-auto\")}>\n        {TABS[audience].map((t) => (\n          <TabsTrigger key={t.value} value={t.value} className={size === \"touch\" ? \"h-12\" : undefined} {...counts[t.value]}>\n            {t.label}\n          </TabsTrigger>\n        ))}\n      </TabsList>\n    </Tabs>\n  )\n);\nActivityTabs.displayName = \"ActivityTabs\";\n\nexport { ActivityTabs };\n",
+      "type": "registry:component",
+      "target": "components/patterns/activity-tabs.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

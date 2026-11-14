@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-header",
+  "title": "Phone header",
+  "description": "Pattern/Phone header: back, shop number with status, one line, Find panel and menu for the phone Panel view.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button",
+    "@ama/status-chip"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-header.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronLeft, Ellipsis, Search } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport { StatusChip } from \"@/components/ui/status-chip\";\nimport type { StatusKey } from \"@/lib/status\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone header: the sticky header of the phone Panel view. Back, the shop number with its\n// status chip, one line (job, revision, install date), Find panel and a menu. Every button is a 44px\n// target. Find panel opens the app's search, scan, recent and same-stage sheet; the menu holds Print\n// label, Birth certificate and the role actions (Change stage, Merge, Split).\n// Draws only: which menu items exist and who sees them come from the app.\n\nexport interface PhoneHeaderProps extends React.HTMLAttributes<HTMLElement> {\n  shopNumber: string;\n  status: StatusKey;\n  /** One line under the shop number, e.g. \"Jam Factory · IFC Rev C · Install 22 Oct\". */\n  line?: string;\n  onBack?: () => void;\n  onFind?: () => void;\n  onMenu?: () => void;\n}\n\nconst iconButton = \"size-11 shrink-0 rounded-sm\";\n\nconst PhoneHeader = React.forwardRef<HTMLElement, PhoneHeaderProps>(\n  ({ shopNumber, status, line, onBack, onFind, onMenu, className, ...props }, ref) => (\n    <header\n      ref={ref}\n      className={cn(\"sticky top-0 z-10 flex items-center gap-1 border-b border-border bg-card px-1 py-1.5\", className)}\n      {...props}\n    >\n      <Button variant=\"ghost\" size=\"icon\" className={iconButton} aria-label=\"Back\" onClick={onBack}>\n        <ChevronLeft aria-hidden />\n      </Button>\n      <div className=\"flex min-w-0 flex-1 flex-col gap-0.5\">\n        <div className=\"flex items-center gap-2\">\n          <h1 className=\"text-title text-foreground\">{shopNumber}</h1>\n          <StatusChip status={status} />\n        </div>\n        {line && <p className=\"truncate text-caption text-muted-foreground\">{line}</p>}\n      </div>\n      <Button variant=\"ghost\" size=\"icon\" className={iconButton} aria-label=\"Find panel\" onClick={onFind}>\n        <Search aria-hidden />\n      </Button>\n      <Button variant=\"ghost\" size=\"icon\" className={iconButton} aria-label=\"Menu\" onClick={onMenu}>\n        <Ellipsis aria-hidden />\n      </Button>\n    </header>\n  )\n);\nPhoneHeader.displayName = \"PhoneHeader\";\n\nexport { PhoneHeader };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-header.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

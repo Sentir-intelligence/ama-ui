@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qa-answer",
+  "title": "QA answer",
+  "description": "Pattern/QA answer: Pass, Fail or N/A in one tap. Default for desktop rows, Touch (full width, 48 high) for phones. The chosen segment takes the success, destructive or muted soft colour. Draws only; who may answer and what an answer does come from the app.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/qa-answer.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { CircleCheck, CircleMinus, CircleX } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/QA answer: Pass, Fail or N/A in one tap. Default for desktop rows; Touch (full width,\n// 48 high) for phones and tablets. The chosen segment takes the success, destructive or muted\n// soft colour. Draws only: whether the caller may answer, and what an answer does, come from the app.\n\nexport type QaAnswerValue = \"pass\" | \"fail\" | \"na\";\n\nexport interface QaAnswerProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, \"onChange\" | \"defaultValue\"> {\n  /** The chosen answer; none while the item is open. */\n  value?: QaAnswerValue | null;\n  onChange?: (value: QaAnswerValue) => void;\n  size?: \"default\" | \"touch\";\n  disabled?: boolean;\n}\n\nconst SEGMENTS: {\n  value: QaAnswerValue;\n  label: string;\n  icon: React.ComponentType<{ className?: string; \"aria-hidden\"?: boolean }>;\n  selected: string;\n}[] = [\n  { value: \"pass\", label: \"Pass\", icon: CircleCheck, selected: \"bg-success-soft text-success-soft-foreground\" },\n  { value: \"fail\", label: \"Fail\", icon: CircleX, selected: \"bg-destructive-soft text-destructive-soft-foreground\" },\n  { value: \"na\", label: \"N/A\", icon: CircleMinus, selected: \"bg-muted text-foreground\" },\n];\n\nconst QaAnswer = React.forwardRef<HTMLDivElement, QaAnswerProps>(\n  ({ value = null, onChange, size = \"default\", disabled = false, className, ...props }, ref) => {\n    const touch = size === \"touch\";\n    return (\n      <div\n        ref={ref}\n        role=\"radiogroup\"\n        aria-label=\"Answer\"\n        data-size={size}\n        className={cn(\n          \"flex items-start rounded-md border border-border bg-card p-px\",\n          touch ? \"w-full\" : \"w-fit\",\n          className\n        )}\n        {...props}\n      >\n        {SEGMENTS.map(({ value: v, label, icon: Icon, selected }) => {\n          const on = value === v;\n          return (\n            <button\n              key={v}\n              type=\"button\"\n              role=\"radio\"\n              aria-checked={on}\n              disabled={disabled}\n              onClick={() => onChange?.(v)}\n              className={cn(\n                \"flex items-center justify-center gap-1.5 rounded-sm transition-colors\",\n                \"disabled:bg-disabled disabled:text-disabled-foreground\",\n                touch ? \"h-11.5 flex-1 px-4 text-button\" : \"h-7.5 w-20 px-3 text-button-sm\",\n                on ? selected : \"text-foreground hover:bg-accent\"\n              )}\n            >\n              <Icon aria-hidden className=\"size-4 shrink-0\" />\n              {label}\n            </button>\n          );\n        })}\n      </div>\n    );\n  }\n);\nQaAnswer.displayName = \"QaAnswer\";\n\nexport { QaAnswer };\n",
+      "type": "registry:component",
+      "target": "components/patterns/qa-answer.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

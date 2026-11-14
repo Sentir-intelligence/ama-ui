@@ -371,7 +371,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Matches Input. Use instead of raw <select>. Floating layer z-110.",
+      "description": "Matches Input. Use instead of raw <select>. Optional leading icon, and an icon-only mode. Floating layer z-110.",
       "dependencies": [
         "@radix-ui/react-select",
         "lucide-react"
@@ -758,6 +758,353 @@
       "registryDependencies": [
         "@ama/utils",
         "@ama/button"
+      ]
+    },
+    {
+      "name": "qa-answer",
+      "type": "registry:component",
+      "title": "QA answer",
+      "description": "Pattern/QA answer: Pass, Fail or N/A in one tap. Default for desktop rows, Touch (full width, 48 high) for phones. The chosen segment takes the success, destructive or muted soft colour. Draws only; who may answer and what an answer does come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-answer.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-answer.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-item",
+      "type": "registry:component",
+      "title": "QA item",
+      "description": "Pattern/QA item: one checklist item on the Visibuild QA tab. Views Answer, Review (read only) and Builder (Planned, In progress, Complete; never Failed); states Open, Pass, Fail, N/A; sizes Desktop row and Touch card; Not synced cloud icon. Draws only; permissions, answering and sync come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/qa-answer"
+      ]
+    },
+    {
+      "name": "photo-tile",
+      "type": "registry:component",
+      "title": "Photo tile",
+      "description": "Pattern/Photo tile: a cover-cropped photo thumbnail, 56 or 72. States Photo, Add (dashed, opens the camera or file picker), Uploading (progress bar) and Not synced (cloud badge). With onSelect it is a button. Draws only; uploads and sync come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/photo-tile.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/photo-tile.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-ring",
+      "type": "registry:component",
+      "title": "QA ring",
+      "description": "Pattern/QA ring: QA progress as a ring. Compact 16, Touch 24, Large 64. Arc is done, a red arc and dot show a failed check, a ticked full ring is complete, a dashed grey ring is not scheduled. Draws only; the counts come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-ring.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-ring.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "metric-card",
+      "type": "registry:component",
+      "title": "Metric card",
+      "description": "Pattern/Metric card: a tab summary card with label, a 28px value row and a sub line; give progress for the bar beside the value. Use 3 to 5 in a row. Draws only; the numbers come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/metric-card.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/metric-card.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-defect",
+      "type": "registry:component",
+      "title": "QA defect",
+      "description": "Pattern/QA defect: the defect raised when a QA item fails, inside the failed row. Note with Close defect (outline until a fix photo is added, then primary), defect photos, a divider and fix photos with an Add tile. States Open, Fix added, Closed. Draws only; closing and uploads come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-defect.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-defect.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/photo-tile"
+      ]
+    },
+    {
+      "name": "visibility-tag",
+      "type": "registry:component",
+      "title": "Visibility tag",
+      "description": "Pattern/Visibility tag: who can see a comment, Internal (Lock) or External (Globe), with an optional menu chevron.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/visibility-tag.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/visibility-tag.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "visibility-toggle",
+      "type": "registry:component",
+      "title": "Visibility toggle",
+      "description": "Pattern/Visibility toggle: the Internal or External choice in the Activity composer.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/visibility-toggle.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/visibility-toggle.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-tabs",
+      "type": "registry:component",
+      "title": "Activity tabs",
+      "description": "Pattern/Activity tabs and Activity tabs touch: the staff (All, Mentions, Comments, Alerts, Log) or builder (All, Raised, Comments, Updates) filter row.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-tabs.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-tabs.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/tabs"
+      ]
+    },
+    {
+      "name": "activity-log-line",
+      "type": "registry:component",
+      "title": "Activity log line",
+      "description": "Pattern/Activity log line: one automatic entry in the Log with icon, sentence, who and when, and a visibility tag.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-log-line.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-log-line.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-comment",
+      "type": "registry:component",
+      "title": "Activity comment",
+      "description": "Pattern/Activity comment: avatar, name, age, visibility, body with @mention, photo grid with +N, reply footer, unread state and indented replies.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-comment.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-comment.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/avatar",
+        "@ama/button",
+        "@ama/visibility-tag"
+      ]
+    },
+    {
+      "name": "activity-composer",
+      "type": "registry:component",
+      "title": "Activity composer",
+      "description": "Pattern/Activity composer: Post to, visibility toggle or builder post type, input, add photo and send, in seven modes with attached photos.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/activity-composer.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/activity-composer.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/input",
+        "@ama/select",
+        "@ama/visibility-toggle"
+      ]
+    },
+    {
+      "name": "raised-item",
+      "type": "registry:component",
+      "title": "Raised item",
+      "description": "Pattern/Raised item: a defect, change request or issue raised on a panel, with state colour, actions and Open in Visibuild.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/raised-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/raised-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
+      ]
+    },
+    {
+      "name": "phone-scan-button",
+      "type": "registry:component",
+      "title": "Phone scan button",
+      "description": "Pattern/Phone scan button: the raised primary scan circle at the centre of the phone tab bar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-scan-button.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-scan-button.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "phone-tab-bar-item",
+      "type": "registry:component",
+      "title": "Phone tab bar item",
+      "description": "Pattern/Phone tab bar item: icon over label, active pill, unread dot.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-tab-bar-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-tab-bar-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "phone-tab-bar",
+      "type": "registry:component",
+      "title": "Phone tab bar",
+      "description": "Pattern/Phone tab bar: Overview, Activity, Scan, QA, More; builders swap QA for Files.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-tab-bar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-tab-bar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/phone-tab-bar-item",
+        "@ama/phone-scan-button"
+      ]
+    },
+    {
+      "name": "phone-header",
+      "type": "registry:component",
+      "title": "Phone header",
+      "description": "Pattern/Phone header: back, shop number with status, one line, Find panel and menu for the phone Panel view.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-header.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/status-chip"
+      ]
+    },
+    {
+      "name": "phone-panel-row",
+      "type": "registry:component",
+      "title": "Phone panel row",
+      "description": "Pattern/Phone panel row: shop number, meta line, StatusChip and chevron in a 64px touch row.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-panel-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-panel-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/status-chip"
       ]
     }
   ]

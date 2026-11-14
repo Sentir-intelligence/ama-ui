@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-tab-bar-item",
+  "title": "Phone tab bar item",
+  "description": "Pattern/Phone tab bar item: icon over label, active pill, unread dot.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-tab-bar-item.tsx",
+      "content": "import * as React from \"react\";\nimport type { LucideIcon } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone tab bar item: one tab of the phone bottom bar. Icon over label; Active tints the\n// icon pill and uses primary, Default is muted. A dot shows something unread (with screen-reader\n// text). The whole 76 x 56 cell is the touch target.\n// Draws only: which tab is active and the unread state come from the app.\n\nexport interface PhoneTabBarItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  icon: LucideIcon;\n  label: string;\n  active?: boolean;\n  unread?: boolean;\n}\n\nconst PhoneTabBarItem = React.forwardRef<HTMLButtonElement, PhoneTabBarItemProps>(\n  ({ icon: Icon, label, active = false, unread = false, className, ...props }, ref) => (\n    <button\n      ref={ref}\n      type=\"button\"\n      role=\"tab\"\n      aria-selected={active}\n      className={cn(\n        \"flex h-14 min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-0.5 pb-1.5 pt-2\",\n        active ? \"text-primary\" : \"text-muted-foreground\",\n        className\n      )}\n      {...props}\n    >\n      <span className={cn(\"relative flex h-7 w-13 items-center justify-center rounded-full\", active && \"bg-row-selected\")}>\n        <Icon aria-hidden className=\"size-5\" />\n        {unread && <span aria-hidden className=\"absolute right-3 top-1 size-1.5 rounded-full bg-primary\" />}\n      </span>\n      <span className={cn(\"text-caption\", active && \"font-semibold\")}>{label}</span>\n      {unread && <span className=\"sr-only\">, unread</span>}\n    </button>\n  )\n);\nPhoneTabBarItem.displayName = \"PhoneTabBarItem\";\n\nexport { PhoneTabBarItem };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-tab-bar-item.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,9 +1,27 @@
 import * as React from "react";
-import { Clock, FileText, LayoutGrid, Menu, ScanLine, ScanSearch, Settings, Table2, UserPlus } from "lucide-react";
+import { ClipboardList, House, Clock, FileText, LayoutGrid, Menu, ScanLine, ScanSearch, Settings, Table2, UserPlus } from "lucide-react";
+import { ActivityComment, ActivityMention } from "@/components/patterns/activity-comment";
+import { ActivityComposer } from "@/components/patterns/activity-composer";
+import { ActivityLogLine } from "@/components/patterns/activity-log-line";
+import { ActivityTabs } from "@/components/patterns/activity-tabs";
+import { RaisedItem } from "@/components/patterns/raised-item";
+import { VisibilityTag } from "@/components/patterns/visibility-tag";
+import { VisibilityToggle } from "@/components/patterns/visibility-toggle";
 import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
+import { PhoneHeader } from "@/components/patterns/phone-header";
+import { PhonePanelRow } from "@/components/patterns/phone-panel-row";
+import { PhoneScanButton } from "@/components/patterns/phone-scan-button";
+import { PhoneTabBar } from "@/components/patterns/phone-tab-bar";
+import { PhoneTabBarItem } from "@/components/patterns/phone-tab-bar-item";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { PreviewBar } from "@/components/patterns/preview-bar";
+import { MetricCard } from "@/components/patterns/metric-card";
+import { PhotoTile } from "@/components/patterns/photo-tile";
+import { QaAnswer, type QaAnswerValue } from "@/components/patterns/qa-answer";
+import { QaDefect } from "@/components/patterns/qa-defect";
+import { QaRing } from "@/components/patterns/qa-ring";
+import { QaItem } from "@/components/patterns/qa-item";
 import { ShellActivityItem } from "@/components/patterns/shell-activity-item";
 import { ShellAvatar } from "@/components/patterns/shell-avatar";
 import { ShellChromeButton } from "@/components/patterns/shell-chrome-button";
@@ -11,6 +29,9 @@ import { ShellMenuTab } from "@/components/patterns/shell-menu-tab";
 import { ShellPanelRow } from "@/components/patterns/shell-panel-row";
 import { ShellRailItem } from "@/components/patterns/shell-rail-item";
 import { Phone, Row, Section } from "../parts";
+
+// A flat grey square standing in for a photo.
+const SWATCH = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23888'/%3E%3C/svg%3E";
 
 // A live code input: any code but 48219376 is treated as wrong, to show the invalid state.
 function LiveCodeInput() {
@@ -31,6 +52,32 @@ function LiveCodeInput() {
         {wrong ? "Wrong code (try 48219376)" : code.length === 8 ? "Signed in" : `${code.length} of 8`}
       </span>
     </div>
+  );
+}
+
+const QA_STATES = ["open", "pass", "fail", "na"] as const;
+const QA_SAMPLE = {
+  label: "11. Cast in Plates",
+  description: "Plates are the correct size and correctly positioned",
+  meta: "Tom B · 09 Oct",
+  photos: 3,
+  comments: 1,
+};
+
+// A live QA item: answer it, then Reopen it.
+function LiveQaItems() {
+  const [state, setState] = React.useState<QaAnswerValue | null>(null);
+  return (
+    <Row label="Live (answer, then Reopen)">
+      <div className="w-full overflow-hidden rounded-lg border border-border">
+        <QaItem
+          {...QA_SAMPLE}
+          state={state ?? "open"}
+          onAnswer={setState}
+          onReopen={() => setState(null)}
+        />
+      </div>
+    </Row>
   );
 }
 
@@ -193,6 +240,229 @@ export function PatternsPage() {
         <Phone>
           <PreviewBar shell="Other external" person="A person with a long name from a long company" onExit={() => {}} />
         </Phone>
+      </Section>
+
+      <Section
+        title="QA item and QA answer"
+        note="One checklist item on the QA tab. Answer: open items take Pass, Fail or N/A, answered items show the result and Reopen. Review: read only. Builder: Planned, In progress, Complete (never Failed). Desktop row and Touch card."
+      >
+        <LiveQaItems />
+        {(["answer", "review", "builder"] as const).map((view) => (
+          <Row key={view} label={`${view[0].toUpperCase()}${view.slice(1)}, desktop`}>
+            <div className="w-full overflow-hidden rounded-lg border border-border">
+              {QA_STATES.map((state) => (
+                <QaItem key={state} view={view} state={state} {...QA_SAMPLE} />
+              ))}
+            </div>
+          </Row>
+        ))}
+        <Row label="Answer, Fail, not synced, no description">
+          <div className="w-full overflow-hidden rounded-lg border border-border">
+            <QaItem view="answer" state="fail" label="11. Cast in Plates" meta="Tom B · 09 Oct" notSynced />
+          </div>
+        </Row>
+        {(["answer", "review", "builder"] as const).map((view) => (
+          <Row key={`t-${view}`} label={`${view[0].toUpperCase()}${view.slice(1)}, touch`}>
+            <div data-density="touch" className="flex flex-col gap-4">
+              {QA_STATES.map((state) => (
+                <Phone key={state}>
+                  <QaItem view={view} state={state} size="touch" {...QA_SAMPLE} notSynced={state === "pass"} />
+                </Phone>
+              ))}
+            </div>
+          </Row>
+        ))}
+        <Row label="QA answer: none, Pass, Fail, N/A (default, then touch)">
+          <QaAnswer value={null} />
+          <QaAnswer value="pass" />
+          <QaAnswer value="fail" />
+          <QaAnswer value="na" />
+          <div data-density="touch" className="w-full max-w-sm">
+            <QaAnswer size="touch" value="fail" />
+          </div>
+        </Row>
+      </Section>
+
+      <Section
+        title="QA defect, QA ring, Metric card and Photo tile"
+        note="The rest of the QA tab. The defect sits inside a failed QA row; Close defect is outline until a fix photo is added and always tappable. The ring shows checks done of total."
+      >
+        <Row label="QA defect: Open, Fix added, Closed">
+          <div className="flex w-full max-w-3xl flex-col gap-6">
+            <QaDefect
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              onCloseDefect={() => {}}
+              onAddFix={() => {}}
+            />
+            <QaDefect
+              state="fix-added"
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              fixPhotos={[{}]}
+              onCloseDefect={() => {}}
+              onAddFix={() => {}}
+            />
+            <QaDefect
+              state="closed"
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              fixPhotos={[{}]}
+            />
+          </div>
+        </Row>
+        {(["compact", "touch", "large"] as const).map((size) => (
+          <Row key={size} label={`QA ring, ${size}: not scheduled, 0 of 24, 6 of 24 with 1 failed, 13 of 24, 1 of 2, 0 of 2 with a fail, complete`}>
+            <QaRing size={size} done={0} total={0} scheduled={false} />
+            <QaRing size={size} done={0} total={24} />
+            <QaRing size={size} done={6} total={24} failed={1} />
+            <QaRing size={size} done={13} total={24} />
+            <QaRing size={size} done={1} total={2} />
+            <QaRing size={size} done={0} total={2} failed={1} />
+            <QaRing size={size} done={24} total={24} />
+          </Row>
+        ))}
+        <Row label="Metric card: Number, Progress (three lines each, equal widths)">
+          <div className="grid w-full max-w-3xl grid-cols-3 gap-4">
+            <MetricCard label="Open defects" value={1} sub="Cast in Plates" />
+            <MetricCard label="QA done" value={13} progress={13 / 24} sub="of 24 checks" />
+            <MetricCard label="Failed" value={0} sub="No failed checks" />
+          </div>
+        </Row>
+        <Row label="Photo tile, 56: photo, add, uploading, not synced">
+          <PhotoTile />
+          <PhotoTile state="add" onSelect={() => {}} />
+          <PhotoTile state="uploading" progress={60} />
+          <PhotoTile state="not-synced" />
+        </Row>
+        <Row label="Photo tile, 72">
+          <PhotoTile size={72} />
+          <PhotoTile size={72} state="add" onSelect={() => {}} />
+          <PhotoTile size={72} state="uploading" progress={60} />
+          <PhotoTile size={72} state="not-synced" />
+        </Row>
+      </Section>
+
+      <Section
+        title="Activity tab"
+        note="The Activity tab parts. Use the theme and density switches for light, dark and each density; Touch tabs and the icon-only post type are the phone forms."
+      >
+        <Row label="Activity tabs: Staff, Builder (default 40px), Staff touch (48px)">
+          <div className="flex w-full flex-col gap-3">
+            <ActivityTabs counts={{ mentions: { count: 1, unread: true }, comments: { count: 3 }, alerts: { count: 1, unread: true }, log: { count: 12 } }} />
+            <ActivityTabs audience="builder" counts={{ raised: { count: 3, unread: true }, comments: { count: 2 }, updates: { count: 1, unread: true } }} />
+            <ActivityTabs size="touch" counts={{ mentions: { mention: true }, comments: { count: 3 }, log: { count: 12 } }} />
+          </div>
+        </Row>
+        <Row label="Visibility tag: Internal, External, with menu">
+          <VisibilityTag visibility="internal" />
+          <VisibilityTag visibility="external" />
+          <VisibilityTag visibility="internal" menu />
+        </Row>
+        <Row label="Visibility toggle: Internal, External">
+          <VisibilityToggle value="internal" onChange={() => {}} />
+          <VisibilityToggle value="external" onChange={() => {}} />
+        </Row>
+        <Row label="Activity comment: plain, unread with mention and photos (+N), with replies">
+          <div className="flex w-full max-w-3xl flex-col divide-y divide-border rounded-lg border border-border">
+            <ActivityComment author="Alex Rivera" initials="AR" age="2h" onReply={() => {}}>
+              Rebar cage checked and signed off.
+            </ActivityComment>
+            <ActivityComment
+              author="Sam Chen"
+              initials="SC"
+              age="5m"
+              unread
+              visibility="external"
+              photos={Array.from({ length: 6 }, (_, i) => ({ src: `${SWATCH}#${i}`, alt: `Photo ${i + 1}` }))}
+              onReply={() => {}}
+            >
+              <ActivityMention>@Alex</ActivityMention> plates are out of position, photos attached.
+            </ActivityComment>
+            <ActivityComment author="Jo Park" initials="JP" age="1d" onReply={() => {}} replySummary="1 reply · last 3h ago">
+              Can we pour Thursday?
+              <ActivityComment author="Alex Rivera" initials="AR" age="3h">
+                Yes, once the defect is closed.
+              </ActivityComment>
+            </ActivityComment>
+          </div>
+        </Row>
+        <Row label="Activity log line">
+          <div className="w-full max-w-3xl rounded-lg border border-border">
+            <ActivityLogLine who="Sam Chen" when="2h ago">
+              Status changed to <strong>Poured</strong>
+            </ActivityLogLine>
+            <ActivityLogLine who="Alex Rivera" when="1d ago" visibility="external">
+              Planned date set to <strong>14 Nov</strong>
+            </ActivityLogLine>
+          </div>
+        </Row>
+        <Row label="Raised item: AMA defect Open, In progress, AMA change request In review, Builder defect In dispute, Closed, from Visibuild">
+          <div className="flex w-full max-w-3xl flex-col divide-y divide-border rounded-lg border border-border">
+            <RaisedItem kind="defect" state="open" reference="D-012" meta="Raised by Sam Chen, 2d ago" actions={[{ label: "Start work", onAction: () => {} }, { label: "Dispute", onAction: () => {} }]} />
+            <RaisedItem kind="defect" state="in-progress" reference="D-013" meta="Raised by Sam Chen, 3d ago" actions={[{ label: "Ready for review", onAction: () => {} }, { label: "Dispute", onAction: () => {} }]} />
+            <RaisedItem kind="change-request" state="in-review" reference="CR-031" meta="Raised by Jo Park, 1d ago" actions={[{ label: "Accept", onAction: () => {} }, { label: "Decline", onAction: () => {} }]} />
+            <RaisedItem kind="defect" state="in-dispute" reference="D-014" meta="Raised by the builder, 4d ago" actions={[{ label: "Close", onAction: () => {} }, { label: "Reopen", onAction: () => {} }]} />
+            <RaisedItem kind="issue" state="closed" reference="I-004" meta="Closed 1w ago" />
+            <RaisedItem kind="defect" state="open" reference="D-015" meta="From Visibuild, read only" openInVisibuildHref="#" />
+          </div>
+        </Row>
+        <Row label="Activity composer: Internal, External, No toggle, Builder comment, Builder change request, Builder defect, Builder issue">
+          <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-border">
+            <ActivityComposer postTo={["L2-P005", "Level 2"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            <ActivityComposer mode="external" postTo={["L2-P005", "Level 2"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            <ActivityComposer mode="no-toggle" postTo={["L2-P005"]} postToValue="L2-P005" />
+            {(["comment", "change-request", "defect", "issue"] as const).map((t) => (
+              <ActivityComposer key={t} mode="builder" postType={t} postTo={["L2-P005"]} postToValue="L2-P005" onAddPhoto={() => {}} />
+            ))}
+          </div>
+        </Row>
+        <Row label="Activity composer: attached photos, phone (icon-only post type), reply">
+          <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-border">
+            <ActivityComposer
+              postTo={["L2-P005"]}
+              postToValue="L2-P005"
+              onAddPhoto={() => {}}
+              photos={[{ src: SWATCH }]}
+            />
+            <Phone>
+              <ActivityComposer mode="builder" compact postType="defect" onAddPhoto={() => {}} />
+            </Phone>
+            <ActivityComposer reply />
+          </div>
+        </Row>
+      </Section>
+
+      <Section
+        title="Phone panel view shell"
+        note="The phone Panel view chrome, drawn at 390px. Use the theme switch for light and dark; the phone parts are touch density."
+      >
+        <Row label="Phone header">
+          <Phone>
+            <PhoneHeader shopNumber="L2-P005" status="scheduled" line="Jam Factory · IFC Rev C · Install 22 Oct" onBack={() => {}} onFind={() => {}} onMenu={() => {}} />
+          </Phone>
+        </Row>
+        <Row label="Phone tab bar: Overview active, Activity active with unread, builder (Files)">
+          <div className="flex w-full flex-col gap-4">
+            <Phone><PhoneTabBar active="overview" /></Phone>
+            <Phone><PhoneTabBar active="activity" unread={{ activity: true }} /></Phone>
+            <Phone><PhoneTabBar audience="builder" active="files" /></Phone>
+          </div>
+        </Row>
+        <Row label="Phone tab bar item: Default, Active, Unread">
+          <PhoneTabBarItem icon={House} label="Overview" className="w-19 flex-none" />
+          <PhoneTabBarItem icon={House} label="Overview" active className="w-19 flex-none" />
+          <PhoneTabBarItem icon={ClipboardList} label="QA" unread className="w-19 flex-none" />
+        </Row>
+        <Row label="Phone scan button">
+          <div className="pt-6"><PhoneScanButton /></div>
+        </Row>
+        <Row label="Phone panel row">
+          <Phone>
+            <PhonePanelRow shopNumber="L2-P006" meta="Stage 3 · Wall panel · Install 22 Oct" status="scheduled" onSelect={() => {}} />
+            <PhonePanelRow shopNumber="L2-P007" meta="Stage 4 · Wall panel · Install 24 Oct" status="delivered" onSelect={() => {}} />
+          </Phone>
+        </Row>
       </Section>
 
       <Section
