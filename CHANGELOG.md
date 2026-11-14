@@ -1,5 +1,16 @@
 # ama-ui
 
+## 0.3.8
+
+The patterns for the Panel view (PV-18, AMA-337): the QA tab (QA item, QA answer, QA defect, QA ring, Metric card, Photo tile), the Activity tab (tabs, comment, composer, log line, visibility tag and toggle, Raised item), and the phone shell (header, tab bar, tab bar item, scan button, panel row). Select gains an optional leading icon and an icon-only mode.
+
+### Patch Changes
+
+- 9d426bb: Add the Activity tab patterns: Activity tabs (staff, builder, touch), Activity comment (with Activity mention), Activity composer (seven modes), Activity log line, Visibility tag, Visibility toggle and Raised item. Select gains an optional leading `icon` and `showValue={false}` for the icon-only select.
+- Add the phone Panel view shell patterns: Phone header, Phone tab bar, Phone tab bar item, Phone scan button and Phone panel row.
+- 3eed9fc: Pattern/QA item and Pattern/QA answer from the Figma library (Patterns page), for the Visibuild QA tab (AMA-336, built in AMA-337). QA item has the views Answer, Review and Builder, the states Open, Pass, Fail and N/A, a Desktop row and a Touch card, and the Not synced cloud icon; Review is read only. QA answer is the Pass, Fail, N/A control on its own.
+- 38935ae: QA tab patterns from the Figma library: Pattern/QA defect (Open, Fix added, Closed), Pattern/QA ring (Compact, Touch, Large), Pattern/Metric card (Number and Progress; the Person type is not built, it is not used) and Pattern/Photo tile (Photo, Add, Uploading, Not synced; 56 and 72) (AMA-337).
+
 ## 0.3.7
 
 The app shell's patterns, for Settings navigation (ST-1) and the front door's launcher and preview (FD-3): rail items, panel rows, chrome buttons, the account avatar, menu tabs, activity items and the Preview bar. The release check now also compares the tokens with Figma.

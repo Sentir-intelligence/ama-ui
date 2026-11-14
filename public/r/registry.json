@@ -1006,6 +1006,106 @@
         "@ama/utils",
         "@ama/button"
       ]
+    },
+    {
+      "name": "phone-scan-button",
+      "type": "registry:component",
+      "title": "Phone scan button",
+      "description": "Pattern/Phone scan button: the raised primary scan circle at the centre of the phone tab bar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-scan-button.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-scan-button.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "phone-tab-bar-item",
+      "type": "registry:component",
+      "title": "Phone tab bar item",
+      "description": "Pattern/Phone tab bar item: icon over label, active pill, unread dot.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-tab-bar-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-tab-bar-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "phone-tab-bar",
+      "type": "registry:component",
+      "title": "Phone tab bar",
+      "description": "Pattern/Phone tab bar: Overview, Activity, Scan, QA, More; builders swap QA for Files.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-tab-bar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-tab-bar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/phone-tab-bar-item",
+        "@ama/phone-scan-button"
+      ]
+    },
+    {
+      "name": "phone-header",
+      "type": "registry:component",
+      "title": "Phone header",
+      "description": "Pattern/Phone header: back, shop number with status, one line, Find panel and menu for the phone Panel view.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-header.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/status-chip"
+      ]
+    },
+    {
+      "name": "phone-panel-row",
+      "type": "registry:component",
+      "title": "Phone panel row",
+      "description": "Pattern/Phone panel row: shop number, meta line, StatusChip and chevron in a 64px touch row.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/phone-panel-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/phone-panel-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/status-chip"
+      ]
     }
   ]
 }

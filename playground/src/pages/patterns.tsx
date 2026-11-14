@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Clock, FileText, LayoutGrid, Menu, ScanLine, ScanSearch, Settings, Table2, UserPlus } from "lucide-react";
+import { ClipboardList, House, Clock, FileText, LayoutGrid, Menu, ScanLine, ScanSearch, Settings, Table2, UserPlus } from "lucide-react";
 import { ActivityComment, ActivityMention } from "@/components/patterns/activity-comment";
 import { ActivityComposer } from "@/components/patterns/activity-composer";
 import { ActivityLogLine } from "@/components/patterns/activity-log-line";
@@ -9,6 +9,11 @@ import { VisibilityTag } from "@/components/patterns/visibility-tag";
 import { VisibilityToggle } from "@/components/patterns/visibility-toggle";
 import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
+import { PhoneHeader } from "@/components/patterns/phone-header";
+import { PhonePanelRow } from "@/components/patterns/phone-panel-row";
+import { PhoneScanButton } from "@/components/patterns/phone-scan-button";
+import { PhoneTabBar } from "@/components/patterns/phone-tab-bar";
+import { PhoneTabBarItem } from "@/components/patterns/phone-tab-bar-item";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { PreviewBar } from "@/components/patterns/preview-bar";
 import { MetricCard } from "@/components/patterns/metric-card";
@@ -425,6 +430,38 @@ export function PatternsPage() {
             </Phone>
             <ActivityComposer reply />
           </div>
+        </Row>
+      </Section>
+
+      <Section
+        title="Phone panel view shell"
+        note="The phone Panel view chrome, drawn at 390px. Use the theme switch for light and dark; the phone parts are touch density."
+      >
+        <Row label="Phone header">
+          <Phone>
+            <PhoneHeader shopNumber="L2-P005" status="scheduled" line="Jam Factory · IFC Rev C · Install 22 Oct" onBack={() => {}} onFind={() => {}} onMenu={() => {}} />
+          </Phone>
+        </Row>
+        <Row label="Phone tab bar: Overview active, Activity active with unread, builder (Files)">
+          <div className="flex w-full flex-col gap-4">
+            <Phone><PhoneTabBar active="overview" /></Phone>
+            <Phone><PhoneTabBar active="activity" unread={{ activity: true }} /></Phone>
+            <Phone><PhoneTabBar audience="builder" active="files" /></Phone>
+          </div>
+        </Row>
+        <Row label="Phone tab bar item: Default, Active, Unread">
+          <PhoneTabBarItem icon={House} label="Overview" className="w-19 flex-none" />
+          <PhoneTabBarItem icon={House} label="Overview" active className="w-19 flex-none" />
+          <PhoneTabBarItem icon={ClipboardList} label="QA" unread className="w-19 flex-none" />
+        </Row>
+        <Row label="Phone scan button">
+          <div className="pt-6"><PhoneScanButton /></div>
+        </Row>
+        <Row label="Phone panel row">
+          <Phone>
+            <PhonePanelRow shopNumber="L2-P006" meta="Stage 3 · Wall panel · Install 22 Oct" status="scheduled" onSelect={() => {}} />
+            <PhonePanelRow shopNumber="L2-P007" meta="Stage 4 · Wall panel · Install 24 Oct" status="delivered" onSelect={() => {}} />
+          </Phone>
         </Row>
       </Section>
 

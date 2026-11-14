@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-scan-button",
+  "title": "Phone scan button",
+  "description": "Pattern/Phone scan button: the raised primary scan circle at the centre of the phone tab bar.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-scan-button.tsx",
+      "content": "import * as React from \"react\";\nimport { ScanLine } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone scan button: the centre of the phone tab bar on every screen. A raised 52px primary\n// circle with a 4px card ring, then \"Scan\". The core yard loop is scan, act, scan the next panel.\n// Draws only: the scanner is the app's.\n\nexport type PhoneScanButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;\n\nconst PhoneScanButton = React.forwardRef<HTMLButtonElement, PhoneScanButtonProps>(({ className, ...props }, ref) => (\n  <button\n    ref={ref}\n    type=\"button\"\n    className={cn(\"relative flex h-14 w-19 cursor-pointer flex-col items-center justify-end gap-0.5 pb-1.5\", className)}\n    {...props}\n  >\n    <span className=\"absolute -top-5 left-1/2 flex size-13 -translate-x-1/2 items-center justify-center rounded-full border-4 border-card bg-primary text-primary-foreground shadow-sm\">\n      <ScanLine aria-hidden className=\"size-6\" />\n    </span>\n    <span className=\"text-caption font-semibold text-foreground\">Scan</span>\n  </button>\n));\nPhoneScanButton.displayName = \"PhoneScanButton\";\n\nexport { PhoneScanButton };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-scan-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

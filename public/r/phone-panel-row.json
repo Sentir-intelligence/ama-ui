@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-panel-row",
+  "title": "Phone panel row",
+  "description": "Pattern/Phone panel row: shop number, meta line, StatusChip and chevron in a 64px touch row.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/status-chip"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-panel-row.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronRight } from \"lucide-react\";\nimport { StatusChip } from \"@/components/ui/status-chip\";\nimport type { StatusKey } from \"@/lib/status\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone panel row: one panel in a phone list (Find panel results, Recent, This stage). Shop\n// number (or panel number and elevation before a shop number exists), one meta line, StatusChip and\n// a chevron. The whole row opens the panel; 64px touch target.\n// Draws only: the list and its order come from the app.\n\nexport interface PhonePanelRowProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"onSelect\"> {\n  shopNumber: string;\n  /** One line, e.g. \"Stage 3 · Wall panel · Install 22 Oct\". */\n  meta?: string;\n  status: StatusKey;\n  onSelect?: () => void;\n}\n\nconst PhonePanelRow = React.forwardRef<HTMLButtonElement, PhonePanelRowProps>(\n  ({ shopNumber, meta, status, onSelect, className, ...props }, ref) => (\n    <button\n      ref={ref}\n      type=\"button\"\n      onClick={onSelect}\n      className={cn(\n        \"flex min-h-16 w-full cursor-pointer items-center gap-3 border-b border-border bg-card py-2.5 pl-4 pr-3 text-left hover:bg-accent\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"flex min-w-0 flex-1 flex-col gap-0.5\">\n        <span className=\"text-body-strong text-foreground\">{shopNumber}</span>\n        {meta && <span className=\"truncate text-caption text-muted-foreground\">{meta}</span>}\n      </span>\n      <StatusChip status={status} />\n      <ChevronRight aria-hidden className=\"size-4 shrink-0 text-muted-foreground\" />\n    </button>\n  )\n);\nPhonePanelRow.displayName = \"PhonePanelRow\";\n\nexport { PhonePanelRow };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-panel-row.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

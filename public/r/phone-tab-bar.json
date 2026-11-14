@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-tab-bar",
+  "title": "Phone tab bar",
+  "description": "Pattern/Phone tab bar: Overview, Activity, Scan, QA, More; builders swap QA for Files.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/phone-tab-bar-item",
+    "@ama/phone-scan-button"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/phone-tab-bar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ClipboardList, Ellipsis, FileText, House, MessageSquare } from \"lucide-react\";\nimport { PhoneScanButton } from \"@/components/patterns/phone-scan-button\";\nimport { PhoneTabBarItem } from \"@/components/patterns/phone-tab-bar-item\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Phone tab bar: the phone bottom bar. Overview, Activity, Scan (centre, every screen), QA,\n// More. Builders swap QA for Files (QA moves into More). Includes the 24px home indicator safe area.\n// Set `active` to one tab. Draws only: the tab set and unread dots come from the app.\n\nexport type PhoneTab = \"overview\" | \"activity\" | \"qa\" | \"files\" | \"more\";\n\nconst TABS = {\n  overview: { label: \"Overview\", icon: House },\n  activity: { label: \"Activity\", icon: MessageSquare },\n  qa: { label: \"QA\", icon: ClipboardList },\n  files: { label: \"Files\", icon: FileText },\n  more: { label: \"More\", icon: Ellipsis },\n} as const;\n\nexport interface PhoneTabBarProps extends Omit<React.HTMLAttributes<HTMLElement>, \"onSelect\"> {\n  audience?: \"staff\" | \"builder\";\n  active?: PhoneTab;\n  unread?: Partial<Record<PhoneTab, boolean>>;\n  onSelect?: (tab: PhoneTab) => void;\n  onScan?: () => void;\n}\n\nconst PhoneTabBar = React.forwardRef<HTMLElement, PhoneTabBarProps>(\n  ({ audience = \"staff\", active, unread = {}, onSelect, onScan, className, ...props }, ref) => {\n    const fourth: PhoneTab = audience === \"builder\" ? \"files\" : \"qa\";\n    const item = (tab: PhoneTab) => (\n      <PhoneTabBarItem\n        key={tab}\n        icon={TABS[tab].icon}\n        label={TABS[tab].label}\n        active={active === tab}\n        unread={unread[tab]}\n        onClick={() => onSelect?.(tab)}\n      />\n    );\n    return (\n      <nav\n        ref={ref}\n        aria-label=\"Panel\"\n        className={cn(\"flex items-start justify-between border-t border-border bg-card px-2 pb-6\", className)}\n        {...props}\n      >\n        <div role=\"tablist\" aria-label=\"Panel views\" className=\"contents\">\n          {item(\"overview\")}\n          {item(\"activity\")}\n          <PhoneScanButton onClick={onScan} className=\"flex-1\" />\n          {item(fourth)}\n          {item(\"more\")}\n        </div>\n      </nav>\n    );\n  }\n);\nPhoneTabBar.displayName = \"PhoneTabBar\";\n\nexport { PhoneTabBar };\n",
+      "type": "registry:component",
+      "target": "components/patterns/phone-tab-bar.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
