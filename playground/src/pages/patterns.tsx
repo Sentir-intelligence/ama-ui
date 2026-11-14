@@ -4,7 +4,11 @@ import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { PreviewBar } from "@/components/patterns/preview-bar";
+import { MetricCard } from "@/components/patterns/metric-card";
+import { PhotoTile } from "@/components/patterns/photo-tile";
 import { QaAnswer, type QaAnswerValue } from "@/components/patterns/qa-answer";
+import { QaDefect } from "@/components/patterns/qa-defect";
+import { QaRing } from "@/components/patterns/qa-ring";
 import { QaItem } from "@/components/patterns/qa-item";
 import { ShellActivityItem } from "@/components/patterns/shell-activity-item";
 import { ShellAvatar } from "@/components/patterns/shell-avatar";
@@ -261,6 +265,66 @@ export function PatternsPage() {
           <div data-density="touch" className="w-full max-w-sm">
             <QaAnswer size="touch" value="fail" />
           </div>
+        </Row>
+      </Section>
+
+      <Section
+        title="QA defect, QA ring, Metric card and Photo tile"
+        note="The rest of the QA tab. The defect sits inside a failed QA row; Close defect is outline until a fix photo is added and always tappable. The ring shows checks done of total."
+      >
+        <Row label="QA defect: Open, Fix added, Closed">
+          <div className="flex w-full max-w-3xl flex-col gap-6">
+            <QaDefect
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              onCloseDefect={() => {}}
+              onAddFix={() => {}}
+            />
+            <QaDefect
+              state="fix-added"
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              fixPhotos={[{}]}
+              onCloseDefect={() => {}}
+              onAddFix={() => {}}
+            />
+            <QaDefect
+              state="closed"
+              note="Plates 50 mm out of position against Rev C. Re-set before pour."
+              defectPhotos={[{}, {}]}
+              fixPhotos={[{}]}
+            />
+          </div>
+        </Row>
+        {(["compact", "touch", "large"] as const).map((size) => (
+          <Row key={size} label={`QA ring, ${size}: not scheduled, 0 of 24, 6 of 24 with 1 failed, 13 of 24, 1 of 2, 0 of 2 with a fail, complete`}>
+            <QaRing size={size} done={0} total={0} scheduled={false} />
+            <QaRing size={size} done={0} total={24} />
+            <QaRing size={size} done={6} total={24} failed={1} />
+            <QaRing size={size} done={13} total={24} />
+            <QaRing size={size} done={1} total={2} />
+            <QaRing size={size} done={0} total={2} failed={1} />
+            <QaRing size={size} done={24} total={24} />
+          </Row>
+        ))}
+        <Row label="Metric card: Number, Progress (three lines each, equal widths)">
+          <div className="grid w-full max-w-3xl grid-cols-3 gap-4">
+            <MetricCard label="Open defects" value={1} sub="Cast in Plates" />
+            <MetricCard label="QA done" value={13} progress={13 / 24} sub="of 24 checks" />
+            <MetricCard label="Failed" value={0} sub="No failed checks" />
+          </div>
+        </Row>
+        <Row label="Photo tile, 56: photo, add, uploading, not synced">
+          <PhotoTile />
+          <PhotoTile state="add" onSelect={() => {}} />
+          <PhotoTile state="uploading" progress={60} />
+          <PhotoTile state="not-synced" />
+        </Row>
+        <Row label="Photo tile, 72">
+          <PhotoTile size={72} />
+          <PhotoTile size={72} state="add" onSelect={() => {}} />
+          <PhotoTile size={72} state="uploading" progress={60} />
+          <PhotoTile size={72} state="not-synced" />
         </Row>
       </Section>
 

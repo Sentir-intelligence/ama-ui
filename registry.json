@@ -799,6 +799,75 @@
         "@ama/button",
         "@ama/qa-answer"
       ]
+    },
+    {
+      "name": "photo-tile",
+      "type": "registry:component",
+      "title": "Photo tile",
+      "description": "Pattern/Photo tile: a cover-cropped photo thumbnail, 56 or 72. States Photo, Add (dashed, opens the camera or file picker), Uploading (progress bar) and Not synced (cloud badge). With onSelect it is a button. Draws only; uploads and sync come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/photo-tile.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/photo-tile.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-ring",
+      "type": "registry:component",
+      "title": "QA ring",
+      "description": "Pattern/QA ring: QA progress as a ring. Compact 16, Touch 24, Large 64. Arc is done, a red arc and dot show a failed check, a ticked full ring is complete, a dashed grey ring is not scheduled. Draws only; the counts come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-ring.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-ring.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "metric-card",
+      "type": "registry:component",
+      "title": "Metric card",
+      "description": "Pattern/Metric card: a tab summary card with label, a 28px value row and a sub line; give progress for the bar beside the value. Use 3 to 5 in a row. Draws only; the numbers come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/metric-card.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/metric-card.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-defect",
+      "type": "registry:component",
+      "title": "QA defect",
+      "description": "Pattern/QA defect: the defect raised when a QA item fails, inside the failed row. Note with Close defect (outline until a fix photo is added, then primary), defect photos, a divider and fix photos with an Add tile. States Open, Fix added, Closed. Draws only; closing and uploads come from the app.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-defect.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-defect.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/photo-tile"
+      ]
     }
   ]
 }

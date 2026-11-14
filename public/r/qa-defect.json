@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qa-defect",
+  "title": "QA defect",
+  "description": "Pattern/QA defect: the defect raised when a QA item fails, inside the failed row. Note with Close defect (outline until a fix photo is added, then primary), defect photos, a divider and fix photos with an Add tile. States Open, Fix added, Closed. Draws only; closing and uploads come from the app.",
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button",
+    "@ama/photo-tile"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/qa-defect.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Button } from \"@/components/ui/button\";\nimport { PhotoTile, type PhotoTileProps } from \"@/components/patterns/photo-tile\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/QA defect: the defect raised when a QA item fails. It sits inside the failed row, aligned\n// to the item text, with no banner and no heading of its own. The note with Close defect on the\n// right (outline until a fix photo is added, then primary; always tappable, so the app can ask once\n// when closing without a photo), then the defect photos, a divider, and the fix photos with an Add\n// tile. Closed: muted note, no button, no Add tile; kept in the history.\n// Nothing is ever blocked: an open Pre Pour defect is a nudge on Concrete Docket, not a gate.\n// Draws only: the state, who may close and the photo uploads come from the app.\n\nexport interface QaDefectProps extends React.HTMLAttributes<HTMLDivElement> {\n  state?: \"open\" | \"fix-added\" | \"closed\";\n  note: string;\n  defectPhotos?: PhotoTileProps[];\n  fixPhotos?: PhotoTileProps[];\n  onCloseDefect?: () => void;\n  /** Add tile after the fix photos (not shown when closed). */\n  onAddFix?: () => void;\n}\n\nconst QaDefect = React.forwardRef<HTMLDivElement, QaDefectProps>(\n  ({ state = \"open\", note, defectPhotos = [], fixPhotos = [], onCloseDefect, onAddFix, className, ...props }, ref) => {\n    const closed = state === \"closed\";\n    return (\n      <div ref={ref} data-state={state} className={cn(\"flex flex-col items-start gap-2.5 rounded-lg\", className)} {...props}>\n        <div className=\"flex w-full items-center gap-2\">\n          <p className={cn(\"flex-1 text-body\", closed ? \"text-muted-foreground\" : \"text-foreground\")}>{note}</p>\n          {!closed && (\n            <Button\n              type=\"button\"\n              size=\"sm\"\n              variant={state === \"fix-added\" ? \"default\" : \"outline\"}\n              onClick={onCloseDefect}\n            >\n              Close defect\n            </Button>\n          )}\n        </div>\n        <div className=\"flex items-center gap-2\">\n          {defectPhotos.map((p, i) => (\n            <PhotoTile key={`d${i}`} {...p} />\n          ))}\n          <span aria-hidden className={cn(\"h-10 w-px shrink-0\", closed ? \"bg-border\" : \"bg-destructive-border\")} />\n          {fixPhotos.map((p, i) => (\n            <PhotoTile key={`f${i}`} {...p} />\n          ))}\n          {!closed && <PhotoTile state=\"add\" onSelect={onAddFix} />}\n        </div>\n      </div>\n    );\n  }\n);\nQaDefect.displayName = \"QaDefect\";\n\nexport { QaDefect };\n",
+      "type": "registry:component",
+      "target": "components/patterns/qa-defect.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
