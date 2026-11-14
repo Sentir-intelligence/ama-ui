@@ -759,6 +759,46 @@
         "@ama/utils",
         "@ama/button"
       ]
+    },
+    {
+      "name": "qa-answer",
+      "type": "registry:component",
+      "title": "QA answer",
+      "description": "Pattern/QA answer: Pass, Fail or N/A in one tap. Default for desktop rows, Touch (full width, 48 high) for phones. The chosen segment takes the success, destructive or muted soft colour. Draws only; who may answer and what an answer does come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-answer.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-answer.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "qa-item",
+      "type": "registry:component",
+      "title": "QA item",
+      "description": "Pattern/QA item: one checklist item on the Visibuild QA tab. Views Answer, Review (read only) and Builder (Planned, In progress, Complete; never Failed); states Open, Pass, Fail, N/A; sizes Desktop row and Touch card; Not synced cloud icon. Draws only; permissions, answering and sync come from the app.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-item.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-item.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/qa-answer"
+      ]
     }
   ]
 }

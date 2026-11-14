@@ -4,6 +4,8 @@ import { CodeInput } from "@/components/patterns/code-input";
 import { PersonRow } from "@/components/patterns/person-row";
 import { PhonePageHeader } from "@/components/patterns/phone-page-header";
 import { PreviewBar } from "@/components/patterns/preview-bar";
+import { QaAnswer, type QaAnswerValue } from "@/components/patterns/qa-answer";
+import { QaItem } from "@/components/patterns/qa-item";
 import { ShellActivityItem } from "@/components/patterns/shell-activity-item";
 import { ShellAvatar } from "@/components/patterns/shell-avatar";
 import { ShellChromeButton } from "@/components/patterns/shell-chrome-button";
@@ -31,6 +33,32 @@ function LiveCodeInput() {
         {wrong ? "Wrong code (try 48219376)" : code.length === 8 ? "Signed in" : `${code.length} of 8`}
       </span>
     </div>
+  );
+}
+
+const QA_STATES = ["open", "pass", "fail", "na"] as const;
+const QA_SAMPLE = {
+  label: "11. Cast in Plates",
+  description: "Plates are the correct size and correctly positioned",
+  meta: "Tom B · 09 Oct",
+  photos: 3,
+  comments: 1,
+};
+
+// A live QA item: answer it, then Reopen it.
+function LiveQaItems() {
+  const [state, setState] = React.useState<QaAnswerValue | null>(null);
+  return (
+    <Row label="Live (answer, then Reopen)">
+      <div className="w-full overflow-hidden rounded-lg border border-border">
+        <QaItem
+          {...QA_SAMPLE}
+          state={state ?? "open"}
+          onAnswer={setState}
+          onReopen={() => setState(null)}
+        />
+      </div>
+    </Row>
   );
 }
 
@@ -193,6 +221,47 @@ export function PatternsPage() {
         <Phone>
           <PreviewBar shell="Other external" person="A person with a long name from a long company" onExit={() => {}} />
         </Phone>
+      </Section>
+
+      <Section
+        title="QA item and QA answer"
+        note="One checklist item on the QA tab. Answer: open items take Pass, Fail or N/A, answered items show the result and Reopen. Review: read only. Builder: Planned, In progress, Complete (never Failed). Desktop row and Touch card."
+      >
+        <LiveQaItems />
+        {(["answer", "review", "builder"] as const).map((view) => (
+          <Row key={view} label={`${view[0].toUpperCase()}${view.slice(1)}, desktop`}>
+            <div className="w-full overflow-hidden rounded-lg border border-border">
+              {QA_STATES.map((state) => (
+                <QaItem key={state} view={view} state={state} {...QA_SAMPLE} />
+              ))}
+            </div>
+          </Row>
+        ))}
+        <Row label="Answer, Fail, not synced, no description">
+          <div className="w-full overflow-hidden rounded-lg border border-border">
+            <QaItem view="answer" state="fail" label="11. Cast in Plates" meta="Tom B · 09 Oct" notSynced />
+          </div>
+        </Row>
+        {(["answer", "review", "builder"] as const).map((view) => (
+          <Row key={`t-${view}`} label={`${view[0].toUpperCase()}${view.slice(1)}, touch`}>
+            <div data-density="touch" className="flex flex-col gap-4">
+              {QA_STATES.map((state) => (
+                <Phone key={state}>
+                  <QaItem view={view} state={state} size="touch" {...QA_SAMPLE} notSynced={state === "pass"} />
+                </Phone>
+              ))}
+            </div>
+          </Row>
+        ))}
+        <Row label="QA answer: none, Pass, Fail, N/A (default, then touch)">
+          <QaAnswer value={null} />
+          <QaAnswer value="pass" />
+          <QaAnswer value="fail" />
+          <QaAnswer value="na" />
+          <div data-density="touch" className="w-full max-w-sm">
+            <QaAnswer size="touch" value="fail" />
+          </div>
+        </Row>
       </Section>
 
       <Section
