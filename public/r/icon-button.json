@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-button",
+  "title": "Icon button",
+  "description": "Pattern/Icon button: square ghost icon button with a tooltip. States Rest, Hover, Open, Tinted, Disabled. The label is the accessible name and the tooltip. Draws only.",
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button",
+    "@ama/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/icon-button.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport type { LucideIcon } from \"lucide-react\";\nimport { Button, type ButtonProps } from \"@/components/ui/button\";\nimport { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from \"@/components/ui/tooltip\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/Icon button: a square ghost icon button with a tooltip, built from Button variant=ghost\n// size=icon. States: Rest, Hover, Open (its menu or panel is open: tinted fill and a primary edge),\n// Tinted (primary icon, no fill: the setting is on) and Disabled. `label` is required: it is both the\n// accessible name and the tooltip. Draws only: the app decides what a press does.\n\nexport interface IconButtonProps extends Omit<ButtonProps, \"variant\" | \"size\" | \"children\" | \"aria-label\"> {\n  icon: LucideIcon;\n  /** The accessible name and the tooltip text, such as \"Undo\". */\n  label: string;\n  /** Its menu or panel is open. */\n  open?: boolean;\n  /** The setting it stands for is on. */\n  tinted?: boolean;\n}\n\nconst IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(\n  ({ icon: Icon, label, open = false, tinted = false, className, ...props }, ref) => (\n    <TooltipProvider delayDuration={300}>\n      <Tooltip>\n        <TooltipTrigger asChild>\n          <Button\n            ref={ref}\n            type=\"button\"\n            variant=\"ghost\"\n            size=\"icon\"\n            aria-label={label}\n            data-state={open ? \"open\" : undefined}\n            className={cn(\n              (open || tinted) && \"text-primary hover:text-primary\",\n              open && \"border border-primary bg-row-selected\",\n              className,\n            )}\n            {...props}\n          >\n            <Icon aria-hidden=\"true\" />\n          </Button>\n        </TooltipTrigger>\n        <TooltipContent>{label}</TooltipContent>\n      </Tooltip>\n    </TooltipProvider>\n  ),\n);\nIconButton.displayName = \"IconButton\";\n\nexport { IconButton };\n",
+      "type": "registry:component",
+      "target": "components/patterns/icon-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

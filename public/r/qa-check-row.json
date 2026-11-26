@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "qa-check-row",
+  "title": "QA check row",
+  "description": "Pattern/QA check row: one QA or trade checklist item as a plain row: tick, label, who and when, optional photo and note counts. States Done, Next, Open, Failed. Draws only.",
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/qa-check-row.tsx",
+      "content": "import * as React from \"react\";\nimport { Camera, Circle, CircleCheck, CircleX, MessageSquare } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/QA check row: one QA or trade checklist item as a plain row: tick, label, who and when,\n// and an optional photo and note count. States: done (blue tick, who and when), next (the item to\n// do now, with a \"Next\" tag), open (not yet) and failed (red cross, who and when). The lighter\n// sibling of QA item, for lists inside a card or the Board. Draws only.\n\nexport type QaCheckRowState = \"done\" | \"next\" | \"open\" | \"failed\";\n\nexport interface QaCheckRowProps extends React.HTMLAttributes<HTMLDivElement> {\n  state?: QaCheckRowState;\n  /** For example \"1. Shop Drawing\". */\n  label: string;\n  /** Who and when, for example \"Tom B · 09 Oct\". Shown for done and failed. */\n  meta?: string;\n  /** Photo and note counts; each shows only when given. */\n  photos?: number;\n  notes?: number;\n}\n\nconst ICON = {\n  done: { Icon: CircleCheck, className: \"text-primary\", word: \"Done\" },\n  failed: { Icon: CircleX, className: \"text-destructive\", word: \"Failed\" },\n  next: { Icon: Circle, className: \"text-muted-foreground\", word: \"Next\" },\n  open: { Icon: Circle, className: \"text-muted-foreground\", word: \"Not done\" },\n} as const;\n\nconst QaCheckRow = React.forwardRef<HTMLDivElement, QaCheckRowProps>(\n  ({ state = \"open\", label, meta, photos, notes, className, ...props }, ref) => {\n    const { Icon, className: tone, word } = ICON[state];\n    const showMeta = meta && (state === \"done\" || state === \"failed\");\n    return (\n      <div ref={ref} data-state={state} className={cn(\"flex min-h-8 items-center gap-2 py-1\", className)} {...props}>\n        <Icon className={cn(\"size-4 shrink-0\", tone)} aria-hidden=\"true\" />\n        <span className=\"sr-only\">{word}: </span>\n        <span className=\"min-w-0 truncate text-body text-foreground\">{label}</span>\n        {state === \"next\" && (\n          <span className=\"shrink-0 rounded-sm border border-input bg-background px-1.5 text-caption text-foreground\">Next</span>\n        )}\n        {photos !== undefined && (\n          <span className=\"flex shrink-0 items-center gap-0.5 text-caption text-muted-foreground\">\n            <Camera className=\"size-3.5\" aria-hidden=\"true\" />\n            {photos}\n            <span className=\"sr-only\"> photos</span>\n          </span>\n        )}\n        {notes !== undefined && (\n          <span className=\"flex shrink-0 items-center gap-0.5 text-caption text-muted-foreground\">\n            <MessageSquare className=\"size-3.5\" aria-hidden=\"true\" />\n            {notes}\n            <span className=\"sr-only\"> notes</span>\n          </span>\n        )}\n        {showMeta && <span className=\"ml-auto shrink-0 text-body-sm text-muted-foreground\">{meta}</span>}\n      </div>\n    );\n  },\n);\nQaCheckRow.displayName = \"QaCheckRow\";\n\nexport { QaCheckRow };\n",
+      "type": "registry:component",
+      "target": "components/patterns/qa-check-row.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

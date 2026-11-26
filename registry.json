@@ -1106,6 +1106,146 @@
         "@ama/utils",
         "@ama/status-chip"
       ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "Pattern/Toast: the toast container. A plain card with a shadow, one line by default, optional description and one action; the feedback colour is the icon only. Callers use toast from sonner. Wrap the app once in Toaster. z-120.",
+      "dependencies": [
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/ama/ui/sonner.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/sonner.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:component",
+      "title": "Icon button",
+      "description": "Pattern/Icon button: square ghost icon button with a tooltip. States Rest, Hover, Open, Tinted, Disabled. The label is the accessible name and the tooltip. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/icon-button.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/icon-button.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/tooltip"
+      ]
+    },
+    {
+      "name": "qa-check-row",
+      "type": "registry:component",
+      "title": "QA check row",
+      "description": "Pattern/QA check row: one QA or trade checklist item as a plain row: tick, label, who and when, optional photo and note counts. States Done, Next, Open, Failed. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/qa-check-row.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/qa-check-row.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "view-tab",
+      "type": "registry:component",
+      "title": "View tab",
+      "description": "Pattern/View tab: one tab in the view tabs row. Saved or Preview (with a close button), Active (2px primary underline) or Inactive. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/view-tab.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/view-tab.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils"
+      ]
+    },
+    {
+      "name": "comment-box",
+      "type": "registry:component",
+      "title": "Comment box",
+      "description": "Pattern/Comment box: one soft box for writing text, Floating (a comment on a markup) or Inline (a view or Board description). Enter posts, Shift+Enter adds a line, Esc cancels, @mentions show in primary. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/comment-box.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/comment-box.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button"
+      ]
+    },
+    {
+      "name": "view-header",
+      "type": "registry:component",
+      "title": "View header",
+      "description": "Pattern/View header: a saved view's title with Pin, Clone, Share and Delete (owner only), and an editable description underneath. An action shows only when its handler is given. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/view-header.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/view-header.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/icon-button"
+      ]
+    },
+    {
+      "name": "view-toolbar",
+      "type": "registry:component",
+      "title": "View toolbar",
+      "description": "Pattern/View toolbar: search, undo, redo, count, Group by, Filters, Columns, Download and Add element above a view's rows. Draws only: the app searches, groups and filters.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/view-toolbar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/view-toolbar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/button",
+        "@ama/input",
+        "@ama/icon-button"
+      ]
+    },
+    {
+      "name": "card-action-bar",
+      "type": "registry:component",
+      "title": "Card action bar",
+      "description": "Pattern/Card action bar: Drawing, Activity (count, unread dot, mention) and QA (ring and fraction) under a phone element card, 44px tall. A slot shows only when its handler is given. Draws only.",
+      "files": [
+        {
+          "path": "registry/ama/patterns/card-action-bar.tsx",
+          "type": "registry:component",
+          "target": "components/patterns/card-action-bar.tsx"
+        }
+      ],
+      "registryDependencies": [
+        "@ama/utils",
+        "@ama/qa-ring"
+      ]
     }
   ]
 }

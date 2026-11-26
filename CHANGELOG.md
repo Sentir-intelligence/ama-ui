@@ -1,5 +1,14 @@
 # ama-ui
 
+## 0.3.9
+
+The patterns for the Board tab and the Views shell (AMA-346): Icon button, QA check row, View tab, Comment box, View header, View toolbar and Card action bar, and the `sonner` item that draws the Toast. Each is built from the Figma Patterns page and draws only.
+
+### Patch Changes
+
+- Board and view patterns from the Figma Patterns page (AMA-346): Icon button (Rest, Hover, Open, Tinted, Disabled, always labelled), QA check row (Done, Next, Open, Failed), View tab (Saved and Preview, Active and Inactive), Comment box (Floating and Inline; Enter posts, Shift+Enter adds a line, Esc cancels, @mentions in primary), View header (Pin, Clone, Share, Delete for the owner, editable description), View toolbar (search, undo, redo, count, Group by, Filters, Columns, Download, Add element) and Card action bar (Drawing, Activity with unread and mention, QA ring and fraction).
+- `sonner` registry item for Pattern/Toast: a neutral card with a shadow and the feedback colour on the icon only; callers keep `toast` from `sonner`. Adds the `sonner` dependency. It replaces the stand-in in ama-os, which drew a coloured surface with a left rule.
+
 ## 0.3.8
 
 The patterns for the Panel view (PV-18, AMA-337): the QA tab (QA item, QA answer, QA defect, QA ring, Metric card, Photo tile), the Activity tab (tabs, comment, composer, log line, visibility tag and toggle, Raised item), and the phone shell (header, tab bar, tab bar item, scan button, panel row). Select gains an optional leading icon and an icon-only mode.

@@ -28,6 +28,16 @@ import { ShellChromeButton } from "@/components/patterns/shell-chrome-button";
 import { ShellMenuTab } from "@/components/patterns/shell-menu-tab";
 import { ShellPanelRow } from "@/components/patterns/shell-panel-row";
 import { ShellRailItem } from "@/components/patterns/shell-rail-item";
+import { CardActionBar } from "@/components/patterns/card-action-bar";
+import { CommentBox } from "@/components/patterns/comment-box";
+import { IconButton } from "@/components/patterns/icon-button";
+import { QaCheckRow } from "@/components/patterns/qa-check-row";
+import { ViewHeader } from "@/components/patterns/view-header";
+import { ViewTab } from "@/components/patterns/view-tab";
+import { ViewToolbar } from "@/components/patterns/view-toolbar";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
+import { FileText as FileIcon } from "lucide-react";
 import { Phone, Row, Section } from "../parts";
 
 // A flat grey square standing in for a photo.
@@ -488,6 +498,63 @@ export function PatternsPage() {
           <CodeInput value="4821" onChange={() => {}} disabled />
         </Row>
       </Section>
+
+      <Section
+        title="Board and view patterns"
+        note="Icon button, QA check row, View tab, Comment box, View header, View toolbar, Card action bar and the Toast (sonner). All draw only."
+      >
+        <Row label="Icon button: Rest, Open, Tinted, Disabled">
+          <IconButton icon={FileIcon} label="Drawing" />
+          <IconButton icon={FileIcon} label="Drawing" open />
+          <IconButton icon={FileIcon} label="Drawing" tinted />
+          <IconButton icon={FileIcon} label="Drawing" disabled />
+        </Row>
+        <Row label="QA check row: Done, Next, Open, Failed">
+          <div className="flex w-full max-w-md flex-col">
+            <QaCheckRow state="done" label="1. Shop Drawing" meta="Tom B · 09 Oct" />
+            <QaCheckRow state="next" label="2. Mesh and cages" />
+            <QaCheckRow state="open" label="3. Cast" photos={2} notes={1} />
+            <QaCheckRow state="failed" label="4. Strip" meta="Tom B · 09 Oct" />
+          </div>
+        </Row>
+        <Row label="View tab: Active and Inactive, Saved and Preview">
+          <ViewTab label="Stage 3" active />
+          <ViewTab label="Stage 3" />
+          <ViewTab label="Stage 3" kind="preview" active onClose={() => {}} />
+          <ViewTab label="Stage 3" kind="preview" onClose={() => {}} />
+        </Row>
+        <Row label="Comment box: Floating and Inline">
+          <LiveCommentBox variant="floating" />
+          <LiveCommentBox variant="inline" />
+        </Row>
+        <Row label="View header">
+          <ViewHeader title="Stage 3 · Building A · L2 · East" onPin={() => {}} onClone={() => {}} onShare={() => {}} onDelete={() => {}} onEditDescription={() => {}} />
+        </Row>
+        <Row label="View toolbar">
+          <ViewToolbar className="w-full" search="" onSearchChange={() => {}} onUndo={() => {}} onRedo={() => {}} count="9 of 9" filterCount={2} onGroupBy={() => {}} onFilters={() => {}} onColumns={() => {}} onDownload={() => {}} onAddElement={() => {}} />
+        </Row>
+        <Row label="Card action bar">
+          <Phone>
+            <CardActionBar onDrawing={() => {}} onActivity={() => {}} activity={{ count: 3, unread: true, mention: true }} onQa={() => {}} qa={{ done: 6, total: 24, failed: 1 }} />
+          </Phone>
+        </Row>
+        <Row label="Toast (sonner)">
+          <Toaster />
+          <button type="button" className="text-link underline" onClick={() => toast("L2-P005 IFC Rev C certified")}>Default</button>
+          <button type="button" className="text-link underline" onClick={() => toast.success("L2-P005 IFC Rev C certified", { description: "Sent to the builder", action: { label: "Undo", onClick: () => {} } })}>Success</button>
+          <button type="button" className="text-link underline" onClick={() => toast.warning("Check the stage dates")}>Warning</button>
+          <button type="button" className="text-link underline" onClick={() => toast.error("Could not save")}>Error</button>
+        </Row>
+      </Section>
     </main>
+  );
+}
+
+function LiveCommentBox({ variant }: { variant: "floating" | "inline" }) {
+  const [value, setValue] = React.useState("");
+  return (
+    <div className="w-full max-w-sm">
+      <CommentBox variant={variant} value={value} onChange={setValue} placeholder={variant === "inline" ? "Add a description" : undefined} submitLabel={variant === "inline" ? "Save" : "Post"} onSubmit={() => setValue("")} onCancel={() => setValue("")} />
+    </div>
   );
 }

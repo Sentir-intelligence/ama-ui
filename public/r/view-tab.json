@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "view-tab",
+  "title": "View tab",
+  "description": "Pattern/View tab: one tab in the view tabs row. Saved or Preview (with a close button), Active (2px primary underline) or Inactive. Draws only.",
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/view-tab.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { X } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/View tab: one tab in the view tabs row (pinned and open views). Saved is a saved view.\n// Preview is an unsaved view opened from elsewhere (Expand, Open as tab, a Documents click) and has\n// a close button. Active is the foreground label and a 2px primary underline; inactive is muted.\n// The row is the tabs left to right, then a ghost + (New view). Draws only: the app opens and closes.\n\nexport interface ViewTabProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, \"children\"> {\n  label: string;\n  active?: boolean;\n  kind?: \"saved\" | \"preview\";\n  /** Preview tabs only: the close (X) press. */\n  onClose?: () => void;\n}\n\nconst ViewTab = React.forwardRef<HTMLButtonElement, ViewTabProps>(\n  ({ label, active = false, kind = \"saved\", onClose, className, ...props }, ref) => (\n    <span className=\"relative inline-flex shrink-0 items-center\">\n      <button\n        ref={ref}\n        type=\"button\"\n        aria-current={active ? \"page\" : undefined}\n        data-state={active ? \"active\" : \"inactive\"}\n        className={cn(\n          \"relative inline-flex h-row min-h-10 min-w-11 cursor-pointer items-center justify-center px-2 text-body whitespace-nowrap text-muted-foreground transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 hover:text-foreground data-[state=active]:text-body-strong data-[state=active]:text-foreground data-[state=active]:after:bg-primary\",\n          kind === \"preview\" && \"pr-8\",\n          className,\n        )}\n        {...props}\n      >\n        {label}\n      </button>\n      {kind === \"preview\" && (\n        <button\n          type=\"button\"\n          aria-label={`Close ${label}`}\n          onClick={onClose}\n          className=\"absolute right-1 inline-flex size-6 cursor-pointer items-center justify-center rounded-sm text-foreground hover:bg-accent\"\n        >\n          <X className=\"size-4\" aria-hidden=\"true\" />\n        </button>\n      )}\n    </span>\n  ),\n);\nViewTab.displayName = \"ViewTab\";\n\nexport { ViewTab };\n",
+      "type": "registry:component",
+      "target": "components/patterns/view-tab.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

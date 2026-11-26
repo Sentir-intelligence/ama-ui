@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "title": "Sonner",
+  "description": "Pattern/Toast: the toast container. A plain card with a shadow, one line by default, optional description and one action; the feedback colour is the icon only. Callers use toast from sonner. Wrap the app once in Toaster. z-120.",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "@ama/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/ui/sonner.tsx",
+      "content": "\"use client\";\n\nimport { CircleCheck, CircleX, TriangleAlert } from \"lucide-react\";\nimport { Toaster as Sonner, type ToasterProps } from \"sonner\";\n\n// Pattern/Toast (Figma Patterns): the toast container. A plain card with a shadow, one line by\n// default; description and one action (for example Undo) are optional. Success after a save or\n// submit, Warning for something to check, Error when it failed. Bottom right on desktop and tablet,\n// top on phone; 4 s, pauses on hover. The feedback colour is the icon only; the card stays neutral.\n// Callers use `toast` from \"sonner\": toast.success(title, { description, action }). Wrap the app once\n// in <Toaster />. Toasts sit on the z-120 layer.\n\nexport function Toaster(props: ToasterProps) {\n  return (\n    <Sonner\n      className=\"z-120\"\n      icons={{\n        success: <CircleCheck className=\"size-5 text-foreground\" aria-hidden=\"true\" />,\n        warning: <TriangleAlert className=\"size-5 text-warning-soft-foreground\" aria-hidden=\"true\" />,\n        error: <CircleX className=\"size-5 text-destructive\" aria-hidden=\"true\" />,\n      }}\n      toastOptions={{\n        unstyled: true,\n        classNames: {\n          toast: \"flex w-full items-center gap-3 rounded-lg border border-border bg-card p-3 text-body text-card-foreground shadow-lg\",\n          title: \"text-body\",\n          description: \"text-body-sm text-muted-foreground\",\n          actionButton: \"rounded-md bg-primary px-2.5 py-1 text-button-sm text-primary-foreground hover:bg-primary-hover\",\n          cancelButton: \"rounded-md border border-input bg-background px-2.5 py-1 text-button-sm\",\n        },\n      }}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/sonner.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
