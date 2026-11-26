@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "view-header",
+  "title": "View header",
+  "description": "Pattern/View header: a saved view's title with Pin, Clone, Share and Delete (owner only), and an editable description underneath. An action shows only when its handler is given. Draws only.",
+  "registryDependencies": [
+    "@ama/utils",
+    "@ama/button",
+    "@ama/icon-button"
+  ],
+  "files": [
+    {
+      "path": "registry/ama/patterns/view-header.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Copy, Share2, Star, Trash2 } from \"lucide-react\";\nimport { Button } from \"@/components/ui/button\";\nimport { IconButton } from \"@/components/patterns/icon-button\";\nimport { cn } from \"@/lib/utils\";\n\n// Pattern/View header: a saved view's header. The title with Pin, Clone, Share (people, groups or\n// everyone; CSV and PDF inside) and Delete (owner only, quiet destructive) beside it, and an\n// editable description underneath (\"Add a description…\" when empty). Unsaved views use the Preview\n// bar instead. An action shows only when its handler is given, so the app decides who sees Pin and\n// Delete. Draws only: the description opens in a Comment box (inline) when pressed.\n\nexport interface ViewHeaderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\"> {\n  title: string;\n  description?: string;\n  /** Pressing the description: the app swaps in a Comment box (inline). */\n  onEditDescription?: () => void;\n  /** Shows Pin. */\n  onPin?: () => void;\n  pinned?: boolean;\n  onClone?: () => void;\n  onShare?: () => void;\n  /** Shows Delete: give it to the owner only. */\n  onDelete?: () => void;\n}\n\nconst ViewHeader = React.forwardRef<HTMLDivElement, ViewHeaderProps>(\n  ({ title, description, onEditDescription, onPin, pinned = false, onClone, onShare, onDelete, className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex flex-col gap-1\", className)} {...props}>\n      <div className=\"flex items-center gap-1\">\n        <h2 className=\"min-w-0 truncate text-title text-foreground\">{title}</h2>\n        <span className=\"w-2 shrink-0\" aria-hidden=\"true\" />\n        {onPin && <IconButton icon={Star} label={pinned ? \"Unpin view\" : \"Pin view\"} tinted={pinned} onClick={onPin} />}\n        {onClone && <IconButton icon={Copy} label=\"Clone view\" onClick={onClone} />}\n        {onShare && <IconButton icon={Share2} label=\"Share view\" onClick={onShare} />}\n        {onDelete && (\n          <Button type=\"button\" variant=\"ghost\" size=\"sm\" className=\"text-destructive hover:text-destructive\" onClick={onDelete}>\n            <Trash2 aria-hidden=\"true\" />\n            Delete\n          </Button>\n        )}\n      </div>\n      {(description || onEditDescription) && (\n        <button\n          type=\"button\"\n          onClick={onEditDescription}\n          disabled={!onEditDescription}\n          className={cn(\n            \"w-fit max-w-full cursor-pointer truncate text-left text-body disabled:cursor-default\",\n            description ? \"text-foreground\" : \"text-muted-foreground\",\n          )}\n        >\n          {description || \"Add a description…\"}\n        </button>\n      )}\n    </div>\n  ),\n);\nViewHeader.displayName = \"ViewHeader\";\n\nexport { ViewHeader };\n",
+      "type": "registry:component",
+      "target": "components/patterns/view-header.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
